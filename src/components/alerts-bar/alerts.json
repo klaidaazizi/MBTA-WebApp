@@ -1,0 +1,44 @@
+[
+  {
+    "banner": "Train stopped between Ruggles and Roxbury Crossing",
+    "date": "04/01/2022",
+    "time": "12:00 PM",
+    "_id": "1",
+    "severity": 1
+  },
+  {
+    "banner": "Train stopped between Ruggles and Roxbury Crossing",
+    "date": "04/01/2022",
+    "time": "12:00 PM",
+    "_id": "2",
+    "severity": 2
+  },
+  {
+    "banner": "Train stopped between Ruggles and Roxbury Crossing",
+    "date": "04/01/2022",
+    "time": "12:00 PM",
+    "_id": "3",
+    "severity": 1
+  },
+  {
+    "banner": "Train stopped between Ruggles and Roxbury Crossing",
+    "date": "04/01/2022",
+    "time": "12:00 PM",
+    "_id": "4",
+    "severity": 3
+  },
+  {
+    "banner": "Train stopped between Ruggles and Roxbury Crossing",
+    "date": "04/01/2022",
+    "time": "12:00 PM",
+    "_id": "5",
+    "severity": 3
+  },
+  {
+    "banner": "Train stopped between Ruggles and Roxbury Crossing",
+    "date": "04/01/2022",
+    "time": "12:00 PM",
+    "_id": "6",
+    "severity": 2
+  }
+]
