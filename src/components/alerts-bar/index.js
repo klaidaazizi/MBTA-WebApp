@@ -1,5 +1,5 @@
 import React from "react";
-import alerts from "./alerts.json"
+import alerts from "../../data/alerts.json"
 import AlertItem from "./alert-item";
 
 const AlertsBar = () => {
