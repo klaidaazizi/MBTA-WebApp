@@ -1,6 +1,7 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
-const LoginForm = () => {
+const Login = () => {
     return(
         <>
         <div className='form'>
@@ -18,7 +19,7 @@ const LoginForm = () => {
             </div>
             </div>
             <div className="button-container">
-                <button type="submit" className="btn btn-primary mt-1">Submit</button>
+                <Link to="/" className="btn btn-primary mt-1">Submit</Link>
             </div>
             </form>
         </div>
@@ -26,4 +27,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+export default Login;

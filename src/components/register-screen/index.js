@@ -1,6 +1,7 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
-const RegisterForm = () => {
+const Register = () => {
     return(
         <>
             <div className='form'>
@@ -35,21 +36,21 @@ const RegisterForm = () => {
                         <div><input type='text' name='password'/>
                         </div>
                     </div>
-                    <div className='input-container'>
-                        <label> Confirm Password </label>
-                        <div><input type='text' name='password'/>
-                        </div>
-                    </div>
-                    <div className='mt-1'>
+                    <div className='mt-2'>
                         Role:
+                        <div className='mb-2'>
                         <select>
                             <option value ='commuter'>Commuter</option>
                             <option value='conductor'>Conductor</option>
                             <option value='admin'>Admin</option>
                         </select>
+                        </div>
                     </div>
                     <div className="button-container">
-                        <button type="submit" className="btn btn-primary mt-1">Create Account</button>
+                        <Link to="/login" className="btn btn-primary mt-1">Create Account</Link>
+                    </div>
+                    <div className="button-container">
+                        <Link to="/policy" className="btn btn-info mt-3">Privacy Policy</Link>
                     </div>
                 </form>
             </div>
@@ -57,4 +58,4 @@ const RegisterForm = () => {
     )
 }
 
-export default RegisterForm;
+export default Register;
