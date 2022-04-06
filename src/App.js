@@ -10,6 +10,7 @@ import SearchScreen from "./components/search-screen";
 import PrivacyPolicy from "./components/privacy-policy";
 import HomeScreen from "./components/home-screen";
 import Home from "./components";
+import PostList from "./components/post-list";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
                              element={<ProfileScreen/>}/>
                       <Route path="search"
                              element={<SearchScreen/>}/>
+                      <Route path="posts"
+                             element={<PostList/>}/>
                       <Route path="policy"
                              element={<PrivacyPolicy/>}/>
                   </Route>
