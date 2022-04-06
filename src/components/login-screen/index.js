@@ -21,6 +21,9 @@ const Login = () => {
             <div className="button-container">
                 <Link to="/" className="btn btn-primary mt-1">Submit</Link>
             </div>
+                <div className="button-container">
+                    <Link to="/register" className="btn btn-primary mt-1">Register</Link>
+                </div>
             </form>
         </div>
         </>

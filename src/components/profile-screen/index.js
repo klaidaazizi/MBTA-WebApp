@@ -4,14 +4,8 @@ import React from "react";
 
 const ProfileScreen =() => {
     return(
-        <ul className='list-group'>
-            <li className='list-group-item fw-bold text-danger'>Users</li>
-            {profiles.map(
-                profile => {
-                    return(<Profile profile={profile}/>)
-                }
-            )}
-        </ul>
+        <Profile/>
     );
 };
+
 export default ProfileScreen;

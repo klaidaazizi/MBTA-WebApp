@@ -15,7 +15,7 @@ import PostList from "./components/post-list";
 function App() {
   return (
       <BrowserRouter>
-          <div className="container">
+          <div className="container" >
               <Routes>
                   <Route path="/"
                          element={<Home/>}>
