@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import AlertItem from "./alert-item";
 import {useDispatch, useSelector} from "react-redux";
-import {findAllAlerts, findAlertsByStopId} from "../../actions/alerts-action";
+import {findAllAlerts} from "../../actions/alerts-action";
 
 const AlertsBar = () => {
     const alerts = useSelector(state => state.alerts);
@@ -13,7 +13,8 @@ const AlertsBar = () => {
             <li className='list-group-item fw-bold text-danger'>Alerts</li>
             {alerts.map(
                 alert => {
-                    return(<AlertItem key={alert._id}
+                    const alert_info = alert.attributes;
+                    return(<AlertItem key={alert.id}
                                       alert={alert}/>)
                 }
             )}

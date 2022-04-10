@@ -15,6 +15,10 @@ const NavigationBar = () => {
         <>
             <div className='list-group'>
                 <Link to='/'
+                      className={`list-group-item`}>
+                    <span><img className='img-fluid float-start' src="/images/teasy.png"/></span>
+                </Link>
+                <Link to='/'
                       onClick={() => changeHighlight('home')}
                       className={`list-group-item ${navigationData.activePage === "home" ? 'active': ''}`}>
                     <span>Home</span>

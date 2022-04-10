@@ -11,6 +11,7 @@ import PrivacyPolicy from "./components/privacy-policy";
 import HomeScreen from "./components/home-screen";
 import Home from "./components";
 import PostList from "./components/post-list";
+import AlertScreen from "./components/alert-screen";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
                              element={<PostList/>}/>
                       <Route path="policy"
                              element={<PrivacyPolicy/>}/>
+                      <Route path="alerts/:aid"
+                             element={<AlertScreen/>}/>
                   </Route>
               </Routes>
           </div>

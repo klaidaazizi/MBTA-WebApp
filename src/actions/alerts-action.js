@@ -1,7 +1,7 @@
 import * as service from '../services/alerts-service';
 
 export const FIND_ALL_ALERTS = 'FIND_ALL_ALERTS';
-export const FIND_ALERTS_BY_STOP_ID = 'FIND_ALERTS_BY_STOP_ID';
+export const FIND_ALERT_BY_ID = 'FIND_ALERT_BY_ID';
 
 export const findAllAlerts = async (dispatch) => {
     const alerts = await service.findAllAlerts();
@@ -11,10 +11,12 @@ export const findAllAlerts = async (dispatch) => {
     });
 }
 
-export const findAlertsByStopId = async (dispatch, stopID) => {
-    const alertsByStopId = await service.findAlertsByStopId(stopID);
+export const findAlertById = async (dispatch, alertId) => {
+    const alert = await service.findAlertById(alertId);
     dispatch({
-        type: FIND_ALERTS_BY_STOP_ID,
-        alertsByStopId
+        type: FIND_ALERT_BY_ID,
+        alert
     })
 }
+
+export default [findAlertById, findAllAlerts];
