@@ -18,10 +18,14 @@ export const logout = (user) =>
     api.post(`${SECURITY_API}/logout`, user)
         .then(response => response.data);
 
-export const isLoggedIn = () =>
+export const loggedIn = () =>
     api.get(`${SECURITY_API}/user`)
         .then(response => response.data);
 
 export const isOwner = () =>
     api.get(`${SECURITY_API}/profile`)
+        .then(response => response.data);
+
+export const profile = () =>
+    api.post(`${SECURITY_API}`)
         .then(response => response.data);
