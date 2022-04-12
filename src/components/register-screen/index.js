@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import * as service from '../../services/user-service'
+import * as SessionService from '../../services/session-service'
 
 const Register = () => {
     const [newUser, setNewUser] = useState({})
@@ -35,7 +35,7 @@ const Register = () => {
         }
          else
         {
-            service.register(newUser)
+            SessionService.createUser(newUser)
                 .then(() => navigate('/login'))
                 .catch(e => alert(e));
             }
@@ -84,7 +84,6 @@ const Register = () => {
                          <Button className="btn btn-primary me-2" onClick={Register} >Create Account</Button>
                         <Link to='/policy' className="btn btn-info">Privacy Policy</Link>
                     </div>
-
                 </form>
             </div>
         </>

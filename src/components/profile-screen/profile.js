@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import * as service from '../../services/user-service';
+import * as service from '../../services/session-service';
 
 const Profile = () => {
     const [profile, setProfile] = useState({});
@@ -16,6 +16,7 @@ const Profile = () => {
                 <h6 className="mt-1"><b>Email Address</b>: {profile.email}</h6>
                 <h6 className='mt-1'><b>Role</b>: {profile.role}</h6>
                 <h6 className='mt-1'><b>Saved routes</b>: </h6>
+
             </div>
         </>
     );
