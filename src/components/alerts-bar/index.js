@@ -5,6 +5,7 @@ import {findAllAlerts, findAlertsByStopId} from "../../actions/alerts-action";
 
 const AlertsBar = () => {
     const alerts = useSelector(state => state.alerts);
+    console.log(alerts)
     const dispatch = useDispatch();
     useEffect(()=> findAllAlerts(dispatch),
         []);
@@ -19,5 +20,6 @@ const AlertsBar = () => {
             )}
         </ul>
     )
+
 };
 export default AlertsBar;
