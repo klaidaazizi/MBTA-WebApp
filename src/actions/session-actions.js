@@ -4,8 +4,6 @@ export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const LOGGED_IN = 'LOGGED_IN';
-export const FIND_PROFILE = 'FIND_PROFILE';
-
 
 export const register = async (dispatch, user) => {
     const response = await service.register(user);

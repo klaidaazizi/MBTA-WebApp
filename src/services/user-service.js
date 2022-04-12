@@ -19,12 +19,12 @@ export const findUserByUsername = async (username) => {
 
 export const deleteUser = async (user) => {
     const response = await axios
-        .delete(`${USERS_API}/${user._id}`);
+        .delete(`${USERS_API}/${user.id}`);
     return response.data;
 };
 export const updateUser = async (user) => {
     const response = await axios
-        .put(`${USERS_API}/${user._id}`, user);
+        .put(`${USERS_API}/${user.id}`, user);
     return response.data;
 };
 
