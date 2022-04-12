@@ -1,7 +1,6 @@
 import React from "react";
 import NavigationReducer from "../reducers/navigation-reducer";
 import AlertsReducer from "../reducers/alerts-reducer";
-import AlertScreenReducer from "../reducers/alert-screen-reducer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import NavigationBar from "./navigation-bar";
@@ -10,8 +9,7 @@ import {Outlet} from "react-router-dom";
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,
-    alerts: AlertsReducer,
-    alertScreen: AlertScreenReducer
+    alerts: AlertsReducer
 });
 const store = createStore(reducers);
 

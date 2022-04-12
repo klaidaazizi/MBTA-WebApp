@@ -6,14 +6,15 @@ import {findAllAlerts} from "../../actions/alerts-action";
 const AlertsBar = () => {
     const alerts = useSelector(state => state.alerts);
     const dispatch = useDispatch();
+
     useEffect(()=> findAllAlerts(dispatch),
         []);
+
     return(
         <ul className='list-group'>
             <li className='list-group-item fw-bold text-danger'>Alerts</li>
             {alerts.map(
                 alert => {
-                    const alert_info = alert.attributes;
                     return(<AlertItem key={alert.id}
                                       alert={alert}/>)
                 }
@@ -21,4 +22,5 @@ const AlertsBar = () => {
         </ul>
     )
 };
+
 export default AlertsBar;
