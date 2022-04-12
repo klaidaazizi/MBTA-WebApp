@@ -25,8 +25,3 @@ export const findAllFerryRoutes = async () => {
     const response = await axios.get(`${SEARCH_API_BASE}/routes?filter[type]=4`)
     return response.data.data;
 }
-
-// export const findAlertsByStopId = async (stopId) => {
-//     const response = await axios.get(`${ALERTS_API}/${stopId}`)
-//     return response.data
-// }
