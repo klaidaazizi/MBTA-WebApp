@@ -9,6 +9,7 @@ const BusRouteItem = ({busRoute}) => {
         <div>
             <li className='list-group-item bus-route-color '>
                 <div className='row ' >
+                    {/*<div className='row' onClick={() => navigate(`/rapid-transit/${rtRoute.id}`)}>*/}
                     <Link to={`/search/bus/${busRoute.id}`} className="line-ends-links ">
                         <span className="fw-bold rapid-transit-route-id">{busRoute.attributes.short_name}</span>
                         <div className="rt-route-text-alignment">
