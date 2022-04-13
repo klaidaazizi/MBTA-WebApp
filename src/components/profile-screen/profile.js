@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import * as service from '../../services/session-service';
+import * as service from '../../services/auth-service';
 
 const Profile = () => {
     const [profile, setProfile] = useState({});

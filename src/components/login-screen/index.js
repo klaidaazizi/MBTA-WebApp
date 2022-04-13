@@ -1,7 +1,20 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {Button} from "react-bootstrap";
+import * as service from "../../services/auth-service";
+
 
 const Login = () => {
+    const [loginUser, setLoginUser] = useState({});
+    const navigate = useNavigate()
+    const handleUsername = (e) => {
+        setLoginUser({...loginUser, username: e.target.value})}
+    const handlePassword = (e) => {
+        setLoginUser({...loginUser, password: e.target.value})}
+    const logIn = () =>
+        service.login(loginUser)
+            .then(() => navigate('/profile'))
+            .catch(e => alert(e));
     return(
         <>
         <div className='form'>
@@ -10,20 +23,26 @@ const Login = () => {
             <div className='input-container'>
                 <label> Username or Email </label>
                 <div>
-                <input type='text' name='username'/>
+                <input type='text'
+                       placeholder='Enter username or email'
+                       className='form-control'
+                       onChange={handleUsername}/>
                 </div>
             </div>
             <div className='input-container'>
                 <label> Password </label>
-            <div><input type='text' name='password'/>
+            <div><input type='password'
+                        placeholder='Enter password'
+                        onChange={handlePassword}
+                        className='form-control'/>
             </div>
             </div>
             <div className="button-container">
-                <Link to="/" className="btn btn-primary mt-1">Submit</Link>
+                <Button className="btn btn-primary mt-2" onClick={logIn} >Log In</Button>
+                <div>
+                    Don't have an account? <Link to={'/register'} className="btn btn-secondary me-2" >Create Account</Link>
             </div>
-                <div className="button-container">
-                    <Link to="/register" className="btn btn-primary mt-1">Register</Link>
-                </div>
+            </div>
             </form>
         </div>
         </>

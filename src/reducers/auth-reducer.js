@@ -3,9 +3,9 @@ import {
     LOGOUT,
     REGISTER,
     LOGGED_IN,
-} from "../actions/session-actions";
+} from "../actions/auth-actions";
 
-const sessionReducer = (state = {}, action) => {
+const authReducer = (state = {}, action) => {
     switch (action.type) {
         case REGISTER:
             return {
@@ -35,4 +35,4 @@ const sessionReducer = (state = {}, action) => {
     }
 };
 
-export default sessionReducer;
+export default authReducer;

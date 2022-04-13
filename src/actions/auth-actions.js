@@ -1,4 +1,4 @@
-import * as service from '../services/session-service';
+import * as service from '../services/auth-service';
 
 export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
