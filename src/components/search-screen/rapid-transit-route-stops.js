@@ -14,7 +14,9 @@ const RapidRouteStops = () => {
     const rapidRouteStops = useSelector(state => state.rapidRouteStops);
 
     const dispatch = useDispatch();
+    console.log("hi")
     console.log(rapidRouteStops)
+    console.log("hi")
     useEffect(() => findRapidTransitRouteAllStops(dispatch, routeId2),
         []);
 
