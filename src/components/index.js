@@ -1,17 +1,13 @@
 import React from "react";
 import NavigationReducer from "../reducers/navigation-reducer";
 import AlertsReducer from "../reducers/alerts-reducer";
-import SearchReducer from "../reducers/search-reducer"
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import NavigationBar from "./navigation-bar";
 import AlertsBar from "./alerts-bar";
 import {Outlet} from "react-router-dom";
-import SearchStopReducer from "../reducers/serach-stop-reducer";
 
-const reducers = combineReducers({navigationData: NavigationReducer, alerts: AlertsReducer,
-    rtRoutes: SearchReducer, crRoutes: SearchReducer, busRoutes: SearchReducer, ferryRoutes: SearchReducer,
-    rapidRouteStops: SearchStopReducer});
+const reducers = combineReducers({navigationData: NavigationReducer, alerts: AlertsReducer});
 const store = createStore(reducers);
 
 const Home = () => {
