@@ -7,7 +7,9 @@ const RapidTransitStop = () => {
     const navigate = useNavigate();
     const location = useLocation().pathname.split("/");
     const newLocation = location.filter(element => element != "");
-    const stopId = newLocation[newLocation.length-1];
+    const stopId = newLocation[newLocation.length-2];
+    const stopName = newLocation[newLocation.length-1];
+    const name = stopName.replace(/_/g," ").replace("*","/");
 
     return(
         <div>
@@ -19,7 +21,7 @@ const RapidTransitStop = () => {
                             Back
                         </button>
                         <span className="fw-bold commuter-rail-route-stop">
-                            {stopId}
+                            {name}
                         </span>
                         <div>
                             <i className="fa fa-star fa-3x"></i>
