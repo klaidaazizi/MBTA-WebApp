@@ -14,8 +14,7 @@ const FerryStop = () => {
     const params = useParams();
     const stopId = params.stopId;
     const routeId = params.routeId;
-    const stopName = newLocation[newLocation.length-1];
-    const name = stopName.replace(/_/g," ").replace("*","/");
+    const name = params.stopName;
     useEffect(() => {
         getPredicationByStopIdZeroDirection(stopId).then(response => setZeroDirectionPredictions(response));
         getPredicationByStopIdOneDirection(stopId).then(response => setOneDirectionPredictions(response));

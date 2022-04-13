@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import './search.css';
 import PredictionListItem from "./prediction-list-item";
 import {getPredicationByStopIdOneDirection, getPredicationByStopIdZeroDirection} from "../../actions/prediction-action";
@@ -14,8 +14,7 @@ const CommuterRailStop = () => {
     const params = useParams();
     const stopId = params.stopId;
     const routeId = params.routeId;
-    const stopName = newLocation[newLocation.length-1];
-    const name = stopName.replace(/_/g," ").replace("*","/");
+    const name = params.stopName;
     useEffect(() => {
         getPredicationByStopIdZeroDirection(stopId).then(response => setZeroDirectionPredictions(response));
         getPredicationByStopIdOneDirection(stopId).then(response => setOneDirectionPredictions(response));
@@ -33,7 +32,7 @@ const CommuterRailStop = () => {
                         </button>
                         <span className="fw-bold commuter-rail-route-stop">{name}</span>
                         <div>
-                            <i className="fa fa-star fa-3x"></i>
+                            <i className="fa fa-star fa-3x"/>
                         </div>
                     </div>
                     <div>

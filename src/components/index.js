@@ -1,7 +1,6 @@
 import React from "react";
 import NavigationReducer from "../reducers/navigation-reducer";
 import AlertsReducer from "../reducers/alerts-reducer";
-import SearchReducer from "../reducers/search-reducer"
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import NavigationBar from "./navigation-bar";
