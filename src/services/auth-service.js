@@ -19,10 +19,6 @@ export const logout = (user) =>
         .then(response => response.data);
 
 export const loggedIn = () =>
-    api.get(`${SECURITY_API}/user`)
-        .then(response => response.data);
-
-export const isOwner = () =>
     api.get(`${SECURITY_API}/profile`)
         .then(response => response.data);
 
