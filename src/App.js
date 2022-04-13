@@ -45,7 +45,7 @@ function App() {
                              element={<RapidTransitRoutes/>}/>
                       <Route path="search/rapid-transit/:routeId"
                              element={<RapidRouteStops/>}/>
-                      <Route path="search/rapid-transit/:routeId/stop/detail/:stopId"
+                      <Route path="search/rapid-transit/:routeId/stop/detail/:stopId/:stopName"
                              element={<RapidTransitStop/>}/>
                       <Route path="search/commuter-rail"
                              element={<CommuterRailRoutes/>}/>

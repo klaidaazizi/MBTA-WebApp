@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import './search.css';
 
 const BusRouteStopsItem = ({rapidRouteStop}) => {
+    const rapidRouteStopName = rapidRouteStop.attributes.name.replace(/[^A-Za-z0-9_'()\/\@-]/g,"_").replace('/', "*");
+
     return(
         <div>
             <li className='list-group-item bus-route-color '>

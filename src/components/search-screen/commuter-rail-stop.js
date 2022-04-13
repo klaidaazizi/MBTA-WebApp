@@ -14,6 +14,8 @@ const CommuterRailStop = () => {
     const params = useParams();
     const stopId = params.stopId;
     const routeId = params.routeId;
+    const stopName = newLocation[newLocation.length-1];
+    const name = stopName.replace(/_/g," ").replace("*","/");
     useEffect(() => {
         getPredicationByStopIdZeroDirection(stopId).then(response => setZeroDirectionPredictions(response));
         getPredicationByStopIdOneDirection(stopId).then(response => setOneDirectionPredictions(response));
@@ -29,7 +31,7 @@ const CommuterRailStop = () => {
                             onClick={() => navigate(-1)}>
                             Back
                         </button>
-                        <span className="fw-bold commuter-rail-route-stop">{stopId}</span>
+                        <span className="fw-bold commuter-rail-route-stop">{name}</span>
                         <div>
                             <i className="fa fa-star fa-3x"></i>
                         </div>
