@@ -11,12 +11,4 @@ export const findAllAlerts = async (dispatch) => {
     });
 }
 
-export const findAlertById = async (dispatch, alertId) => {
-    const alert = await service.findAlertById(alertId);
-    dispatch({
-        type: FIND_ALERT_BY_ID,
-        alert
-    })
-}
-
-export default [findAlertById, findAllAlerts];
+export default [findAllAlerts];
