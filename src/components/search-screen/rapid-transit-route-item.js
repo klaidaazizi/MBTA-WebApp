@@ -17,7 +17,7 @@ const RapidTransitRouteItem = ({rtRoute}) => {
             {/*    <Link to={`/search/rapid-transit/${rtRoute.id}`} className="line-ends-links" element={<FerryRoutes/>}>*/}
                     <Link to={`/search/rapid-transit/${rtRoute.id}`} className="line-ends-links">
                           {/*element={<RapidRouteStops routeId={rtRoute.id}/>}*/}
-                    <span className="fw-bold rapid-transit-route-id">{rtRoute.attributes.long_name}</span>
+                    <span className="fw-bold rapid-transit-route-id">{rtRoute.id} Line</span>
                     <div className="rt-route-text-alignment">
                         <div>
                 <span className='col-6  rt-route-test-color'>{rtRoute.attributes.direction_destinations[0]}</span>
