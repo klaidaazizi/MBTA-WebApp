@@ -14,7 +14,7 @@ const FerryRouteItem = ({ferryRoute}) => {
                 <div className='row ' >
                     {/*<div className='row' onClick={() => navigate(`/rapid-transit/${rtRoute.id}`)}>*/}
                     <Link to={`/search/ferry/${ferryRoute.id}`} className="line-ends-links ">
-                        <span className="fw-bold rapid-transit-route-id">{ferryRoute.attributes.long_name}</span>
+                        <span className="fw-bold rapid-transit-route-id">{ferryRoute.id}</span>
                         <div className="rt-route-text-alignment">
                             <div>
                                 <span className='col-6  rt-route-test-color'>{ferryRoute.attributes.direction_destinations[0]}</span>
