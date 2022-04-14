@@ -19,10 +19,7 @@ import RapidRouteStops from "./components/search-screen/rapid-transit-route-stop
 import CommuterRailRouteStops from "./components/search-screen/commuter-rail-route-stops";
 import BusRouteStops from "./components/search-screen/bus-route-stops";
 import FerryRouteStops from "./components/search-screen/ferry-route-stops";
-import CommuterRailStop from "./components/search-screen/commuter-rail-stop";
-import RapidTransitStop from "./components/search-screen/rapid-transit-stop";
-import BusStop from "./components/search-screen/bus-stop";
-import FerryStop from "./components/search-screen/ferry-stop";
+import Index from "./components/search-screen/transit-stop";
 
 function App() {
   return (
@@ -46,25 +43,25 @@ function App() {
                       <Route path="search/rapid-transit/:routeId"
                              element={<RapidRouteStops/>}/>
                       <Route path="search/rapid-transit/:routeId/stop/detail/:stopId/:stopName"
-                             element={<RapidTransitStop/>}/>
+                             element={<Index/>}/>
                       <Route path="search/commuter-rail"
                              element={<CommuterRailRoutes/>}/>
                       <Route path="search/commuter-rail/:routeId"
                              element={<CommuterRailRouteStops/>}/>
                       <Route path="search/commuter-rail/:routeId/stop/detail/:stopId/:stopName"
-                             element={<CommuterRailStop/>}/>
+                             element={<Index/>}/>
                       <Route path="search/bus"
                              element={<BusRoutes/>}/>
                       <Route path="search/bus/:routeId"
                              element={<BusRouteStops/>}/>
                       <Route path="search/bus/:routeId/stop/detail/:stopId/:stopName"
-                             element={<BusStop/>}/>
+                             element={<Index/>}/>
                       <Route path="search/ferry"
                              element={<FerryRoutes/>}/>
                       <Route path="search/ferry/:routeId"
                              element={<FerryRouteStops/>}/>
                       <Route path="search/ferry/:routeId/stop/detail/:stopId/:stopName"
-                             element={<FerryStop/>}/>
+                             element={<Index/>}/>
                       <Route path="posts"
                              element={<PostList/>}/>
                       <Route path="policy"

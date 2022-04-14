@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 
 const NavigationBar = () => {
     const navigationData = useSelector(state => state.navigationData)
+    const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const dispatch = useDispatch();
     const changeHighlight = (highlight) => {
         dispatch({
@@ -39,8 +40,8 @@ const NavigationBar = () => {
                     <span>Posts</span>
                 </Link>
                 <Link to='/login'
-                      onClick={() => changeHighlight('logout')}
-                      className={`list-group-item ${navigationData.activePage === "logout" ? 'active': ''}`}>
+                      onClick={() => changeHighlight('login')}
+                      className={`list-group-item ${navigationData.activePage === "logout" ? 'active' : ''}`}>
                     <span>Login</span>
                 </Link>
             </div>

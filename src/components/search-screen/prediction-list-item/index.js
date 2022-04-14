@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "react-bootstrap";
-import {takeRide} from "../../actions/charlie-card-action";
+import {takeRide} from "../../../actions/charlie-card-action";
 import {useDispatch} from "react-redux";
 
 const PredictionListItem = ({prediction}) => {
@@ -38,9 +38,9 @@ const PredictionListItem = ({prediction}) => {
         }
     }
     return(
-        <div className='container list-group-item'>
-            {predictionDisplay}
-            <Button className='btn btn-primary float-end' onClick={() => takeRide(dispatch)}>Take Ride</Button>
+        <div className='list-group-item'>
+            <span className='text-dark'>{predictionDisplay}</span>
+            <span className='btn btn-primary float-end' onClick={() => takeRide(dispatch)}>Take Ride</span>
         </div>
     )
 }
