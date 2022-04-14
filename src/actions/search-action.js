@@ -7,7 +7,6 @@ export const FIND_ALL_FERRY_ROUTES = 'FIND_ALL_FERRY_ROUTES';
 export const FIND_RAPID_TRANSIT_ROUTE_ALL_STOPS = 'FIND_RAPID_TRANSIT_ROUTE_ALL_STOPS';
 
 
-
 export const findAllRapidTransitRoutes = async (dispatch) => {
     const rtRoutes = await service.findAllRapidTransitRoutes();
     console.log(rtRoutes)

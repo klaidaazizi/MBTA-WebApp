@@ -3,7 +3,7 @@ import './vendors/bootstrap/bootstrap.min.css';
 import './vendors/fontawesome/css/all.min.css';
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Login from "./components/login-screen";
+import Login from "./components/login-screen/index";
 import Register from "./components/register-screen";
 import ProfileScreen from "./components/profile-screen";
 import SearchScreen from "./components/search-screen";

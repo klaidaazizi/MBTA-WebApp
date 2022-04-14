@@ -8,6 +8,8 @@ import AlertsBar from "./alerts-bar";
 import CharlieCardInformation from "./charlie-card-information";
 import {Outlet} from "react-router-dom";
 import SearchStopReducer from "../reducers/serach-stop-reducer";
+import SessionReducer from "../reducers/auth-reducer";
+import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
 import CharlieCardReducer from "../reducers/charlie-card-reducer";
 
@@ -19,7 +21,9 @@ const reducers = combineReducers({
     busRoutes: SearchReducer,
     ferryRoutes: SearchReducer,
     rapidRouteStops: SearchStopReducer,
-    charlieCard: CharlieCardReducer
+    charlieCard: CharlieCardReducer,
+    sessionReducer: SessionReducer,
+    userReducer: UserReducer
 });
 const store = createStore(reducers);
 
