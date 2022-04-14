@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import * as service from '../../services/auth-service'
+import * as service from '../../services/authentication-service'
 import { toast } from "react-toastify";
 
 const Register = () => {
     const [newUser, setNewUser] = useState({});
-
     const navigate = useNavigate();
+
     //handle all info changes
     const handleName = (e) => {
         setNewUser({...newUser, name: e.target.value})
@@ -26,13 +26,13 @@ const Register = () => {
     }
 
     const handleRole = (e) => {
-        setNewUser({...newUser, role: e.target.value})
+        setNewUser({...newUser, userRole: e.target.value})
     }
 
     // handles Register button
     const createAccount = () =>
         service.register(newUser)
-            .then(() => navigate('/home'))
+            .then(() => navigate('/profile'))
             .catch(e => alert(e));
     return(
         <>
@@ -66,7 +66,7 @@ const Register = () => {
                     <div className='mt-2'>
                         Role:
                         <div className='mb-2'>
-                        <select className='form-control' value = {newUser.role} onChange={handleRole}>
+                        <select className='form-control' value = {newUser.userRole} onChange={handleRole}>
                             <option value ='commuter'>Commuter</option>
                             <option value='conductor'>Conductor</option>
                             <option value='admin'>Admin</option>

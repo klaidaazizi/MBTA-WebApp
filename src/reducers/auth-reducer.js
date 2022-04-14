@@ -25,11 +25,11 @@ const authReducer = (state = {}, action) => {
                 message: action.response,
                 isLoggedIn: false
             };
-        case LOGGED_IN:
-            return {
-                ...state,
-                message: action.response,
-            };
+        // case LOGGED_IN:
+        //     return {
+        //         ...state,
+        //         message: action.response,
+        //     };
         default:
             return state;
     }

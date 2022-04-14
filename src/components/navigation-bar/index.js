@@ -34,10 +34,10 @@ const NavigationBar = () => {
                       className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}>
                     <span>Posts</span>
                 </Link>
-                <Link to='/profile'
+                <Link to='/login'
                       onClick={() => changeHighlight('logout')}
                       className={`list-group-item ${navigationData.activePage === "logout" ? 'active': ''}`}>
-                    <span>Logout</span>
+                    <span>Login</span>
                 </Link>
             </div>
         </>

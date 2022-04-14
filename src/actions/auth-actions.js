@@ -1,9 +1,9 @@
-import * as service from '../services/auth-service';
+import * as service from '../services/authentication-service';
 
 export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
-export const LOGGED_IN = 'LOGGED_IN';
+// export const LOGGED_IN = 'LOGGED_IN';
 
 export const register = async (dispatch, user) => {
     const response = await service.register(user);
@@ -21,13 +21,13 @@ export const login = async (dispatch, user) => {
     });
 };
 
-export const loggedIn = async (dispatch) => {
-    const response = await service.loggedIn();
-    dispatch({
-        type: LOGGED_IN,
-        response
-    });
-};
+// export const loggedIn = async (dispatch) => {
+//     const response = await service.loggedIn();
+//     dispatch({
+//         type: LOGGED_IN,
+//         response
+//     });
+// };
 
 export const logout = async (dispatch) => {
     const response = await service.logout();

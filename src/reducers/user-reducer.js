@@ -13,8 +13,8 @@ const userReducer = (state = [], action) => {
                 action.newUser,
                 ...state
             ];
-        case FIND_ALL_USERS:
-            return action.users;
+        // case FIND_ALL_USERS:
+        //     return action.users;
         case FIND_USER_BY_USERNAME:
             return action.user;
         case DELETE_USER:
