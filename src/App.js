@@ -23,6 +23,14 @@ import CommuterRailStop from "./components/search-screen/commuter-rail-stop";
 import RapidTransitStop from "./components/search-screen/rapid-transit-stop";
 import BusStop from "./components/search-screen/bus-stop";
 import FerryStop from "./components/search-screen/ferry-stop";
+import Posts from "./components/profile-screen/nav-components/posts";
+import Followers from "./components/profile-screen/nav-components/followers";
+import Following from "./components/profile-screen/nav-components/following";
+import LikedPosts from "./components/profile-screen/nav-components/liked-posts";
+import Applauds from "./components/profile-screen/nav-components/applauds";
+import PinnedRoutes from "./components/profile-screen/nav-components/pinned-routes";
+import React from "react";
+import ConductorLikes from "./components/profile-screen/nav-components/conductor-likes";
 
 function App() {
   return (
@@ -39,6 +47,22 @@ function App() {
                              element={<Register/>}/>
                       <Route path="profile"
                              element={<ProfileScreen/>}/>
+
+                      <Route path="/profile/posts"
+                                element={<Posts/>}/>
+                      <Route path="/profile/followers"
+                             element={<Followers/>}/>
+                      <Route path="/profile/following"
+                             element={<Following/>}/>
+                      <Route path="/profile/liked-posts"
+                             element={<LikedPosts/>}/>
+                      <Route path="/profile/conductor-likes"
+                             element={<ConductorLikes/>}/>
+                      <Route path="/profile/applauds"
+                             element={<Applauds/>}/>
+                      <Route path="/profile/pinned-routes"
+                             element={<PinnedRoutes/>}/>
+
                       <Route path="search"
                              element={<SearchScreen/>}/>
                       <Route path="search/rapid-transit"
@@ -65,6 +89,7 @@ function App() {
                              element={<FerryRouteStops/>}/>
                       <Route path="search/ferry/route/stop/detail/*"
                              element={<FerryStop/>}/>
+
                       <Route path="posts"
                              element={<PostList/>}/>
                       <Route path="policy"
