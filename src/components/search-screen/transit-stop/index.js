@@ -3,8 +3,9 @@ import {useLocation, useNavigate, useParams} from "react-router-dom";
 import PredictionListItem from "../prediction-list-item";
 import {getPredicationByStopIdOneDirection, getPredicationByStopIdZeroDirection} from "../../../actions/prediction-action";
 import {findRapidTransitRouteDestinationDirections} from "../../../actions/search-action";
+import {pinStop} from "../../../services/pinned-stop-service";
 
-const TransitStop = () => {
+const TransitStop = ({unpinStop, stop}) => {
     const [zeroDirectionPredictions, setZeroDirectionPredictions] = useState([]);
     const [oneDirectionPredictions, setOneDirectionPredictions] = useState([]);
     const [destinationDirections, setDestinationDirections] = useState([]);
@@ -28,11 +29,11 @@ const TransitStop = () => {
                 <div className='col-12' >
                     <div className='row'>
                         <span className='col-12'>
-                            <span className="col-3 float-start btn btn-warning justify-content-center"
+                            <span className="col-3 float-start btn btn-dark justify-content-center"
                                   onClick={() => navigate(-1)}>
                                 Back
                             </span>
-                            <span className="col-3 btn btn-dark float-end">
+                            <span onClick={() => pinStop("me", routeId, stopId)} className="col-3 btn  btn-warning float-end">
                                     Pin Stop
                             </span>
                         </span>

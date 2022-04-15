@@ -36,6 +36,8 @@ function App() {
                              element={<Register/>}/>
                       <Route path="profile"
                              element={<ProfileScreen/>}/>
+                      <Route path="profile/*"
+                             element={<ProfileScreen/>}/>
                       <Route path="search"
                              element={<SearchScreen/>}/>
                       <Route path="search/rapid-transit"
