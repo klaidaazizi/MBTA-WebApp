@@ -5,6 +5,7 @@ function Stops({stops = [], unpinStop}) {
 
     return (
         <div>
+            <h6>Pin stop</h6>
             <ul className=" list-group">
                 {
                     stops.map && stops.map(stop => {
