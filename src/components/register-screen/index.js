@@ -36,7 +36,7 @@ const Register = () => {
     const createAccount = () =>
         action.register(dispatch, newUser)
             .then(() => navigate('/profile'))
-            .catch(e => alert(e));
+            .catch(e => alert(e + "\n Username already exists. Please login."));
     return(
         <>
             <div className='form'>
@@ -70,9 +70,9 @@ const Register = () => {
                         Role:
                         <div className='mb-2'>
                         <select className='form-control' value = {newUser.userRole} onChange={handleRole}>
-                            <option value ='commuter'>Commuter</option>
-                            <option value='conductor'>Conductor</option>
-                            <option value='admin'>Admin</option>
+                            <option value ='Commuter'>Commuter</option>
+                            <option value='Conductor'>Conductor</option>
+                            <option value='Admin'>Admin</option>
                         </select>
                         </div>
                     </div>
