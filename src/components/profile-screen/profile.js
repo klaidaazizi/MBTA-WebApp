@@ -9,11 +9,13 @@ import Posts from "./nav-components/posts";
 import Applauds from "./nav-components/applauds";
 import ConductorLikes from "./nav-components/conductor-likes";
 import './index.css';
+import UserSearchBar from "../user-search";
 
 const Profile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [profile, setProfile] = useState({});
+    const [loggedIn,setLoggedIn] = useState(false);
 
     const logout = () =>
         service.logout()
@@ -23,6 +25,7 @@ const Profile = () => {
         try{
             const user = await service.profile();
             setProfile(user);
+            setLoggedIn(true);
         }
         catch (e) {
             alert(e);
@@ -33,6 +36,9 @@ const Profile = () => {
 
     return(
         <>
+            <div className='ms-2 me-2'>
+                <UserSearchBar/>
+            </div>
             <div className='border border-black bg-light rounded-2 ps-2 pe-2'>
             <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
                 <div className="col-1">
@@ -41,7 +47,7 @@ const Profile = () => {
                 <div className="col-11">
                     <h5>
                         <span className='fw-bold text-white'>{profile.name}</span>
-                        <span className="float-end text-primary mt-1 fs-6">{profile.userRole}</span>
+                        <span className="float-end text-primary">{profile.userRole}</span>
                     </h5>
 
                 </div>
@@ -74,11 +80,11 @@ const Profile = () => {
                 <span><i className='fa fa-home ms-1 me-1'/>
                     Home stop: {profile.homeStop}</span>
                 <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                 Born {profile.dateOfBirth}</span>
+                 Born: {profile.dateOfBirth}</span>
                 <span><i className='fa fa-calendar me-1 ms-3'/>
-                    Years at MBTA {profile.yearsAtMBTA}</span>
-                <span><i className='fa fa-building me-1 ms-3'/>
-                    Job title: {profile.yearsAtMBTA}</span>
+                    Joined: {profile.joinedDate}</span>
+                {/*<span><i className='fa fa-building me-1 ms-3'/>*/}
+                {/*    Job title: {profile.jobTitle}</span>*/}
             </div>
 
 

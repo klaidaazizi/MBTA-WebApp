@@ -3,6 +3,7 @@ import * as service from '../services/authentication-service';
 export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const SAVE_PROFILE = 'SAVE_PROFILE';
 // export const LOGGED_IN = 'LOGGED_IN';
 
 export const register = async (dispatch, user) => {
