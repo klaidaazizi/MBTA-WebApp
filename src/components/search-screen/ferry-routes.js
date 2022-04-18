@@ -8,7 +8,7 @@ import './search.css';
 
 const FerryRoutes = () => {
     const ferryRoutes = useSelector(state => state.ferryRoutes);
-    console.log(ferryRoutes)
+
     const dispatch = useDispatch();
     useEffect(()=> findAllFerryRoutes(dispatch),
         []);

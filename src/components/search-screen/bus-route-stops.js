@@ -7,20 +7,14 @@ import './search.css';
 
 
 const BusRouteStops = () => {
-
     const params = useParams();
     const routeId2 = params.routeId;
 
     const rapidRouteStops = useSelector(state => state.rapidRouteStops);
 
     const dispatch = useDispatch();
-    console.log("heyo")
-    console.log(rapidRouteStops)
-    console.log("heyo")
     useEffect(() => findRapidTransitRouteAllStops(dispatch, routeId2),
         []);
-
-
 
     return(
         <div>

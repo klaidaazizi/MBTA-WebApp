@@ -4,10 +4,6 @@ import './search.css';
 
 
 const FerryRouteItem = ({ferryRoute}) => {
-    const navigate = useNavigate();
-    // const endPoint1 = ferryRoute.attributes.direction_destinations[0];
-    // const endPoint2 = ferryRoute.attributes.direction_destinations[1];
-
     return(
         <div>
             <li className='list-group-item ferry-route-color '>
@@ -26,15 +22,7 @@ const FerryRouteItem = ({ferryRoute}) => {
                     </Link>
                 </div>
             </li>
-
-            {/*<Routes>*/}
-            {/*    <Route path="/Red" element={<RapidTransitRoutes/>}/>*/}
-            {/*    /!*<Route path="/commuter-rail" element={</>}/>*!/*/}
-            {/*    /!*<Route path="/bus" element={</>}/>*!/*/}
-            {/*    /!*<Route path="/ferry" element={</>}/>*!/*/}
-            {/*</Routes>*/}
         </div>
-
     )
 };
 

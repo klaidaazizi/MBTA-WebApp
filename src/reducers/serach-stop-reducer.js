@@ -5,7 +5,6 @@ const SearchStopReducer = (state = [], action) => {
         case FIND_RAPID_TRANSIT_ROUTE_ALL_STOPS:
             return action.rapidRouteStops;
         default:
-            console.log("returned default")
             return state;
     }
 }

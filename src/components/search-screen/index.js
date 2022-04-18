@@ -30,13 +30,6 @@ const SearchScreen = () => {
                 </button>
             </Link>
 
-            {/*<Routes>*/}
-            {/*    <Route path="/rapid-transit" element={<RapidTransitRoutes/>}/>*/}
-            {/*    /!*<Route path="/commuter-rail" element={</>}/>*!/*/}
-            {/*    /!*<Route path="/bus" element={</>}/>*!/*/}
-            {/*    /!*<Route path="/ferry" element={</>}/>*!/*/}
-            {/*</Routes>*/}
-
         </div>
     )
 };

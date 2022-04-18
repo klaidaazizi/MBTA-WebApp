@@ -7,15 +7,10 @@ import './search.css';
 
 const CommuterRailRoutes = () => {
     const crRoutes = useSelector(state => state.crRoutes);
-    console.log("hhhhhhhhhhiiiiyeooo")
-    console.log(crRoutes)
-    console.log("hhhhhhhhhhiiiiyeooo")
 
     const dispatch = useDispatch();
     useEffect(()=> findAllCommuterRailRoutes(dispatch),
         []);
-    // const crRoutes = useSelector(state => state.crRoutes);
-
 
     return(
         <div>

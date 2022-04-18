@@ -9,7 +9,11 @@ export const addMoney = (dispatch, amount) => {
 }
 
 export const takeRide = (dispatch) => {
-    dispatch({
-        type: TAKE_RIDE,
-    })
+    try {
+        dispatch({
+            type: TAKE_RIDE,
+        });
+    } catch (RangeError) {
+        alert(RangeError);
+    }
 }

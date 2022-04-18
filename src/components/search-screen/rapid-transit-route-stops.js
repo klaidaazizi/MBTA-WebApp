@@ -6,15 +6,11 @@ import {Link, useLocation, useParams} from "react-router-dom";
 import './search.css';
 
 const RapidRouteStops = () => {
-
     const params = useParams();
     const routeId2 = params.routeId;
     const rapidRouteStops = useSelector(state => state.rapidRouteStops);
 
     const dispatch = useDispatch();
-    console.log("hi")
-    console.log(rapidRouteStops)
-    console.log("hi")
     useEffect(() => findRapidTransitRouteAllStops(dispatch, routeId2),
         []);
 
