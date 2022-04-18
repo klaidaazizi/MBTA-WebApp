@@ -12,6 +12,7 @@ export const findAllAlerts = async (dispatch) => {
 }
 
 export const findAlertsByPinnedStops = async (dispatch, pinnedStops) => {
+    console.log(pinnedStops)
     const alerts =  await service.findAlertsByPinnedStops(pinnedStops);
     dispatch({
         type: CHANGE_ALERTS,
@@ -20,7 +21,7 @@ export const findAlertsByPinnedStops = async (dispatch, pinnedStops) => {
 }
 
 export const findAlertsByStop = async (dispatch, stopId, stopName) => {
-    const alerts = await service.findAlertsByPinnedStops(stopId);
+    const alerts = await service.findAlertsByStop(stopId);
     dispatch({
         type: CHANGE_ALERTS_TO_STATION,
         alerts: alerts,
