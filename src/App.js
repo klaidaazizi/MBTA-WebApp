@@ -20,6 +20,8 @@ import CommuterRailRouteStops from "./components/search-screen/commuter-rail-rou
 import BusRouteStops from "./components/search-screen/bus-route-stops";
 import FerryRouteStops from "./components/search-screen/ferry-route-stops";
 import Index from "./components/search-screen/transit-stop";
+import PublicProfile from "./components/profile-screen/public-profile";
+import EditProfile from "./components/profile-screen/edit-profile";
 
 function App() {
   return (
@@ -36,8 +38,10 @@ function App() {
                              element={<Register/>}/>
                       <Route path="profile"
                              element={<ProfileScreen/>}/>
-                      <Route path="profile/*"
-                             element={<ProfileScreen/>}/>
+                      <Route path="profile/editprofile"
+                             element={<EditProfile/>}/>
+                      <Route path="profile/:username/*"
+                             element={<PublicProfile/>}/>
                       <Route path="search"
                              element={<SearchScreen/>}/>
                       <Route path="search/rapid-transit"

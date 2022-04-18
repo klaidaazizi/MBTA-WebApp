@@ -23,7 +23,7 @@ const reducers = combineReducers({
     rapidRouteStops: SearchStopReducer,
     charlieCard: CharlieCardReducer,
     sessionReducer: SessionReducer,
-    userReducer: UserReducer
+    users: UserReducer
 });
 const store = createStore(reducers);
 

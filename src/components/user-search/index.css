@@ -1,25 +1,14 @@
-.visually-hidden {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-}
-
 .searchbar {
     margin-top:-20px;
 }
 
 .suggestion{
     cursor: pointer;
-    border-right: solid 1px black;
-    border-left: solid 1px black;
-    border-bottom: solid 1px black;
-    padding-left: 10px;
+    border-bottom: solid 1px #dcdcdc;
+    background-color: white;
+    padding: 5px 5px 5px 20px;
 }
 
 .suggestion:hover{
-    background-color: lightgrey;
+    background-color: #e1e1e1;
 }
