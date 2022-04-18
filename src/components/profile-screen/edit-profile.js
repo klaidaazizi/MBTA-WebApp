@@ -3,9 +3,12 @@ import * as service from '../../services/authentication-service';
 import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import './index.css';
 import {Button} from "react-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
 
 const EditProfile = () => {
     const navigate = useNavigate();
+    //const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
+    const dispatch = useDispatch();
     const [profile, setProfile] = useState({});
 
     useEffect(async () => {
@@ -21,13 +24,16 @@ const EditProfile = () => {
 
     const saveProfile = () => {
         service.reset(profile)
-            .then(() => navigate('/profile'));
+            .then(() => {
+                setProfile(profile);
+                navigate('/profile');
+            });
     }
 
     const updateName = (event) => setProfile({
-            ...profile,
-            name: event.target.value
-        });
+        ...profile,
+        name: event.target.value
+    });
     const updateUsername = (event) => setProfile({
         ...profile,
         username: event.target.value
@@ -77,67 +83,68 @@ const EditProfile = () => {
                     Save
                 </Button>
             </div><div className='border border-black bg-light rounded-2 ps-2 pe-2'>
-                <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
+            <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
 
-                </div>
+            </div>
 
-                <div className="position-relative border-bottom">
-                    <img src='/images/train.png' alt='' className="banner"/>
-                </div>
-                <img src='/images/thomas.png' alt='' className="profile-pic"/>
-
-
-                <div className="row ms-2 mt-5 col-11 mb-2">
-                    <label className='control-label'>
-                        Edit Name
-                    </label>
-                    <input className="border-1 " value={profile.name} onChange={updateName}/>
-                    <label className='control-label mt-2'>
-                        Edit Username
-                    </label>
-                    <input className="border-1 " value={profile.username} onChange={updateUsername}/>
-                    <label className='control-label mt-2'>
-                         Edit Email
-                    </label>
-                    <input className="border-1 " value={profile.email} onChange={updateEmail}/>
-                    <label className='control-label mt-2'>
-                        Edit Password
-                    </label>
-                    <input className="border-1 " value={profile.password} onChange={updatePassword}/>
-
-                    <label className='control-label mt-2'>
-                        Edit Role
-                    </label>
-                    <select className="border-1 " value={profile.userRole} onChange={updateRole}>
-                        <option>Commuter</option>
-                        <option>Conductor</option>
-                        <option>Admin</option>
-                    </select>
-                    <label className='control-label mt-2'>
-                        Edit Home stop
-                    </label>
-                    <input className="border-1 " value={profile.homeStop} onChange={updateHomeStop}/>
-
-                    <label className='control-label mt-2'>
-                        Edit Date of Birth
-                    </label>
-                    <input className="border-1" value={profile.dateOfBirth} onChange={updateDOB}/>
-                    <label className='control-label mt-2'>
-                        Edit Joined Date
-                    </label>
-                    <input className="border-1 " value={profile.dateJoined} onChange={updateJoinedDate}/>
-                    {/*<label className='control-label mt-2'>*/}
-                    {/*    Edit Job Title*/}
-                    {/*</label>*/}
-                    {/*<input className="border-1 " value={profile.jobTitle} onChange={updateJobTitle}/>*/}
+            <div className="position-relative border-bottom">
+                <img src='/images/train.png' alt='' className="banner"/>
+            </div>
+            <img src='/images/thomas.png' alt='' className="profile-pic"/>
 
 
-                    </div>
+            <div className="row ms-2 mt-3 col-11 mb-2">
+                <label className='control-label'>
+                    Edit Name
+                </label>
+                <input className="border-1 form-control" value={profile.name} onChange={updateName}/>
+                <label className='control-label mt-2'>
+                    Edit Username
+                </label>
+                <input className="border-1 form-control" value={profile.username} onChange={updateUsername}/>
+                <label className='control-label mt-2'>
+                    Edit Email
+                </label>
+                <input className="border-1 form-control" value={profile.email} onChange={updateEmail}/>
+                <label className='control-label mt-2'>
+                    Edit Password
+                </label>
+                <input className="border-1 form-control" value={profile.password} onChange={updatePassword}/>
+
+                <label className='control-label  mt-2'>
+                    Edit Role
+                </label>
+                <select className="border-1 form-control" value={profile.userRole} onChange={updateRole}>
+                    <option>Commuter</option>
+                    <option>Conductor</option>
+                    <option>Admin</option>
+                </select>
+
+                <label className='control-label mt-2'>
+                    Edit Home stop
+                </label>
+                <input className="border-1 form-control" value={profile.homeStop} onChange={updateHomeStop}/>
+
+                <label className='control-label mt-2 '>
+                    Edit Date of Birth
+                </label>
+                <input className="border-1 form-control" value={profile.dateOfBirth} onChange={updateDOB}/>
+                <label className='control-label mt-2 '>
+                    Edit Joined Date
+                </label>
+                <input className="border-1 form-control" value={profile.dateJoined} onChange={updateJoinedDate}/>
+                {/*<label className='control-label mt-2'>*/}
+                {/*    Edit Job Title*/}
+                {/*</label>*/}
+                {/*<input className="border-1 " value={profile.jobTitle} onChange={updateJobTitle}/>*/}
+
+
+            </div>
 
 
 
 
-                </div>
+        </div>
 
 
         </>

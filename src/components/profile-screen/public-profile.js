@@ -10,12 +10,13 @@ import Applauds from "./nav-components/applauds";
 import ConductorLikes from "./nav-components/conductor-likes";
 import './index.css';
 import UserSearchBar from "../user-search";
+import {Button} from "react-bootstrap";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [profile, setProfile] = useState({});
-    const [loggedIn,setLoggedIn] = useState(false);
+    //const [loggedIn,setLoggedIn] = useState(false);
 
     useEffect(async () => {
         try{
@@ -26,7 +27,7 @@ const PublicProfile = () => {
             //console.log(username);
             const user = await service.findUserByUsername(username);
             setProfile(user);
-            setLoggedIn(true);
+            //setLoggedIn(true);
         }
         catch (e) {
             alert(e);
@@ -37,10 +38,9 @@ const PublicProfile = () => {
 
     return(
         <>
-            <div className='ms-2 me-2'>
-                <UserSearchBar/>
-            </div>
-            <div className='border border-black bg-light rounded-2 ps-2 pe-2'>
+            <div className="col-2"> <Button onClick={()=> navigate('/profile')} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
+
+            <div className='mt-2 border border-black bg-light rounded-2 ps-2 pe-2'>
                 <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
                     <div className="col-1">
                         <i className={"fa fa-train"}/>
@@ -68,7 +68,7 @@ const PublicProfile = () => {
                     {/*<span className="fw-bold float-end ">{profile.followingCount}*/}
                     {/*    <span className='text-muted'>Following</span></span>*/}
 
-                    <div className="mt-1">{profile.email}</div>
+                    {/*<div className="mt-1">{profile.email}</div>*/}
 
 
                 </div>

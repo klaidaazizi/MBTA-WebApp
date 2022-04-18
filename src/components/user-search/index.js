@@ -2,17 +2,21 @@ import React, {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import './index.css';
 import * as service from '../../services/user-service'
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {findAllUsers} from "../../actions/user-actions";
 
 const UserSearchBar = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const allUsers = useSelector(state => state.users);
     const [users, setUsers] = useState([]);
     const [text, setText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    useEffect(async () => {
-        const users = await service.findAllUsers();
-        console.log('users', users)
-        setUsers(users);
+    useEffect(() => {
+        findAllUsers(dispatch)
+            .then(() => setUsers(allUsers));
+        //console.log('users', users);
     }, [])
 
     const onChangeHandler = (text) => {
@@ -25,7 +29,7 @@ const UserSearchBar = () => {
         }
         console.log('matches',matches)
         setSuggestions(matches)
-        setText(text)
+        setText(text);
     }
     const onSuggestHandler = (text) =>{
         setText(text);
@@ -33,29 +37,32 @@ const UserSearchBar = () => {
         //navigate('profile/${text}')
     }
     return(
-        <>
-            <div className='container'>
-            <input className='form-control' type="text"
-                   placeholder='Search user by username'
-                   onChange={e=> onChangeHandler(e.target.value)}
-                   value={text}
-                   onBlur={()=> {
-                       setTimeout(() => {
-                           setSuggestions([])
-                       }, 100);
-                   }}
-                   />
-                {suggestions && suggestions.map((suggestion,i) =>
-                        <div key={i} className='justify-content-center suggestion'
-                             onClick={() =>
-                                 onSuggestHandler(suggestion.username)
+        <div className='row mb-2'>
+            <div className='col-10'>
+                <input className='form-control ' type="text"
+                       placeholder='Search user by username...'
+                       onChange={e=> onChangeHandler(e.target.value)}
+                       value={text}
+                       onBlur={()=> {
+                           setTimeout(() => {
+                               setSuggestions([])
+                           }, 100);
+                       }}
+                />
+                <div className=''> {suggestions && suggestions.map((suggestion,i) =>
+                    <div key={i} className='justify-content-center suggestion'
+                         onClick={() =>
+                             onSuggestHandler(suggestion.username)
 
-                             }
-                        >{suggestion.username}</div>
-                    )}
+                         }
+                    >{suggestion.username}</div>
+                )}
+                </div>
+            </div>
+            <Button className='col-2 h-25' onClick={()=>navigate(`/profile/${text}`)}>Go
+            </Button>
         </div>
-            </>
-        )
+    )
 
 }
 

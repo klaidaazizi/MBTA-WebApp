@@ -20,3 +20,19 @@
 .top-bg{
     background-color: #dadada;
 }
+
+.container{
+    position: relative;
+}
+.box{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 10px;
+
+}
+.top{
+
+    z-index: 9;
+}
