@@ -5,16 +5,10 @@ import './search.css';
 
 
 const RapidTransitRouteItem = ({rtRoute}) => {
-    const navigate = useNavigate();
-    console.log(rtRoute)
     return(
         <div>
             <li className='list-group-item rt-route-color '>
                 <div className='row ' >
-            {/*<div className='row' onClick={() => navigate(`/rapid-transit/${rtRoute.id}`)}>*/}
-            {/*    <Route path={`/search/rapid-transit/${rtRoute.id}`} className="line-ends-links "*/}
-            {/*           element={<Login/>}>*/}
-            {/*    <Link to={`/search/rapid-transit/${rtRoute.id}`} className="line-ends-links" element={<FerryRoutes/>}>*/}
                     <Link to={`/search/rapid-transit/${rtRoute.id}`} className="line-ends-links">
                           {/*element={<RapidRouteStops routeId={rtRoute.id}/>}*/}
                     <span className="fw-bold rapid-transit-route-id">{rtRoute.attributes.long_name}</span>
@@ -29,17 +23,8 @@ const RapidTransitRouteItem = ({rtRoute}) => {
                 </Link>
             </div>
             </li>
-
-
-            {/*<Routes>*/}
-    {/*    <Route path="/Red" element={<RapidTransitRoutes/>}/>*/}
-    {/*    /!*<Route path="/commuter-rail" element={</>}/>*!/*/}
-    {/*    /!*<Route path="/bus" element={</>}/>*!/*/}
-    {/*    /!*<Route path="/ferry" element={</>}/>*!/*/}
-    {/*</Routes>*/}
-</div>
-
-)
+        </div>
+    )
 };
 
 export default RapidTransitRouteItem;

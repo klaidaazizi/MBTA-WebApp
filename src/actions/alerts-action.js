@@ -1,14 +1,31 @@
 import * as service from '../services/alerts-service';
 
-export const FIND_ALL_ALERTS = 'FIND_ALL_ALERTS';
-export const FIND_ALERT_BY_ID = 'FIND_ALERT_BY_ID';
+export const CHANGE_ALERTS = 'CHANGE_ALERTS';
+export const CHANGE_ALERTS_TO_STATION = 'CHANGE_ALERTS_TO_STATION';
 
 export const findAllAlerts = async (dispatch) => {
     const alerts = await service.findAllAlerts();
     dispatch({
-        type: FIND_ALL_ALERTS,
+        type: CHANGE_ALERTS,
         alerts
-    });
+    })
 }
 
-export default [findAllAlerts];
+export const findAlertsByPinnedStops = async (dispatch, pinnedStops) => {
+    const alerts =  await service.findAlertsByPinnedStops(pinnedStops);
+    dispatch({
+        type: CHANGE_ALERTS,
+        alerts
+    })
+}
+
+export const findAlertsByStop = async (dispatch, stopId, stopName) => {
+    const alerts = await service.findAlertsByPinnedStops(stopId);
+    dispatch({
+        type: CHANGE_ALERTS_TO_STATION,
+        alerts: alerts,
+        stopName: stopName
+    })
+}
+
+export default [findAllAlerts, findAlertsByPinnedStops, findAlertsByStop];

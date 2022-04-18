@@ -12,7 +12,6 @@ const SearchReducer = (state = [], action) => {
         case FIND_ALL_FERRY_ROUTES:
             return action.ferryRoutes;
         default:
-            console.log("returned default")
             return state;
     }
 }

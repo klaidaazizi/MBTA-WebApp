@@ -7,7 +7,6 @@ import './search.css';
 
 const BusRoutes = () => {
     const busRoutes = useSelector(state => state.busRoutes);
-    console.log(busRoutes)
     const dispatch = useDispatch();
     useEffect(()=> findAllBusRoutes(dispatch),
         []);

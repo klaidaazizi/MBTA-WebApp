@@ -4,7 +4,6 @@ import './search.css';
 
 
 const BusRouteItem = ({busRoute}) => {
-    const navigate = useNavigate();
     return(
         <div>
             <li className='list-group-item bus-route-color '>
@@ -22,15 +21,7 @@ const BusRouteItem = ({busRoute}) => {
                     </Link>
                 </div>
             </li>
-
-            {/*<Routes>*/}
-            {/*    <Route path="/Red" element={<RapidTransitRoutes/>}/>*/}
-            {/*    /!*<Route path="/commuter-rail" element={</>}/>*!/*/}
-            {/*    /!*<Route path="/bus" element={</>}/>*!/*/}
-            {/*    /!*<Route path="/ferry" element={</>}/>*!/*/}
-            {/*</Routes>*/}
         </div>
-
     )
 };
 

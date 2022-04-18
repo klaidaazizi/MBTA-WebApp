@@ -6,15 +6,19 @@ const CharlieCardReducer = (state = {
                             action) => {
     switch (action.type){
         case TAKE_RIDE:
-            state = {
-                balance: state.balance - 2.50
+            const newBalance = state.balance - 2.50
+            if(newBalance >= 0) {
+                return {
+                    balance: newBalance
+                }
+            } else {
+                throw RangeError("You do not have enough money on your Charlie Card. Please add more money " +
+                    "in order to take this ride.")
             }
-            return state;
         case ADD_MONEY:
-            state = {
+            return {
                 balance: state.balance + action.amount
             }
-            return state;
         default:
             return state;
     }

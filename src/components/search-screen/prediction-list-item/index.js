@@ -7,7 +7,7 @@ const PredictionListItem = ({prediction}) => {
     const dispatch = useDispatch();
     const currentTime = new Date();
     let trainTime;
-    if (prediction.arrival_time) {
+    if (prediction.arrival_time !== null) {
         trainTime = new Date(prediction.arrival_time);
     } else {
         trainTime = new Date(prediction.departure_time);
@@ -16,6 +16,9 @@ const PredictionListItem = ({prediction}) => {
     let predictionDisplay;
     if(prediction.status) {
         predictionDisplay = prediction.status;
+    }
+    else if(prediction.schedule_relationship){
+        predictionDisplay = prediction.schedule_relationship;
     }
     else if(timeToArrival < 0) {
         predictionDisplay = 'Left Station';

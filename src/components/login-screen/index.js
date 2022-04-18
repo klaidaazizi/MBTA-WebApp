@@ -2,9 +2,12 @@ import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import * as service from "../../services/authentication-service";
+import * as action from "../../actions/auth-actions";
+import {useDispatch} from "react-redux";
 
 
 const Login = () => {
+    const dispatch = useDispatch();
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate()
     const handleUsername = (e) => {
@@ -12,7 +15,7 @@ const Login = () => {
     const handlePassword = (e) => {
         setLoginUser({...loginUser, password: e.target.value})}
     const logIn = () =>
-        service.login(loginUser)
+        action.login(dispatch, loginUser)
             .then(() => navigate('/profile'))
             .catch(e => alert(e));
     return(

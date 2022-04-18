@@ -7,6 +7,19 @@ const ONGOING = 'filter[lifecycle]=ONGOING'
 
 export const findAllAlerts = async () => {
     const response = await axios.get(`${ALERTS_API}?${API_KEY}&${PAGE_LIMIT_10}&${ONGOING}`)
-    console.log(response)
+    return response.data.data;
+}
+
+export const findAlertsByPinnedStops = async (stops) => {
+    const stops_cleaned = stops.join(', ')
+    console.log(stops_cleaned)
+    const stop_filter = 'filter[stop]=' + stops_cleaned;
+    const response = await axios.get(`${ALERTS_API}?${API_KEY}&${stop_filter}`)
+    return response.data.data;
+}
+
+export const findAlertsByStop = async (stopId) => {
+    const stop_filter = 'filter[stop]=' + stopId;
+    const response = await axios.get(`${ALERTS_API}?${API_KEY}&${stop_filter}`)
     return response.data.data;
 }

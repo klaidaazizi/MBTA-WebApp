@@ -2,11 +2,14 @@ import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import * as service from '../../services/authentication-service'
+import * as action from '../../actions/auth-actions';
 import { toast } from "react-toastify";
+import {useDispatch} from "react-redux";
 
 const Register = () => {
     const [newUser, setNewUser] = useState({});
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     //handle all info changes
     const handleName = (e) => {
@@ -31,7 +34,7 @@ const Register = () => {
 
     // handles Register button
     const createAccount = () =>
-        service.register(newUser)
+        action.register(dispatch, newUser)
             .then(() => navigate('/profile'))
             .catch(e => alert(e));
     return(

@@ -7,9 +7,11 @@ export const LOGOUT = 'LOGOUT';
 
 export const register = async (dispatch, user) => {
     const response = await service.register(user);
+    console.log(response)
     dispatch({
         type: REGISTER,
-        response
+        response,
+        isLoggedIn: true
     });
 };
 
@@ -17,7 +19,8 @@ export const login = async (dispatch, user) => {
     const response = await service.login(user);
     dispatch({
         type: LOGIN,
-        response
+        response,
+        isLoggedIn: true
     });
 };
 
@@ -33,6 +36,7 @@ export const logout = async (dispatch) => {
     const response = await service.logout();
     dispatch({
         type: LOGOUT,
-        response
+        response,
+        isLoggedIn: false
     });
 };

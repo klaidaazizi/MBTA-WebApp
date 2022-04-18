@@ -7,7 +7,6 @@ import './search.css';
 
 const RapidTransitRoutes = () => {
     const rtRoutes = useSelector(state => state.rtRoutes);
-    console.log(rtRoutes)
     const dispatch = useDispatch();
     useEffect(()=> findAllRapidTransitRoutes(dispatch),
         []);
