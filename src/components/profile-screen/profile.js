@@ -18,7 +18,6 @@ const Profile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [profile, setProfile] = useState({});
-    //const [isLoggedIn,setLoggedIn] = useState(false);
 
     const logout = () =>
         service.logout()
@@ -41,6 +40,7 @@ const Profile = () => {
                 <div className='box top'>
                     <UserSearchBar/>
                 </div>
+                {isLoggedIn ?
                 <div className='mt-5 box border border-black bg-light rounded-2 ps-2 pe-2'>
                     <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
                         <div className="col-1">
@@ -135,7 +135,8 @@ const Profile = () => {
 
                     </div>
 
-                </div>
+                </div> :
+                    ''}
                 <Routes>
                     <Route path="/followers" element={<Followers/>}/>
                     <Route path="/following" element={<Following/>}/>
