@@ -22,6 +22,8 @@ import FerryRouteStops from "./components/search-screen/ferry-route-stops";
 import Index from "./components/search-screen/transit-stop";
 import PublicProfile from "./components/profile-screen/public-profile";
 import EditProfile from "./components/profile-screen/edit-profile";
+import UserSearchBar from "./components/user-search";
+import UserSearchScreen from "./components/user-search/user-search-screen";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
                              element={<Register/>}/>
                       <Route path="profile"
                              element={<ProfileScreen/>}/>
+                      <Route path="profile-search"
+                             element={<UserSearchScreen/>}/>
                       <Route path="profile/editprofile"
                              element={<EditProfile/>}/>
                       <Route path="profile/:username/*"

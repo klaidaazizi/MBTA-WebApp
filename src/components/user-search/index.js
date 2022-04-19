@@ -17,7 +17,7 @@ const UserSearchBar = () => {
         findAllUsers(dispatch)
             .then(() => setUsers(allUsers));
         //console.log('users', users);
-    }, [])
+    }, [users])
 
     const onChangeHandler = (text) => {
         let matches = []

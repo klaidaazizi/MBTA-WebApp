@@ -27,10 +27,9 @@ const Profile = () => {
         try{
             const user = await service.profile();
             setProfile(user);
-            //setLoggedIn(true);
         }
         catch (e) {
-            alert(e);
+            navigate('/profile-search');
         }
     }, []);
 
