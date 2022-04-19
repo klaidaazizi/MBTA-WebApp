@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import {findAlertsByStop} from "../../../actions/alerts-action";
 import {pinStop} from "../../../services/pinned-stop-service";
 
-const TransitStop = ({unpinStop, stop}) => {
+const TransitStop = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
@@ -47,7 +47,7 @@ const TransitStop = ({unpinStop, stop}) => {
                     <div className='container'>
                         <span className='row text-center'>
                             <div className='col-4'>
-                                <span className="col-12 btn btn-warning"
+                                <span className="col-12 btn btn-dark"
                                         onClick={() => navigate(-1)}>
                                     Back
                                 </span>
@@ -59,7 +59,7 @@ const TransitStop = ({unpinStop, stop}) => {
                                 </span>
                             </div>
                             <div className='col-4'>
-                                <span onClick={() => pinStop("me", routeId, stopId)} className="col-12 btn btn-dark">
+                                <span onClick={() => pinStop("me", routeId, stopId)} className="col-12 btn btn-warning">
                                     Pin Stop
                                 </span>
                             </div>
