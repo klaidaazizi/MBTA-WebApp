@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import {findAlertsByStop} from "../../../actions/alerts-action";
 import {pinStop} from "../../../services/pinned-stop-service";
 
-const TransitStop = ({unpinStop, stop}) => {
+const TransitStop = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
@@ -47,26 +47,27 @@ const TransitStop = ({unpinStop, stop}) => {
                     <div className='container'>
                         <span className='row text-center'>
                             <div className='col-4'>
-                                <span className="col-12 btn btn-warning"
+                                <span className="col-12 btn btn-dark"
                                         onClick={() => navigate(-1)}>
                                     Back
                                 </span>
                             </div>
                             <div className='col-4'>
-                                <span className="col-12 btn btn-light text-dark"
+                                <span className="col-12 btn bg-danger text-dark"
                                         onClick={() => findAlertsByStop(dispatch, stopId, name)}>
                                     Alerts
                                 </span>
                             </div>
                             <div className='col-4'>
-                                <span onClick={() => pinStop("me", routeId, stopId)} className="col-12 btn btn-dark">
+                                {/*<i onClick={() => pinStop("me", routeId, stopId)} className="col-12 fa fa-bookmark"></i>*/}
+                                <span onClick={() => pinStop("me", routeId, stopId)} className="col-12 btn btn-warning">
                                     Pin Stop
                                 </span>
                             </div>
                         </span>
                     </div>
                     <div className='row mt-1'>
-                        <span className="fw-bold text-primary h3 col justify-content-center d-flex">
+                        <span className="fw-bold text-dark h3 col justify-content-center d-flex">
                             {name}
                         </span>
                     </div>
