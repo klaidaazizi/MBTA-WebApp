@@ -12,6 +12,7 @@ import SessionReducer from "../reducers/auth-reducer";
 import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
 import CharlieCardReducer from "../reducers/charlie-card-reducer";
+import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,
@@ -23,7 +24,8 @@ const reducers = combineReducers({
     rapidRouteStops: SearchStopReducer,
     charlieCard: CharlieCardReducer,
     sessionReducer: SessionReducer,
-    userReducer: UserReducer
+    userReducer: UserReducer,
+    pinnedStops: PinnedStopsReducer
 });
 const store = createStore(reducers);
 
@@ -35,10 +37,10 @@ const Home = () => {
                     <NavigationBar/>
                     <CharlieCardInformation/>
                 </div>
-                <div className='col-6'>
+                <div className='col-7'>
                     <Outlet/>
                 </div>
-                <div className='col-4'>
+                <div className='col-3'>
                     <AlertsBar/>
                 </div>
             </div>

@@ -5,7 +5,7 @@ import {getPredicationByStopIdOneDirection, getPredicationByStopIdZeroDirection}
 import {findRapidTransitRouteDestinationDirections} from "../../../actions/search-action";
 import {pinStop} from "../../../services/pinned-stop-service";
 
-const TransitStop = ({unpinStop, stop}) => {
+const TransitStop = () => {
     const [zeroDirectionPredictions, setZeroDirectionPredictions] = useState([]);
     const [oneDirectionPredictions, setOneDirectionPredictions] = useState([]);
     const [destinationDirections, setDestinationDirections] = useState([]);
@@ -17,6 +17,16 @@ const TransitStop = ({unpinStop, stop}) => {
     const newLocation = location.filter(element => element != "");
     const stopName = newLocation[newLocation.length-1];
     const name = stopName.replace(/_/g," ").replace("*","/");
+
+    // const [profile, setProfile] = useState({});
+    // useEffect(async () => {
+    //     try{
+    //         const user = await service.profile();
+    //         setProfile(user);
+    //     } catch (e) {}
+    // }, []);
+    // console.log(profile)
+
     useEffect(() => {
         getPredicationByStopIdZeroDirection(stopId).then(response => setZeroDirectionPredictions(response));
         getPredicationByStopIdOneDirection(stopId).then(response => setOneDirectionPredictions(response));
