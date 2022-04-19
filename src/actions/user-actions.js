@@ -18,7 +18,7 @@ export const findAllUsers = async (dispatch) => {
     const users = await service.findAllUsers();
     dispatch({
         type: FIND_ALL_USERS,
-        users: users
+        users
     });
 };
 export const findUserByUsername = async (dispatch, username) => {

@@ -33,10 +33,22 @@ const NavigationBar = () => {
                     Search Stations
                 </span>
             </Link>
+            <Link to='/profile-search'
+                  className={`list-group-item`}>
+                <span>
+                    Search Users
+                </span>
+            </Link>
             <Link to='/posts'
                   className={`list-group-item`}>
                 <span>
                     Posts
+                </span>
+            </Link>
+            <Link to='/policy'
+                  className={`list-group-item`}>
+                <span>
+                    Privacy Policy
                 </span>
             </Link>
             {isLoggedIn ?

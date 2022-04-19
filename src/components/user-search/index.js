@@ -14,10 +14,11 @@ const UserSearchBar = () => {
     const [text, setText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     useEffect(() => {
-        findAllUsers(dispatch)
-            .then(() => setUsers(allUsers));
+        findAllUsers(dispatch).then(()=> setUsers(allUsers));
         //console.log('users', users);
-    }, [users])
+    }, [users]);
+
+    // setUsers(allUsers);
 
     const onChangeHandler = (text) => {
         let matches = []
@@ -27,7 +28,7 @@ const UserSearchBar = () => {
                 return user.username.match(regex)
             })
         }
-        console.log('matches',matches)
+        //console.log('matches',matches)
         setSuggestions(matches)
         setText(text);
     }
