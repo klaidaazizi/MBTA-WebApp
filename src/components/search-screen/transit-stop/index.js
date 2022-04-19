@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import PredictionListItem from "../prediction-list-item";
 import {getPredicationByStopIdOneDirection, getPredicationByStopIdZeroDirection} from "../../../actions/prediction-action";
 import {findRapidTransitRouteDestinationDirections} from "../../../actions/search-action";
 import {useDispatch} from "react-redux";
 import {findAlertsByStop} from "../../../actions/alerts-action";
 import {pinStop} from "../../../services/pinned-stop-service";
+import CommuterRailRouteStopsItem from "../commuter-rail-route-stops-item";
 
 const TransitStop = () => {
     const dispatch = useDispatch();
@@ -41,31 +42,38 @@ const TransitStop = () => {
     }
 
     return(
+
+
         <div>
+            <ul className='list-group'>
+                <li className="list-group-item">
+                     <div className=' container'>
+                                     <span className=' row text-center'>
+                          <div className='col-4'>
+                               <span className="col-12 btn btn-dark"
+                                                   onClick={() => navigate(-1)}>
+                                                 Back
+                                             </span>
+                                         </div>
+                                         <div className='col-4'>
+                                             <span className="col-12 btn bg-danger "
+                                                   onClick={() => findAlertsByStop(dispatch, stopId, name)}>
+                                                 Alerts
+                                             </span>
+                                         </div>
+                                         <div className='col-4'>
+                                             {/*<i onClick={() => pinStop("me", routeId, stopId)} className="col-12 fa fa-bookmark"></i>*/}
+                                             <span onClick={() => pinStop("me", routeId, stopId)} className="col-12 btn btn-warning">
+                                                 Pin Stop
+                                             </span>
+                                         </div>
+                                     </span>
+                     </div>
+                </li>
+                <li>
+
             <div className={`list-group-item ${backgroundColor}`}>
                 <div className='col-12' >
-                    <div className='container'>
-                        <span className='row text-center'>
-                            <div className='col-4'>
-                                <span className="col-12 btn btn-dark"
-                                        onClick={() => navigate(-1)}>
-                                    Back
-                                </span>
-                            </div>
-                            <div className='col-4'>
-                                <span className="col-12 btn bg-danger text-dark"
-                                        onClick={() => findAlertsByStop(dispatch, stopId, name)}>
-                                    Alerts
-                                </span>
-                            </div>
-                            <div className='col-4'>
-                                {/*<i onClick={() => pinStop("me", routeId, stopId)} className="col-12 fa fa-bookmark"></i>*/}
-                                <span onClick={() => pinStop("me", routeId, stopId)} className="col-12 btn btn-warning">
-                                    Pin Stop
-                                </span>
-                            </div>
-                        </span>
-                    </div>
                     <div className='row mt-1'>
                         <span className="fw-bold text-dark h3 col justify-content-center d-flex">
                             {name}
@@ -93,6 +101,8 @@ const TransitStop = () => {
                     </div>
                 </div>
             </div>
+                </li>
+            </ul>
         </div>
     )
 };
