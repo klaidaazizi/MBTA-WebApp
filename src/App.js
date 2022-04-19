@@ -19,10 +19,9 @@ import RapidRouteStops from "./components/search-screen/rapid-transit-route-stop
 import CommuterRailRouteStops from "./components/search-screen/commuter-rail-route-stops";
 import BusRouteStops from "./components/search-screen/bus-route-stops";
 import FerryRouteStops from "./components/search-screen/ferry-route-stops";
-import Index from "./components/search-screen/transit-stop";
+import TransitStop from "./components/search-screen/transit-stop";
 import PublicProfile from "./components/profile-screen/public-profile";
 import EditProfile from "./components/profile-screen/edit-profile";
-import UserSearchBar from "./components/user-search";
 import UserSearchScreen from "./components/user-search/user-search-screen";
 
 function App() {
@@ -33,7 +32,7 @@ function App() {
                   <Route path="/"
                          element={<Home/>}>
                       <Route index
-                             element={<HomeScreen/>}/>
+                             element={<SearchScreen/>}/>
                       <Route path="login"
                              element={<Login/>}/>
                       <Route path="register"
@@ -65,7 +64,7 @@ function App() {
                       <Route path="search/ferry/:routeId"
                              element={<FerryRouteStops/>}/>
                       <Route path="search/:transitType/:routeId/stop/detail/:stopId/:stopName"
-                             element={<Index/>}/>
+                             element={<TransitStop/>}/>
                       <Route path="posts"
                              element={<PostList/>}/>
                       <Route path="policy"
