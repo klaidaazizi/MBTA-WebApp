@@ -53,12 +53,13 @@ const TransitStop = () => {
                                 </span>
                             </div>
                             <div className='col-4'>
-                                <span className="col-12 btn btn-light text-dark"
+                                <span className="col-12 btn bg-danger text-dark"
                                         onClick={() => findAlertsByStop(dispatch, stopId, name)}>
                                     Alerts
                                 </span>
                             </div>
                             <div className='col-4'>
+                                {/*<i onClick={() => pinStop("me", routeId, stopId)} className="col-12 fa fa-bookmark"></i>*/}
                                 <span onClick={() => pinStop("me", routeId, stopId)} className="col-12 btn btn-warning">
                                     Pin Stop
                                 </span>
@@ -66,7 +67,7 @@ const TransitStop = () => {
                         </span>
                     </div>
                     <div className='row mt-1'>
-                        <span className="fw-bold text-primary h3 col justify-content-center d-flex">
+                        <span className="fw-bold text-dark h3 col justify-content-center d-flex">
                             {name}
                         </span>
                     </div>

@@ -39,6 +39,8 @@ function App() {
                              element={<Register/>}/>
                       <Route path="profile"
                              element={<ProfileScreen/>}/>
+                      <Route path="profile/lists/*"
+                             element={<ProfileScreen/>}/>
                       <Route path="profile-search"
                              element={<UserSearchScreen/>}/>
                       <Route path="profile/editprofile"

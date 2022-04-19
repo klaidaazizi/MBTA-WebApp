@@ -92,41 +92,41 @@ const Profile = () => {
                     <div className='ms-2'>
                         <ul className='nav mb-2 nav-tabs'>
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/posts"
+                                <Link to="/profile/lists/posts"
                                       className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
                                     Posts
                                 </Link>
                             </li>
 
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/liked-post"
+                                <Link to="/profile/lists/liked-post"
                                       className={`nav-link ${location.pathname.indexOf('liked-post') >= 0 ? 'active':''}`}>
                                     Liked Posts</Link>
                             </li>
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/followers"
+                                <Link to="/profile/lists/followers"
                                       className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
                                     Followers</Link>
                             </li>
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/following"
+                                <Link to="/profile/lists/following"
                                       className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
                                     Following</Link>
                             </li>
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2 ">
-                                <Link to="/profile/applauds"
+                                <Link to="/profile/lists/applauds"
                                       className={`nav-link ${location.pathname.indexOf('applauds') >= 0 ? 'active':''}`}>
                                     Applauds</Link>
                             </li>
 
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/conductor-likes"
+                                <Link to="/profile/lists/conductor-likes"
                                       className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active':''}`}>
                                     Liked conductors</Link>
                             </li>
 
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/pinned-stops"
+                                <Link to="/profile/lists/pinned-stops"
                                       className={`nav-link ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active':''}`}>
                                     Pinned Stops</Link>
                             </li>
@@ -134,18 +134,29 @@ const Profile = () => {
 
                     </div>
 
-                </div> :
+                    <Routes>
+                        <Route path="/followers" element={<Followers/>}/>
+                        <Route path="/following" element={<Following/>}/>
+                        <Route path="/liked-post" element={<LikedPosts/>}/>
+                        <Route path="/your-posts" element={<Posts/>}/>
+                        <Route path="/applauds" element={<Applauds/>}/>
+                        <Route path="/conductor-likes" element={<ConductorLikes/>}/>
+                        <Route path="/pinned-stops" element={<PinnedStops/>}/>
+                    </Routes>
+                </div>
+                    :
                     ''}
-                <Routes>
-                    <Route path="/followers" element={<Followers/>}/>
-                    <Route path="/following" element={<Following/>}/>
-                    <Route path="/liked-post" element={<LikedPosts/>}/>
-                    <Route path="/your-posts" element={<Posts/>}/>
-                    <Route path="/applauds" element={<Applauds/>}/>
-                    <Route path="/conductor-likes" element={<ConductorLikes/>}/>
-                    <Route path="/pinned-stops" element={<PinnedStops/>}/>
-                </Routes>
             </div>
+            <br/>
+            {/*<Routes>*/}
+            {/*    <Route path="/followers" element={<Followers/>}/>*/}
+            {/*    <Route path="/following" element={<Following/>}/>*/}
+            {/*    <Route path="/liked-post" element={<LikedPosts/>}/>*/}
+            {/*    <Route path="/your-posts" element={<Posts/>}/>*/}
+            {/*    <Route path="/applauds" element={<Applauds/>}/>*/}
+            {/*    <Route path="/conductor-likes" element={<ConductorLikes/>}/>*/}
+            {/*    <Route path="/pinned-stops" element={<PinnedStops/>}/>*/}
+            {/*</Routes>*/}
 
         </>
 
