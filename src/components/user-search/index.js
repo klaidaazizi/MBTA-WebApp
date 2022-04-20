@@ -9,18 +9,19 @@ import {findAllUsers} from "../../actions/user-actions";
 const UserSearchBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const allUsers = useSelector(state => state.users);
-    const [users, setUsers] = useState([]);
+    const users = useSelector(state => state.users);
+    const [allUsers, setUsers] = useState([]);
     const [text, setText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     useEffect(() => {
-        findAllUsers(dispatch).then(()=> setUsers(allUsers));
-        //console.log('users', users);
-    }, [users]);
-
-    // setUsers(allUsers);
+        findAllUsers(dispatch);
+            // .then(()=> {
+            // setUsers(allUsers);
+            console.log('users', users);}
+    , []);
 
     const onChangeHandler = (text) => {
+        setUsers(users);
         let matches = []
         if (text.length > 0){
             matches = users.filter(user=>{
@@ -28,7 +29,6 @@ const UserSearchBar = () => {
                 return user.username.match(regex)
             })
         }
-        //console.log('matches',matches)
         setSuggestions(matches)
         setText(text);
     }

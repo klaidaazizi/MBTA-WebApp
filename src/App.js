@@ -37,7 +37,7 @@ function App() {
                              element={<Login/>}/>
                       <Route path="register"
                              element={<Register/>}/>
-                      <Route path="profile"
+                      <Route path="profile/*"
                              element={<ProfileScreen/>}/>
                       <Route path="profile/lists/*"
                              element={<ProfileScreen/>}/>

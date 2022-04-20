@@ -11,17 +11,15 @@ import ConductorLikes from "./nav-components/conductor-likes";
 import './index.css';
 import UserSearchBar from "../user-search";
 import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../actions/auth-actions";
 
 const Profile = () => {
-    const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
+    const isLoggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const [profile, setProfile] = useState({});
 
-    const logout = () =>
-        service.logout()
-            .then(() => navigate('/login'));
 
     useEffect(async () => {
         try{
@@ -29,9 +27,10 @@ const Profile = () => {
             setProfile(user);
         }
         catch (e) {
+            alert(e)
             navigate('/profile-search');
         }
-    }, []);
+    }, [isLoggedIn]);
 
     return(
         <>
@@ -64,7 +63,7 @@ const Profile = () => {
                                 type='button'
                                 className='btn btn-secondary  rounded-pill mt-2 me-2'>Edit Profile
                         </button>
-                        <button onClick={logout} className=" btn btn-warning rounded-pill mt-2 me-2">
+                        <button onClick={() => logout(dispatch).then(navigate('/profile-search'))} className=" btn btn-warning rounded-pill mt-2 me-2">
                             Logout
                         </button>
                     </div>
