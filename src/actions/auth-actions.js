@@ -4,7 +4,7 @@ export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const SAVE_PROFILE = 'SAVE_PROFILE';
-// export const LOGGED_IN = 'LOGGED_IN';
+
 
 export const register = async (dispatch, user) => {
     const response = await service.register(user);
@@ -25,13 +25,14 @@ export const login = async (dispatch, user) => {
     });
 };
 
-// export const loggedIn = async (dispatch) => {
-//     const response = await service.loggedIn();
-//     dispatch({
-//         type: LOGGED_IN,
-//         response
-//     });
-// };
+export const save = async (dispatch, user) => {
+    const response = await service.reset(user);
+    dispatch({
+        type: SAVE_PROFILE,
+        response,
+        isLoggedIn: true
+    });
+};
 
 export const logout = async (dispatch) => {
     const response = await service.logout();

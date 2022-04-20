@@ -2,7 +2,7 @@ import {
     LOGIN,
     LOGOUT,
     REGISTER,
-    LOGGED_IN,
+    SAVE_PROFILE,
 } from "../actions/auth-actions";
 
 const authReducer = (state = {}, action) => {
@@ -25,11 +25,13 @@ const authReducer = (state = {}, action) => {
                 message: action.response,
                 isLoggedIn: false
             };
-        // case LOGGED_IN:
-        //     return {
-        //         ...state,
-        //         message: action.response,
-        //     };
+
+        case SAVE_PROFILE:
+            return {
+                ...state,
+                message: action.response,
+                isLoggedIn: true
+            };
         default:
             return state;
     }

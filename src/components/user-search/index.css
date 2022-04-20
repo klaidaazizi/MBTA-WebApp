@@ -5,6 +5,8 @@
 .suggestion{
     cursor: pointer;
     border-bottom: solid 1px #dcdcdc;
+    border-left: solid 1px #dcdcdc;
+    border-right: solid 1px #dcdcdc;
     background-color: white;
     padding: 5px 5px 5px 20px;
 }

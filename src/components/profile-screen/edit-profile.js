@@ -4,10 +4,11 @@ import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
+import {save} from "../../actions/auth-actions";
 
 const EditProfile = () => {
     const navigate = useNavigate();
-    //const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
+    const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const dispatch = useDispatch();
     const [profile, setProfile] = useState({});
 
@@ -20,14 +21,11 @@ const EditProfile = () => {
             alert(e);
             //navigate('/');
         }
-    }, []);
+    }, [isLoggedIn]);
 
     const saveProfile = () => {
-        service.reset(profile)
-            .then(() => {
-                setProfile(profile);
-                navigate('/profile');
-            });
+        save(dispatch, profile)
+            .then(navigate('/profile'));
     }
 
     const updateName = (event) => setProfile({
