@@ -59,7 +59,7 @@
 
 .search-page-text{
     font-size: 32px;
-    margin-left: 100px;
+    margin-left: 200px;
 
 }
 
@@ -148,7 +148,7 @@
 }
 
 .commuter-rail-routes-title{
-    margin-left: 80px;
+    margin-left: 40px;
     font-size: 30px;
     color:  #321440;
     align-items: center;
@@ -202,6 +202,14 @@
     background-color: #5bc0de;
 }
 
+.transit-stop-no-list{
+    list-style-type: none;
+}
+
+.back-button-transit-stop{
+    background-color: #55524D;
+
+}
 
 
 

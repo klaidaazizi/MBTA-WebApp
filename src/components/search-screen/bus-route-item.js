@@ -4,11 +4,12 @@ import './search.css';
 
 
 const BusRouteItem = ({busRoute}) => {
+    const routeName = busRoute.attributes.short_name.replace(/[^A-Za-z0-9_'()\/\@-]/g,"_").replace('/', "*");
     return(
         <div>
             <li className='list-group-item bus-route-color '>
                 <div className='row ' >
-                    <Link to={`/search/bus/${busRoute.id}`} className="line-ends-links ">
+                    <Link to={`/search/bus/${busRoute.id}/${routeName}`} className="line-ends-links ">
                         <span className="fw-bold rapid-transit-route-id">{busRoute.attributes.short_name}</span>
                         <div className="rt-route-text-alignment">
                             <div>
