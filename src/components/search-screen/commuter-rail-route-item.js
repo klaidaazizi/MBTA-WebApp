@@ -4,12 +4,13 @@ import './search.css';
 
 
 const CommuterRailRouteItem = ({crRoute}) => {
+    const routeName = crRoute.attributes.long_name.replace(/[^A-Za-z0-9_'()\/\@-]/g,"_").replace('/', "*");
+
     return(
         <div>
             <li className='list-group-item cr-color '>
                 <div className='row ' >
-                    {/*<div className='row' onClick={() => navigate(`/rapid-transit/${rtRoute.id}`)}>*/}
-                    <Link to={`/search/commuter-rail/${crRoute.id}`} className="line-ends-links ">
+                    <Link to={`/search/commuter-rail/${crRoute.id}/${routeName}`} className="line-ends-links ">
                         <span className="fw-bold rapid-transit-route-id">{crRoute.attributes.long_name}</span>
                         <div className="rt-route-text-alignment">
                             <div>

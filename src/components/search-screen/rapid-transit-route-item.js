@@ -1,16 +1,16 @@
 import React from "react";
 import {Link, Route, Routes, useNavigate} from "react-router-dom";
-import RapidRouteStops from "./rapid-transit-route-stops";
 import './search.css';
 
 
 const RapidTransitRouteItem = ({rtRoute}) => {
+    const routeName = rtRoute.attributes.long_name.replace(/[^A-Za-z0-9_'()\/\@-]/g,"_").replace('/', "*");
+
     return(
         <div>
             <li className='list-group-item rt-route-color '>
                 <div className='row ' >
-                    <Link to={`/search/rapid-transit/${rtRoute.id}`} className="line-ends-links">
-                          {/*element={<RapidRouteStops routeId={rtRoute.id}/>}*/}
+                    <Link to={`/search/rapid-transit/${rtRoute.id}/${routeName}`} className="line-ends-links">
                     <span className="fw-bold rapid-transit-route-id">{rtRoute.attributes.long_name}</span>
                     <div className="rt-route-text-alignment">
                         <div>

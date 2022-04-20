@@ -10,6 +10,10 @@ const CommuterRailRouteStops = () => {
 
     const params = useParams();
     const routeId2 = params.routeId;
+    const routeName = params.routeName;
+    const routeNameForStopsList = routeName.replace(/_/g," ").replace("*","/");
+
+
     const rapidRouteStops = useSelector(state => state.rapidRouteStops);
 
     const dispatch = useDispatch();
@@ -25,7 +29,7 @@ const CommuterRailRouteStops = () => {
                     </button>
                     {/*<span className="commuter-rail-routes-title">Commuter Rail</span>*/}
 
-                <span className="commuter-rail-routes-title">{routeId2} Stops</span>
+                <span className="commuter-rail-routes-title">{routeNameForStopsList} Stops</span>
                 </li>
                 {rapidRouteStops.map(
                     rapidRouteStop => {

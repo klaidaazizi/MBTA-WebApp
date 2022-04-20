@@ -25,7 +25,8 @@ const reducers = combineReducers({
     charlieCard: CharlieCardReducer,
     sessionReducer: SessionReducer,
     users: UserReducer,
-    pinnedStops: PinnedStopsReducer
+    pinnedStops: PinnedStopsReducer,
+    pinExists: PinnedStopsReducer
 });
 const store = createStore(reducers);
 

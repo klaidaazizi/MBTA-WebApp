@@ -147,17 +147,6 @@ const Profile = () => {
                     :
                     ''}
             </div>
-            <br/>
-            {/*<Routes>*/}
-            {/*    <Route path="/followers" element={<Followers/>}/>*/}
-            {/*    <Route path="/following" element={<Following/>}/>*/}
-            {/*    <Route path="/liked-post" element={<LikedPosts/>}/>*/}
-            {/*    <Route path="/your-posts" element={<Posts/>}/>*/}
-            {/*    <Route path="/applauds" element={<Applauds/>}/>*/}
-            {/*    <Route path="/conductor-likes" element={<ConductorLikes/>}/>*/}
-            {/*    <Route path="/pinned-stops" element={<PinnedStops/>}/>*/}
-            {/*</Routes>*/}
-
         </>
 
 

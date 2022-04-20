@@ -8,7 +8,7 @@ const SearchScreen = () => {
 
     return (
         <div>
-            <h4 className="search-page-text text-center"> Search for your next stop here.</h4>
+            <h4 className="search-page-text "> Explore the MBTA </h4>
             <Link to="/search/rapid-transit" className="-search-main-buttons-text">
                 <button id="button1" type="button" className=" button-sizing btn btn-danger ">
                     Rapid Transit

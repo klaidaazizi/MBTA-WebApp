@@ -4,12 +4,13 @@ import './search.css';
 
 
 const FerryRouteItem = ({ferryRoute}) => {
+    const routeName = ferryRoute.attributes.long_name.replace(/[^A-Za-z0-9_'()\/\@-]/g,"_").replace('/', "*");
+
     return(
         <div>
             <li className='list-group-item ferry-route-color '>
                 <div className='row ' >
-                    {/*<div className='row' onClick={() => navigate(`/rapid-transit/${rtRoute.id}`)}>*/}
-                    <Link to={`/search/ferry/${ferryRoute.id}`} className="line-ends-links ">
+                    <Link to={`/search/ferry/${ferryRoute.id}/${routeName}`} className="line-ends-links ">
                         <span className="fw-bold rapid-transit-route-id">{ferryRoute.attributes.long_name}</span>
                         <div className="rt-route-text-alignment">
                             <div>
