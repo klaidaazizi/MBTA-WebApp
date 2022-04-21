@@ -8,9 +8,17 @@ import {save} from "../../actions/auth-actions";
 
 const EditProfile = () => {
     const navigate = useNavigate();
-    const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
+    const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const dispatch = useDispatch();
-    const [profile, setProfile] = useState({});
+    const [profile, setProfile] = useState({
+        name: '',
+        username: '',
+        email: '',
+        password: '',
+        homeStop: '',
+        dateOfBirth: '',
+        dateJoined: '',
+    });
 
     useEffect(async () => {
         try{
@@ -21,11 +29,12 @@ const EditProfile = () => {
             alert(e);
             //navigate('/');
         }
-    }, [isLoggedIn]);
+    }, []);
 
     const saveProfile = () => {
-        save(dispatch, profile)
-            .then(navigate('/profile'));
+        save(dispatch, profile);
+        setProfile(profile);
+        navigate('/profile');
     }
 
     const updateName = (event) => setProfile({
@@ -44,10 +53,10 @@ const EditProfile = () => {
         ...profile,
         password: event.target.value
     });
-    const updateRole = (event) => setProfile({
-        ...profile,
-        userRole: event.target.value
-    });
+    // const updateRole = (event) => setProfile({
+    //     ...profile,
+    //     userRole: event.target.value
+    // });
     const updateHomeStop = (event) => setProfile({
         ...profile,
         homeStop: event.target.value
@@ -60,10 +69,10 @@ const EditProfile = () => {
         ...profile,
         joinedDate: event.target.value
     });
-    const updateJobTitle= (event) => setProfile({
-        ...profile,
-        jobTitle: event.target.value
-    });
+    // const updateJobTitle= (event) => setProfile({
+    //     ...profile,
+    //     jobTitle: event.target.value
+    // });
     const updateCharlieCard= (event) => setProfile({
         ...profile,
         charlieCard: event.target.value
@@ -73,7 +82,7 @@ const EditProfile = () => {
     return(
         <>
             <div className="row ">
-                <div className="col-2"> <Button onClick={()=> navigate('/profile')} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
+                <div className="col-2"> <Button onClick={()=> navigate(-1)} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
                 <div className="col-8">
                     <h5 className="fw-bold">Edit Profile</h5>
                 </div>
@@ -112,11 +121,11 @@ const EditProfile = () => {
                 <label className='control-label  mt-2'>
                     Edit Role
                 </label>
-                <select className="border-1 form-control" value={profile.userRole} onChange={updateRole}>
-                    <option>Commuter</option>
-                    <option>Conductor</option>
-                    <option>Admin</option>
-                </select>
+                {/*<select className="border-1 form-control" value={profile.userRole} onChange={updateRole}>*/}
+                {/*    <option>Commuter</option>*/}
+                {/*    <option>Conductor</option>*/}
+                {/*    <option>Admin</option>*/}
+                {/*</select>*/}
 
                 <label className='control-label mt-2'>
                     Edit Home stop
@@ -138,7 +147,6 @@ const EditProfile = () => {
 
 
             </div>
-
 
 
 
