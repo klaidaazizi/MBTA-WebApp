@@ -7,7 +7,7 @@ import NavigationBar from "./navigation-bar";
 import AlertsBar from "./alerts-bar";
 import {Outlet} from "react-router-dom";
 import NavigationReducer from "../reducers/navigation-reducer";
-import SearchStopReducer from "../reducers/serach-stop-reducer";
+import SearchStopReducer from "../reducers/search-stop-reducer";
 import SessionReducer from "../reducers/auth-reducer";
 import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
@@ -21,6 +21,8 @@ const reducers = combineReducers({
     crRoutes: SearchReducer,
     busRoutes: SearchReducer,
     ferryRoutes: SearchReducer,
+    MBTAStops: SearchStopReducer,
+    singleStop: SearchStopReducer,
     rapidRouteStops: SearchStopReducer,
     charlieCard: CharlieCardReducer,
     sessionReducer: SessionReducer,

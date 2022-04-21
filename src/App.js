@@ -23,6 +23,8 @@ import TransitStop from "./components/search-screen/transit-stop";
 import PublicProfile from "./components/profile-screen/public-profile";
 import EditProfile from "./components/profile-screen/edit-profile";
 import UserSearchScreen from "./components/user-search/user-search-screen";
+import StopSearchScreen from "./components/search-stops-screen/stop-search-screen";
+import SearchStopDetails from "./components/search-stops-screen/search-stop-details-screen";
 
 function App() {
   return (
@@ -47,26 +49,46 @@ function App() {
                              element={<EditProfile/>}/>
                       <Route path="profile/:username/*"
                              element={<PublicProfile/>}/>
-                      <Route path="search"
+                      <Route path="home"
                              element={<SearchScreen/>}/>
-                      <Route path="search/rapid-transit"
+                      <Route path="home/rapid-transit"
                              element={<RapidTransitRoutes/>}/>
-                      <Route path="search/rapid-transit/:routeId/:routeName"
+                      <Route path="home/rapid-transit/:routeId/:routeName"
                              element={<RapidRouteStops/>}/>
-                      <Route path="search/commuter-rail"
+                      <Route path="home/commuter-rail"
                              element={<CommuterRailRoutes/>}/>
-                      <Route path="search/commuter-rail/:routeId/:routeName"
+                      <Route path="home/commuter-rail/:routeId/:routeName"
                              element={<CommuterRailRouteStops/>}/>
-                      <Route path="search/bus"
+                      <Route path="home/bus"
                              element={<BusRoutes/>}/>
-                      <Route path="search/bus/:routeId/:routeName"
+                      <Route path="home/bus/:routeId/:routeName"
                              element={<BusRouteStops/>}/>
-                      <Route path="search/ferry"
+                      <Route path="home/ferry"
                              element={<FerryRoutes/>}/>
-                      <Route path="search/ferry/:routeId/:routeName"
+                      <Route path="home/ferry/:routeId/:routeName"
                              element={<FerryRouteStops/>}/>
-                      <Route path="search/:transitType/:routeId/:routeName/stop/:stopId/:stopName"
+                      <Route path="home/:transitType/:routeId/:routeName/stop/:stopId/:stopName"
                              element={<TransitStop/>}/>
+                      <Route path="search"
+                             element={<StopSearchScreen/>}/>
+                      {/*<Route path="search/details/:stopId"*/}
+                      {/*       element={<SearchStopDetails/>}/>*/}
+                      {/*<Route path="search/rapid-transit/:routeId/:routeName"*/}
+                      {/*       element={<RapidRouteStops/>}/>*/}
+                      {/*<Route path="search/commuter-rail"*/}
+                      {/*       element={<CommuterRailRoutes/>}/>*/}
+                      {/*<Route path="search/commuter-rail/:routeId/:routeName"*/}
+                      {/*       element={<CommuterRailRouteStops/>}/>*/}
+                      {/*<Route path="search/bus"*/}
+                      {/*       element={<BusRoutes/>}/>*/}
+                      {/*<Route path="search/bus/:routeId/:routeName"*/}
+                      {/*       element={<BusRouteStops/>}/>*/}
+                      {/*<Route path="search/ferry"*/}
+                      {/*       element={<FerryRoutes/>}/>*/}
+                      {/*<Route path="search/ferry/:routeId/:routeName"*/}
+                      {/*       element={<FerryRouteStops/>}/>*/}
+                      {/*<Route path="search/:transitType/:routeId/:routeName/stop/:stopId/:stopName"*/}
+                      {/*       element={<TransitStop/>}/>*/}
                       <Route path="posts"
                              element={<PostList/>}/>
                       <Route path="policy"

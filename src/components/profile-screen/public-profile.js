@@ -38,7 +38,7 @@ const PublicProfile = () => {
 
     return(
         <>
-            <div className="col-2"> <Button onClick={()=> navigate('/profile')} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
+            <div className="col-2"> <Button onClick={()=> navigate(-1)} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
 
             <div className='mt-2 border border-black bg-light rounded-2 ps-2 pe-2'>
                 <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">

@@ -1,32 +1,33 @@
 import React, {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
-import './index.css';
+import '../user-search/index.css';
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {findAllUsers} from "../../actions/user-actions";
+import {findAllStopsInMBTA} from "../../actions/search-action";
 
-const UserSearchBar = () => {
-    const dispatch = useDispatch();
+const StopSearchBar = () => {
     const navigate = useNavigate();
-    const users = useSelector(state => state.users);
-    console.log('users', users)
-    const [allUsers, setUsers] = useState([]);
+    const [allStops, setStops] = useState([]);
     const [text, setText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+
+    const MBTAStops = useSelector(state => state.MBTAStops);
+    console.log('stops', MBTAStops)
+
+    const dispatch = useDispatch();
     useEffect(() => {
-        findAllUsers(dispatch);
-            // .then(()=> {
-            // setUsers(allUsers);
-            console.log('users', users);}
-    , []);
+            findAllStopsInMBTA(dispatch);
+        }, []);
+
+    console.log('stops', MBTAStops)
 
     const onChangeHandler = (text) => {
-        setUsers(users);
+        setStops(MBTAStops);
         let matches = []
         if (text.length > 0){
-            matches = users.filter(user=>{
+            matches = MBTAStops.filter(MBTAStop =>{
                 const regex = new RegExp(`${text}`,"gi");
-                return user.username.match(regex)
+                return MBTAStop.attributes.name.match(regex)
             })
         }
         setSuggestions(matches)
@@ -35,13 +36,13 @@ const UserSearchBar = () => {
     const onSuggestHandler = (text) =>{
         setText(text);
         setSuggestions([])
-        //navigate('profile/${text}')
     }
+
     return(
-        <div className='row mb-2'>
-            <div className='col-10'>
+        <div className='row mb-2 wrap-search'>
+            <div className='  '>
                 <input className='form-control ' type="text"
-                       placeholder='Search user by username...'
+                       placeholder='Search for an MBTA stop'
                        onChange={e=> onChangeHandler(e.target.value)}
                        value={text}
                        onBlur={()=> {
@@ -53,18 +54,25 @@ const UserSearchBar = () => {
                 <div className=''> {suggestions && suggestions.map((suggestion,i) =>
                     <div key={i} className='justify-content-center suggestion'
                          onClick={() =>
-                             onSuggestHandler(suggestion.username)
+                             onSuggestHandler(suggestion.id)
 
                          }
-                    >{suggestion.username}</div>
+                    >{suggestion.attributes.name}
+                    <br/>
+                        {suggestion.id}
+                    <br/>
+                        {suggestion.attributes.vehicle_type}
+                    </div>
                 )}
                 </div>
             </div>
-            <Button className='col-2 h-25' onClick={()=>navigate(`/profile/${text}`)}>Go
+        <div>
+            <Button className='go-button ' onClick={()=>navigate(`/search/details/${text}`)}>Go
             </Button>
+        </div>
         </div>
     )
 
 }
 
-export default UserSearchBar;
+export default StopSearchBar;

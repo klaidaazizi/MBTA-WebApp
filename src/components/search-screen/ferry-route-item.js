@@ -10,7 +10,7 @@ const FerryRouteItem = ({ferryRoute}) => {
         <div>
             <li className='list-group-item ferry-route-color '>
                 <div className='row ' >
-                    <Link to={`/search/ferry/${ferryRoute.id}/${routeName}`} className="line-ends-links ">
+                    <Link to={`/home/ferry/${ferryRoute.id}/${routeName}`} className="line-ends-links ">
                         <span className="fw-bold rapid-transit-route-id">{ferryRoute.attributes.long_name}</span>
                         <div className="rt-route-text-alignment">
                             <div>
