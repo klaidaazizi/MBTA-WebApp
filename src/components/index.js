@@ -13,6 +13,7 @@ import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
 import CharlieCardReducer from "../reducers/charlie-card-reducer";
 import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
+import SingleStopReducer from "../reducers/single-stop-reducer";
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,
@@ -22,7 +23,7 @@ const reducers = combineReducers({
     busRoutes: SearchReducer,
     ferryRoutes: SearchReducer,
     MBTAStops: SearchStopReducer,
-    singleStop: SearchStopReducer,
+    singleStop: SingleStopReducer,
     rapidRouteStops: SearchStopReducer,
     charlieCard: CharlieCardReducer,
     sessionReducer: SessionReducer,

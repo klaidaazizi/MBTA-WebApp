@@ -45,16 +45,15 @@ export const findAllFerryRoutes = async (dispatch) => {
 
 export const findAllStopsInMBTA = async (dispatch) => {
     const MBTAStops = await service.findAllStopsInMBTA();
-    console.log(MBTAStops, " in action")
     dispatch({
         type: FIND_ALL_MBTA_STOPS,
         MBTAStops
     });
 }
 
-export const findStopById = async (dispatch, sid) => {
+
+export const findAStopById = async (dispatch, sid) => {
     const singleStop = await service.findStopById(sid);
-    console.log(singleStop, " in action")
     dispatch({
         type: FIND_STOP_BY_ID,
         singleStop

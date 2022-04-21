@@ -71,8 +71,8 @@ function App() {
                              element={<TransitStop/>}/>
                       <Route path="search"
                              element={<StopSearchScreen/>}/>
-                      {/*<Route path="search/details/:stopId"*/}
-                      {/*       element={<SearchStopDetails/>}/>*/}
+                      <Route path="search/details/:stopId"
+                             element={<SearchStopDetails/>}/>
                       {/*<Route path="search/rapid-transit/:routeId/:routeName"*/}
                       {/*       element={<RapidRouteStops/>}/>*/}
                       {/*<Route path="search/commuter-rail"*/}

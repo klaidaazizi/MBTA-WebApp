@@ -41,6 +41,6 @@ export const findAllStopsInMBTA = async () => {
 export const findStopById = async (sid) => {
     console.log("in seeeervice")
     const response = await axios.get(`${SEARCH_API_BASE}/stops/${sid}`)
-    console.log(response.data.data, " in stop id service")
+    console.log( response.data.data, " in stop id service")
     return response.data.data;
 }
