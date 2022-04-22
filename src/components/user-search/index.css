@@ -59,3 +59,9 @@
     width: 80%;
     /*flex: 1;*/
 }
+
+.MBTA-label-search-page{
+    background-color: white;
+    border: 1px solid;
+    border-color: green;
+}

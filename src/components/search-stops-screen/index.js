@@ -77,7 +77,7 @@ const StopSearchBar = () => {
                 )}
                 </div>
             </div>
-            <Button className='col-2 h-25' onClick={() => goToDetail(id)}>Go
+            <Button className='col-2 h-25 bg-success' onClick={() => goToDetail(id)}>Go
             </Button>
         </div>
         // <div className='row mb-2 wrap-search'>

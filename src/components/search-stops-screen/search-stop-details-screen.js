@@ -12,7 +12,6 @@ const SearchStopDetails = () => {
     const params = useParams();
     const stopId = params.stopId;
     console.log(stopId)
-    console.log(singleStop)
 
     // const isSingleStopNull = (singleStop) => {
     //     console.log(singleStop === null + " null")
@@ -26,9 +25,21 @@ const SearchStopDetails = () => {
     useEffect(() => findAStopById(dispatch, stopId),
         []);
 
+    console.log(singleStop)
+
 
     const goBack = () => {
         navigate('/search');
+        //navigate(-1);
+    }
+
+    // const goToParentStation = (text) => {
+    //     navigate(`/search/details/${text}`);
+    // }
+
+    const goToParentStation = () => {
+        window.location.reload();
+        return false;
     }
 
     return(
@@ -44,13 +55,43 @@ const SearchStopDetails = () => {
                                </span>
                                                   </div>
 
+                            {singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id ?
+                                <div className='col-6'>
 
-                                         <div className='col-6'>
-                                             <span className="col-6 btn btn-success float-end"
-                                                   >
-                                                 Parent Station
-                                             </span>
-                                         </div>
+                                <Link to={`/search/users-pinned/${singleStop.relationships.parent_station.data.id}`}>
+                                    <span className="col-12 btn btn-success float-end">
+                                    View Users Who Pinned This Stop
+                                    </span>
+                                </Link>
+                                </div>
+
+                                :
+                                    <div className='col-6'>
+
+                                    <Link to={`/search/users-pinned/${singleStop.id}`}>
+                                    <span className="col-12 btn btn-success float-end">
+                                    View Users Who Pinned This Stop
+                                    </span>
+                                    </Link>
+                                    </div>
+
+                            }
+
+                            {/*{singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id ? */}
+                            {/*//      <div className='col-6'>*/}
+                            {/*//                  <span className="col-6 btn btn-success float-end"*/}
+                            {/*//                        onClick={goToParentStation(singleStop.relationships.parent_station.data.id)}>*/}
+                            {/*//                      Parent Station*/}
+                            {/*//                  </span>*/}
+                            {/*//     <Link to={`/search/details/${singleStop.relationships.parent_station.data.id}`}  onClick={goToParentStation}>*/}
+                            {/*// <span className="col-6 btn btn-success float-end">*/}
+                            {/*//         Parent Station*/}
+                            {/*// </span>*/}
+                            {/*//     </Link>*/}
+                            {/*//  </div>*/}
+                            {/*    : '' }*/}
+
+
                         </span>
                     </div>
                 </li>
@@ -60,18 +101,21 @@ const SearchStopDetails = () => {
                         <div className='col-12' >
                             <div className='row mt-1'>
                         <span className="fw-bold text-black h3 col justify-content-center d-flex">
-                            {singleStop.id}
-                            <br/>
-                                {singleStop.attributes.name}
+                            Stop Name:
+                            {singleStop.attributes && singleStop.attributes.name ? singleStop.attributes.name: '' }
                                 <br/>
-                            {singleStop.attributes.description}
-                            {/*<br/>*/}
-                            {/*{singleStop.attributes.municipality}*/}
-                            {/*<br/>*/}
-                            {/*{singleStop.attributes.vehicle_type}*/}
-                            {/*<br/>*/}
-                            {/*{singleStop.attributes.wheelchair_boarding}*/}
-                            {/*<br/>*/}
+                            {singleStop.attributes && singleStop.attributes.address ? `Stop Address: ${singleStop.attributes.address}`: '' }
+                            <br/>
+                            Stop Description:
+                            {singleStop.attributes && singleStop.attributes.description ? singleStop.attributes.description: '' }
+                            <br/>
+                            {singleStop.attributes && singleStop.attributes.municipality ? singleStop.attributes.municipality: '' }
+                            <br/>
+                            {singleStop.attributes && singleStop.attributes.wheelchair_boarding ? singleStop.attributes.wheelchair_boarding: '' }
+                            <br/>
+                            {singleStop.attributes && singleStop.attributes.vehicle_type ? singleStop.attributes.vehicle_type: '' }
+                            <br/>
+                            {singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id ? singleStop.relationships.parent_station.data.id: '' }
                             {/*{singleStop.relationships.parent_station.data.id}*/}
                             {/*/!*{isSingleStopNull({singleStop}) === false && singleStop.attributes && singleStop.relationships.parent_station.data?*!/*/}
                             {/*    <>*/}
