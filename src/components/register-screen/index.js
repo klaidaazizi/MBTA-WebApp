@@ -32,6 +32,10 @@ const Register = () => {
         setNewUser({...newUser, userRole: e.target.value})
     }
 
+    const handleCharlieCardBalance = (e) => {
+        setNewUser({...newUser, charlieCardBalance: e.target.value})
+    }
+
     // handles Register button
     const createAccount = () =>
         action.register(dispatch, newUser)
@@ -48,7 +52,12 @@ const Register = () => {
                             <input type='text'  className="form-control" placeholder='Enter Name' onChange={handleName}/>
                         </div>
                     </div>
-
+                    <div className='input-container'>
+                        <label> Charlie Card Balance </label>
+                        <div>
+                            <input type='number'  className="form-control" placeholder='Enter Charlie Card Balance' onChange={handleCharlieCardBalance}/>
+                        </div>
+                    </div>
                     <div className='input-container'>
                         <label> Username </label>
                         <div>

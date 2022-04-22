@@ -3,37 +3,39 @@ import {
     LOGOUT,
     REGISTER,
     SAVE_PROFILE,
+    UPDATE_CHARLIE_CARD_VALUE
 } from "../actions/auth-actions";
 
-const authReducer = (state = {
-    profile: {
-        name: ''
-    }
-}, action) => {
+const authReducer = (state = {}, action) => {
     switch (action.type) {
         case REGISTER:
             return {
                 ...state,
-                profile: action.response,
+                profileData: action.response,
                 isLoggedIn: true
             };
         case LOGIN:
             return {
                 ...state,
-                profile: action.response,
+                profileData: action.response,
                 isLoggedIn: true
             };
         case LOGOUT:
             return {
                 ...state,
-                profile: action.response,
+                profileData: action.response,
                 isLoggedIn: false
             };
-
         case SAVE_PROFILE:
             return {
                 ...state,
-                profile: action.response,
+                profileData: action.response,
+                isLoggedIn: true
+            };
+        case UPDATE_CHARLIE_CARD_VALUE:
+            return {
+                ...state,
+                profileData: action.response,
                 isLoggedIn: true
             };
         default:

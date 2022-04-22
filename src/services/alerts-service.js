@@ -11,9 +11,8 @@ export const findAllAlerts = async () => {
 }
 
 export const findAlertsByPinnedStops = async (stops) => {
-    const stops_cleaned = stops.join(', ')
-    console.log(stops_cleaned)
-    const stop_filter = 'filter[stop]=' + stops_cleaned;
+    console.log(stops)
+    const stop_filter = 'filter[stop]=' + stops;
     const response = await axios.get(`${ALERTS_API}?${API_KEY}&${stop_filter}`)
     return response.data.data;
 }
