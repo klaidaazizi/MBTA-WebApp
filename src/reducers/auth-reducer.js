@@ -5,31 +5,35 @@ import {
     SAVE_PROFILE,
 } from "../actions/auth-actions";
 
-const authReducer = (state = {}, action) => {
+const authReducer = (state = {
+    profile: {
+        name: ''
+    }
+}, action) => {
     switch (action.type) {
         case REGISTER:
             return {
                 ...state,
-                message: action.response,
+                profile: action.response,
                 isLoggedIn: true
             };
         case LOGIN:
             return {
                 ...state,
-                message: action.response,
+                profile: action.response,
                 isLoggedIn: true
             };
         case LOGOUT:
             return {
                 ...state,
-                message: action.response,
+                profile: action.response,
                 isLoggedIn: false
             };
 
         case SAVE_PROFILE:
             return {
                 ...state,
-                message: action.response,
+                profile: action.response,
                 isLoggedIn: true
             };
         default:

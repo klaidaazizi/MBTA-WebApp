@@ -8,33 +8,24 @@ import {save} from "../../actions/auth-actions";
 
 const EditProfile = () => {
     const navigate = useNavigate();
+    //const user = useSelector(state => state.sessionReducer.profile)
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const dispatch = useDispatch();
-    const [profile, setProfile] = useState({
-        name: '',
-        username: '',
-        email: '',
-        password: '',
-        homeStop: '',
-        dateOfBirth: '',
-        dateJoined: '',
-    });
+    const [profile, setProfile] = useState({});
 
-    useEffect(async () => {
-        try{
-            const user = await service.profile();
-            setProfile(user);
-        }
-        catch (e) {
-            alert(e);
-            //navigate('/');
-        }
+    useEffect( async () => {
+        const user = await service.profile();
+        setProfile(user);
+        console.log(profile);
     }, []);
 
     const saveProfile = () => {
-        save(dispatch, profile);
-        setProfile(profile);
-        navigate('/profile');
+        try {
+            save(dispatch, profile).then(r => navigate(`/profile`));
+            console.log(profile);
+        } catch (e){
+            alert("Failed to update!")
+        }
     }
 
     const updateName = (event) => setProfile({
@@ -86,7 +77,7 @@ const EditProfile = () => {
                 <div className="col-8">
                     <h5 className="fw-bold">Edit Profile</h5>
                 </div>
-                <Button className="col-2 btn-primary rounded-pill mb-1 " onClick={saveProfile}>
+                <Button  className="col-2 btn-primary rounded-pill mb-1 " onClick={()=>saveProfile()}>
                     Save
                 </Button>
             </div><div className='border border-black bg-light rounded-2 ps-2 pe-2'>
@@ -118,9 +109,9 @@ const EditProfile = () => {
                 </label>
                 <input className="border-1 form-control" value={profile.password} onChange={updatePassword}/>
 
-                <label className='control-label  mt-2'>
-                    Edit Role
-                </label>
+                {/*<label className='control-label  mt-2'>*/}
+                {/*    Edit Role*/}
+                {/*</label>*/}
                 {/*<select className="border-1 form-control" value={profile.userRole} onChange={updateRole}>*/}
                 {/*    <option>Commuter</option>*/}
                 {/*    <option>Conductor</option>*/}

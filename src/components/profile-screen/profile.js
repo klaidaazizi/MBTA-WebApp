@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import * as service from '../../services/authentication-service';
-import {Link, Route, Routes, HashRouter, useLocation, useNavigate} from "react-router-dom";
+import {Link, Route, Routes, HashRouter, useLocation, useNavigate, useParams} from "react-router-dom";
 import PinnedStops from "./nav-components/pinned-stops";
 import Followers from "./nav-components/followers";
 import Following from "./nav-components/following";
@@ -12,33 +12,37 @@ import './index.css';
 import UserSearchBar from "../user-search";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../actions/auth-actions";
+import UserSearchScreen from "../user-search/user-search-screen";
 
 const Profile = () => {
-    const isLoggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
+    const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
+    const user = useSelector(state => state.sessionReducer.profile)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    const params = useParams();
     const [profile, setProfile] = useState({});
 
-
-    useEffect(async () => {
+    useEffect(() => {
         try{
-            const user = await service.profile();
+            //const user = await service.profile();
             setProfile(user);
         }
         catch (e) {
-            alert(e)
+            alert(e + "User not logged in.")
             navigate('/profile-search');
         }
-    }, [isLoggedIn]);
+    }, []);
+
+    const date = new Date(profile.dateOfBirth).toDateString();
 
     return(
         <>
-            <div className='container'>
+            {loggedIn ?
+                <div className='container'>
                 <div className='box top'>
                     <UserSearchBar/>
                 </div>
-                {isLoggedIn ?
                 <div className='mt-5 box border border-black bg-light rounded-2 ps-2 pe-2'>
                     <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
                         <div className="col-1">
@@ -46,8 +50,8 @@ const Profile = () => {
                         </div>
                         <div className="col-11">
                             <h5>
-                                <span className='fw-bold text-white'>{profile.name}</span>
-                                <span className="float-end text-primary">{profile.userRole}</span>
+                                <span className='fw-bold text-white'>{profile && profile.name? profile.name: ''}</span>
+                                <span className="float-end text-primary">{profile && profile.userRole}</span>
                             </h5>
 
                         </div>
@@ -80,9 +84,9 @@ const Profile = () => {
                 <span><i className='fa fa-home ms-1 me-1'/>
                     Home stop: {profile.homeStop}</span>
                         <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                 Born: {profile.dateOfBirth}</span>
+                 Born: {new Date(profile.dateOfBirth).toDateString()}</span>
                         <span><i className='fa fa-calendar me-1 ms-3'/>
-                    Joined: {profile.joinedDate}</span>
+                    Joined: {new Date(profile.joinedDate).toDateString()}</span>
                         {/*<span><i className='fa fa-building me-1 ms-3'/>*/}
                         {/*    Job title: {profile.jobTitle}</span>*/}
                     </div>
@@ -143,9 +147,10 @@ const Profile = () => {
                         <Route path="/pinned-stops" element={<PinnedStops/>}/>
                     </Routes>
                 </div>
-                    :
-                    ''}
+
             </div>
+                :
+            <UserSearchScreen/> }
         </>
 
 

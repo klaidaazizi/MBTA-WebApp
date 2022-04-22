@@ -16,7 +16,7 @@ const userReducer = (state = [], action) => {
         case FIND_ALL_USERS:
             return action.users;
         case FIND_USER_BY_USERNAME:
-            return action.user;
+            return action.sUser;
         case DELETE_USER:
             return state.filter(
                 user => user._id !== action.user._id);

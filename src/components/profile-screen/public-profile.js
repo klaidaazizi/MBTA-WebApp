@@ -10,16 +10,18 @@ import Applauds from "./nav-components/applauds";
 import ConductorLikes from "./nav-components/conductor-likes";
 import './index.css';
 import {Button} from "react-bootstrap";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {findUserByUsername} from "../../actions/user-actions";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
     const [profile, setProfile] = useState({});
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
 
 
-    useEffect(async () => {
+    useEffect( async () => {
         try{
             const queryURL = window.location.pathname;
             const params = queryURL.toString().split('/');
@@ -27,6 +29,7 @@ const PublicProfile = () => {
             const username = params[2].toString();
             //console.log(username);
             const user = await service.findUserByUsername(username);
+            //findUserByUsername(dispatch,username)
             setProfile(user);
         }
         catch (e) {

@@ -13,7 +13,6 @@ import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
 import CharlieCardReducer from "../reducers/charlie-card-reducer";
 import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
-import AuthReducer from "../reducers/auth-reducer";
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,
@@ -25,9 +24,9 @@ const reducers = combineReducers({
     rapidRouteStops: SearchStopReducer,
     charlieCard: CharlieCardReducer,
     sessionReducer: SessionReducer,
+    updatedProfile: SessionReducer,
     users: UserReducer,
-    profile: AuthReducer,
-    updatedProfile: AuthReducer,
+    sUser: UserReducer,
     pinnedStops: PinnedStopsReducer,
     pinExists: PinnedStopsReducer
 });
