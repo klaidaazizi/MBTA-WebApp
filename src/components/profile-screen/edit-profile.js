@@ -8,21 +8,19 @@ import {save} from "../../actions/auth-actions";
 
 const EditProfile = () => {
     const navigate = useNavigate();
-    //const user = useSelector(state => state.sessionReducer.profile)
+    const user = useSelector(state => state.sessionReducer.profileData)
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const dispatch = useDispatch();
     const [profile, setProfile] = useState({});
 
-    useEffect( async () => {
-        const user = await service.profile();
-        setProfile(user);
-        console.log(profile);
-    }, []);
+    useEffect(  () => {
+        {loggedIn ? setProfile(user) : navigate('/login')}
+    }, [loggedIn]);
 
     const saveProfile = () => {
         try {
             save(dispatch, profile).then(r => navigate(`/profile`));
-            console.log(profile);
+            console.log(profile.charlieCardBalance);
         } catch (e){
             alert("Failed to update!")
         }
@@ -64,9 +62,9 @@ const EditProfile = () => {
     //     ...profile,
     //     jobTitle: event.target.value
     // });
-    const updateCharlieCard= (event) => setProfile({
+    const updateCharlieCardBalance = (event) => setProfile({
         ...profile,
-        charlieCard: event.target.value
+        charlieCardBalance: event.target.value
     });
 
 
@@ -131,6 +129,12 @@ const EditProfile = () => {
                     Edit Joined Date
                 </label>
                 <input className="border-1 form-control" value={profile.dateJoined} onChange={updateJoinedDate}/>
+
+                <label className='control-label mt-2 '>
+                    Edit CharlieCard Balance
+                </label>
+                <input type='number' className="border-1 form-control" value={profile.charlieCardBalance} onChange={updateCharlieCardBalance}/>
+
                 {/*<label className='control-label mt-2'>*/}
                 {/*    Edit Job Title*/}
                 {/*</label>*/}

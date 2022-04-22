@@ -6,7 +6,21 @@ import {
     UPDATE_CHARLIE_CARD_VALUE
 } from "../actions/auth-actions";
 
-const authReducer = (state = {}, action) => {
+const authReducer = (state = {
+    profileData: {
+        username: '',
+        password: '',
+        name: '',
+        email: '',
+        userRole: '',
+        dateOfBirth: new Date(),
+        homeStop: '',
+        charlieCardBalance: 0,
+        dateJoined: new Date(),
+        currentRouteConducting: '',
+        favoriteRouteToConduct: '',
+    }
+}, action) => {
     switch (action.type) {
         case REGISTER:
             return {

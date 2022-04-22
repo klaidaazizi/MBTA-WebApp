@@ -24,7 +24,6 @@ const reducers = combineReducers({
     sessionReducer: SessionReducer,
     updatedProfile: SessionReducer,
     users: UserReducer,
-    sUser: UserReducer,
     pinnedStops: PinnedStopsReducer,
     pinExists: PinnedStopsReducer
 });

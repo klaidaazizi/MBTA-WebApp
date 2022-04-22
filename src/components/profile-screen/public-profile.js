@@ -85,7 +85,7 @@ const PublicProfile = () => {
                 <span><i className='fa fa-home ms-1 me-1'/>
                     Home stop: {profile.homeStop}</span>
                     <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                 Born: {profile.dateOfBirth}</span>
+                 Born: newDate{profile.dateOfBirth}</span>
                     <span><i className='fa fa-calendar me-1 ms-3'/>
                     Joined: {profile.joinedDate}</span>
                     {/*<span><i className='fa fa-building me-1 ms-3'/>*/}

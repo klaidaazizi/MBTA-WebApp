@@ -16,7 +16,7 @@ import UserSearchScreen from "../user-search/user-search-screen";
 
 const Profile = () => {
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
-    const user = useSelector(state => state.sessionReducer.profile)
+    const user = useSelector(state => state.sessionReducer.profileData)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -34,7 +34,7 @@ const Profile = () => {
         }
     }, []);
 
-    const date = new Date(profile.dateOfBirth).toDateString();
+    //const date = new Date(profile.dateOfBirth).toDateString();
 
     return(
         <>
@@ -51,7 +51,7 @@ const Profile = () => {
                         <div className="col-11">
                             <h5>
                                 <span className='fw-bold text-white'>{profile && profile.name? profile.name: ''}</span>
-                                <span className="float-end text-primary">{profile && profile.userRole}</span>
+                                <span className="float-end text-primary">{profile && profile.userRole? profile.userRole: ''}</span>
                             </h5>
 
                         </div>
@@ -72,21 +72,21 @@ const Profile = () => {
                         </button>
                     </div>
                     <div className="m-2 ms-3">
-                        <span className=" fw-bold">@{profile.username}</span>
+                        <span className=" fw-bold">@{profile && profile.username? profile.username :''}</span>
                         {/*<span className="fw-bold float-end ">{profile.followingCount}*/}
                         {/*    <span className='text-muted'>Following</span></span>*/}
 
-                        <div className="mt-1">{profile.email}</div>
+                        <div className="mt-1">{profile && profile.email? profile.email: ''}</div>
 
 
                     </div>
                     <div className="font-size-15 border-top pt-2 ps-2 pe-1 pb-3">
                 <span><i className='fa fa-home ms-1 me-1'/>
-                    Home stop: {profile.homeStop}</span>
+                    Home stop: {profile && profile.homeStop? profile.homeStop: ''}</span>
                         <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                 Born: {new Date(profile.dateOfBirth).toDateString()}</span>
+                 Born: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>
                         <span><i className='fa fa-calendar me-1 ms-3'/>
-                    Joined: {new Date(profile.joinedDate).toDateString()}</span>
+                    Joined: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>
                         {/*<span><i className='fa fa-building me-1 ms-3'/>*/}
                         {/*    Job title: {profile.jobTitle}</span>*/}
                     </div>

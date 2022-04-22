@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import * as service from '../../services/authentication-service'
+import * as service from '../../services/authentication-service';
 import * as action from '../../actions/auth-actions';
-import { toast } from "react-toastify";
 import {useDispatch} from "react-redux";
 
 const Register = () => {
