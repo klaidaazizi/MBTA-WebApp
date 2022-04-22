@@ -1,21 +1,22 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import AlertItem from "./alert-item";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllAlerts, findAlertsByPinnedStops} from "../../actions/alerts-action";
 import {Button} from "react-bootstrap";
+import {findAllPinnedStopsByUser} from "../../actions/pinned-stops-action";
 
 const AlertsBar = () => {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.sessionReducer.profileData);
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn);
+    const pinnedStops = useSelector(state => state.pinnedStops);
     const stationSpecificAlerts = useSelector(state => state.alertsReducer.stationSpecific);
     const alerts = useSelector(state => state.alertsReducer.alerts);
     const stopName = useSelector(state => state.alertsReducer.stopName);
-
-    const testPinnedStops = ['place-rugg, place-cntsq']
-
+    console.log('Pinned stops: ', pinnedStops)
     useEffect(()=> {
             {loggedIn ?
-                findAlertsByPinnedStops(dispatch, testPinnedStops) :
+                findAlertsByPinnedStops(dispatch, pinnedStops) :
                 findAllAlerts(dispatch)
             }
         },
@@ -43,7 +44,7 @@ const AlertsBar = () => {
                 <li className='list-group-item text-center'>
                     <Button className='btn btn-danger' onClick={() =>
                         {loggedIn ?
-                            findAlertsByPinnedStops(dispatch, testPinnedStops) :
+                            findAlertsByPinnedStops(dispatch, pinnedStops) :
                             findAllAlerts(dispatch)
                         }
                     }>
