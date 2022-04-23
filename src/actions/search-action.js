@@ -5,6 +5,8 @@ export const FIND_ALL_COMMUTER_RAIL_ROUTES = 'FIND_ALL_COMMUTER_RAIL_ROUTES';
 export const FIND_ALL_BUS_ROUTES = 'FIND_ALL_BUS_ROUTES';
 export const FIND_ALL_FERRY_ROUTES = 'FIND_ALL_FERRY_ROUTES';
 export const FIND_RAPID_TRANSIT_ROUTE_ALL_STOPS = 'FIND_RAPID_TRANSIT_ROUTE_ALL_STOPS';
+export const FIND_ALL_MBTA_STOPS = 'FIND_ALL_MBTA_STOPS';
+export const FIND_STOP_BY_ID = 'FIND_STOP_BY_ID';
 
 
 export const findAllRapidTransitRoutes = async (dispatch) => {
@@ -40,6 +42,25 @@ export const findAllFerryRoutes = async (dispatch) => {
     });
 }
 
+
+export const findAllStopsInMBTA = async (dispatch) => {
+    const MBTAStops = await service.findAllStopsInMBTA();
+    dispatch({
+        type: FIND_ALL_MBTA_STOPS,
+        MBTAStops
+    });
+}
+
+
+export const findAStopById = async (dispatch, sid) => {
+    const singleStop = await service.findStopById(sid);
+    dispatch({
+        type: FIND_STOP_BY_ID,
+        singleStop
+    });
+}
+
+
 export const findRapidTransitRouteAllStops = async (dispatch, routeId) => {
     const rapidRouteStops = await service.findRapidTransitRouteAllStops(routeId);
     dispatch({
@@ -52,3 +73,4 @@ export const findRapidTransitRouteDestinationDirections = async (routeId) => {
     const destinationDirections = await service.findRapidTransitRouteDestinationDirections(routeId);
     return destinationDirections.data.attributes.direction_destinations;
 }
+

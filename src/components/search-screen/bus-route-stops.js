@@ -24,7 +24,7 @@ const BusRouteStops = () => {
             <ul className='list-group'>
                 <li className=' list-group-item fw-bold back-button-and-title-rt-route'>
                     <button id="buttonBackToSearchMain" type="button" className=" button-sizing btn  ">
-                        <Link to="/search/bus" className="-search-main-buttons-text">Back</Link>
+                        <Link to="/home/bus" className="-search-main-buttons-text">Back</Link>
                     </button>
                     <span className="bus-routes-title">{routeNameForStopsList} Stops</span></li>
                 {rapidRouteStops.map(

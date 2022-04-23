@@ -30,7 +30,7 @@ const StopUnit = ({unpinStop, stop}) => {
     return(
         <div>
             <li className={`list-group-item ${backgroundColor}`}>
-                <Link to={`/search/${routeType}/${stop.routeId}/${routeNameForNavigation}/stop/${stop.stopId}/${stopNameForNavigation}`} className="line-ends-links" >
+                <Link to={`/home/${routeType}/${stop.routeId}/${routeNameForNavigation}/stop/${stop.stopId}/${stopNameForNavigation}`} className="line-ends-links" >
                     <span className=''>
                             <span className="col-3 btn  btn-warning float-start">
                                     See Next Arrivals

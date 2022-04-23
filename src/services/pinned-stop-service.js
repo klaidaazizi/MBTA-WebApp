@@ -25,4 +25,8 @@ export const findOnePinnedStopsByUser = async (pid) => {
     return response.data;
 }
 
+export const findAllUsersWhoPinnedStop = (sid) =>
+    api.get(`${API_BASE}/stops/${sid}/pins`).then(response => response.data);
+
+
 
