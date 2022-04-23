@@ -2,9 +2,7 @@ import axios from "axios";
 const API_BASE = process.env.REACT_APP_API_BASE;
 
 export const likeConductor = async (comId, conId) => {
-    console.log("hi galen")
     const response = await axios.post(`${API_BASE}/users/${comId}/conductorlikes/${conId}`);
-    console.log("hi galen2")
     return response.data;
 };
 

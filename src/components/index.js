@@ -11,7 +11,6 @@ import SearchStopReducer from "../reducers/serach-stop-reducer";
 import SessionReducer from "../reducers/auth-reducer";
 import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
-import CharlieCardReducer from "../reducers/charlie-card-reducer";
 import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
 
 const reducers = combineReducers({
@@ -22,8 +21,8 @@ const reducers = combineReducers({
     busRoutes: SearchReducer,
     ferryRoutes: SearchReducer,
     rapidRouteStops: SearchStopReducer,
-    charlieCard: CharlieCardReducer,
     sessionReducer: SessionReducer,
+    updatedProfile: SessionReducer,
     users: UserReducer,
     pinnedStops: PinnedStopsReducer,
     pinExists: PinnedStopsReducer

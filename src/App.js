@@ -23,6 +23,9 @@ import TransitStop from "./components/search-screen/transit-stop";
 import PublicProfile from "./components/profile-screen/public-profile";
 import EditProfile from "./components/profile-screen/edit-profile";
 import UserSearchScreen from "./components/user-search/user-search-screen";
+import CommuterRegister from "./components/register-screen/commuter-register";
+import ConductorRegistration from "./components/register-screen/conductor-registration";
+import AdminRegistration from "./components/register-screen/admin-registration";
 
 function App() {
   return (
@@ -37,6 +40,12 @@ function App() {
                              element={<Login/>}/>
                       <Route path="register"
                              element={<Register/>}/>
+                      <Route path="register/commuter"
+                             element={<CommuterRegister/>}/>
+                      <Route path="register/conductor"
+                             element={<ConductorRegistration/>}/>
+                      <Route path="register/admin"
+                             element={<AdminRegistration/>}/>
                       <Route path="profile/*"
                              element={<ProfileScreen/>}/>
                       <Route path="profile/lists/*"
