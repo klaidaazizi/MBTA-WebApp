@@ -11,6 +11,8 @@ import {pinnedStopAlreadyExists} from "../../../actions/pinned-stops-action";
 
 const TransitStop = () => {
     const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
+    const user = useSelector(state => state.sessionReducer.profileData)
+    console.log(user, " in transit stop")
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
@@ -30,6 +32,7 @@ const TransitStop = () => {
     const name = stopName.replace(/_/g," ");
 
     const pinExists = useSelector(state => state.pinExists);
+
     useEffect(()=> pinnedStopAlreadyExists(dispatch, transitType,routeId, stopId, "me"),
         []);
 
@@ -86,7 +89,7 @@ const TransitStop = () => {
                                                  Alerts
                                              </span>
                                          </div>
-                                         {isLoggedIn ?
+                                         {isLoggedIn && user && user.userRole === "Commuter" ?
                                              <>
                                              {pinExists === 0 ?
                                                      <div className='col-4'>
@@ -106,11 +109,17 @@ const TransitStop = () => {
                                              </>
 
                                              :
-                                             <div className='col-4'>
-                                             <span onClick={goToLogin} className="col-12 btn btn-warning">
-                                                 Pin Stop
-                                             </span>
-                                             </div>
+                                             <>
+                                             {isLoggedIn && user && user.userRole !== "Commuter" ?
+                                                 ""
+                                                 :
+                                                 <div className='col-4'>
+                                                    <span onClick={goToLogin} className="col-12 btn btn-warning">
+                                                        Pin Stop
+                                                    </span>
+                                                 </div>
+                                         }
+                                             </>
                                          }
                                      </span>
                      </div>
