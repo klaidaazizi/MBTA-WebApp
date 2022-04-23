@@ -9,16 +9,19 @@ import Posts from "./nav-components/posts";
 import Applauds from "./nav-components/applauds";
 import ConductorLikes from "./nav-components/conductor-likes";
 import './index.css';
-import UserSearchBar from "../user-search";
 import {Button} from "react-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
+import {findUserByUsername} from "../../actions/user-actions";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
     const [profile, setProfile] = useState({});
-    //const [loggedIn,setLoggedIn] = useState(false);
+    const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
 
-    useEffect(async () => {
+
+    useEffect( async () => {
         try{
             const queryURL = window.location.pathname;
             const params = queryURL.toString().split('/');
@@ -26,19 +29,20 @@ const PublicProfile = () => {
             const username = params[2].toString();
             //console.log(username);
             const user = await service.findUserByUsername(username);
+            //findUserByUsername(dispatch,username)
             setProfile(user);
-            //setLoggedIn(true);
         }
         catch (e) {
             alert(e);
             //navigate('/');
         }
     }, []);
+
     console.log(profile)
 
     return(
         <>
-            <div className="col-2"> <Button onClick={()=> navigate(-1)} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
+            <div className="col-2"> <Button onClick={() => navigate(-1)} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
 
             <div className='mt-2 border border-black bg-light rounded-2 ps-2 pe-2'>
                 <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
@@ -59,10 +63,14 @@ const PublicProfile = () => {
                 </div>
                 <img src='/images/thomas.png' alt='' className="profile-pic"/>
 
-                <div className='float-end'>
+                { loggedIn ?
+                <div className='float-end mt-2 '>
 
-
+                    <Button className='btn-primary rounded-pill'>Follow</Button>
+                    { profile.userRole === 'Conductor' ?
+                        <Button className='btn-info ms-2 rounded-pill'>Like</Button> : ''}
                 </div>
+                    : ''}
                 <div className="m-2 ms-3">
                     <span className=" fw-bold">@{profile.username}</span>
                     {/*<span className="fw-bold float-end ">{profile.followingCount}*/}
@@ -76,7 +84,7 @@ const PublicProfile = () => {
                 <span><i className='fa fa-home ms-1 me-1'/>
                     Home stop: {profile.homeStop}</span>
                     <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                 Born: {profile.dateOfBirth}</span>
+                 Born: newDate{profile.dateOfBirth}</span>
                     <span><i className='fa fa-calendar me-1 ms-3'/>
                     Joined: {profile.joinedDate}</span>
                     {/*<span><i className='fa fa-building me-1 ms-3'/>*/}

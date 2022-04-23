@@ -1,9 +1,9 @@
 import React from "react";
-import {Button} from "react-bootstrap";
-import {takeRide} from "../../../actions/charlie-card-action";
-import {useDispatch} from "react-redux";
+import {takeRide} from "../../../actions/auth-actions";
+import {useDispatch, useSelector} from "react-redux";
 
 const PredictionListItem = ({prediction}) => {
+    const user = useSelector(state => state.sessionReducer.profileData);
     const dispatch = useDispatch();
     const currentTime = new Date();
     let trainTime;
@@ -43,7 +43,9 @@ const PredictionListItem = ({prediction}) => {
     return(
         <div className='list-group-item'>
             <span className='text-dark'>{predictionDisplay}</span>
-            <span className='btn btn-primary float-end' onClick={() => takeRide(dispatch)}>Take Ride</span>
+            <span className='btn btn-primary float-end' onClick={() => takeRide(dispatch, user).catch(e => alert(e))}>
+                Take Ride
+            </span>
         </div>
     )
 }

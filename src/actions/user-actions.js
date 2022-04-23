@@ -22,10 +22,10 @@ export const findAllUsers = async (dispatch) => {
     });
 };
 export const findUserByUsername = async (dispatch, username) => {
-    const user = await service.findUserByUsername(username);
+    const sUser = await service.findUserByUsername(username);
     dispatch({
         type: FIND_USER_BY_USERNAME,
-        user
+        sUser
     });
 };
 

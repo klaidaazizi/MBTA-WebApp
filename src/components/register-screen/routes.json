@@ -1,0 +1,22 @@
+[
+  {
+    "name": "None",
+    "value": "",
+    "selected": false
+  },
+  {
+    "name": "Red",
+    "value": "Red",
+    "selected": false
+  },
+  {
+    "name": "Orange",
+    "value": "Orange",
+    "selected": true
+  },
+  {
+    "name": "Blue",
+    "value": "Blue",
+    "selected": false
+  }
+]

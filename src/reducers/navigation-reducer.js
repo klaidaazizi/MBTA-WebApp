@@ -1,12 +1,11 @@
-import navigationData from '../data/navigation.json'
+import {UPDATE_PAGE} from '../actions/nav-bar-action';
 
-const NavigationReducer = (state = navigationData, action) => {
+const NavigationReducer = (state = {}, action) => {
     switch (action.type){
-        case 'UPDATE_PAGE':
-            state = {
+        case UPDATE_PAGE:
+            return {
                 activePage: action.activePage
             };
-            return state;
         default:
             return state;
     }

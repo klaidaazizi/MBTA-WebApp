@@ -8,24 +8,22 @@ import {save} from "../../actions/auth-actions";
 
 const EditProfile = () => {
     const navigate = useNavigate();
-    const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
+    const user = useSelector(state => state.sessionReducer.profileData)
+    const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const dispatch = useDispatch();
     const [profile, setProfile] = useState({});
 
-    useEffect(async () => {
-        try{
-            const user = await service.profile();
-            setProfile(user);
-        }
-        catch (e) {
-            alert(e);
-            //navigate('/');
-        }
-    }, [isLoggedIn]);
+    useEffect(  () => {
+        {loggedIn ? setProfile(user) : navigate('/login')}
+    }, [loggedIn]);
 
     const saveProfile = () => {
-        save(dispatch, profile)
-            .then(navigate('/profile'));
+        try {
+            save(dispatch, profile).then(r => navigate(`/profile`));
+            console.log(profile.charlieCardBalance);
+        } catch (e){
+            alert("Failed to update!")
+        }
     }
 
     const updateName = (event) => setProfile({
@@ -44,10 +42,10 @@ const EditProfile = () => {
         ...profile,
         password: event.target.value
     });
-    const updateRole = (event) => setProfile({
-        ...profile,
-        userRole: event.target.value
-    });
+    // const updateRole = (event) => setProfile({
+    //     ...profile,
+    //     userRole: event.target.value
+    // });
     const updateHomeStop = (event) => setProfile({
         ...profile,
         homeStop: event.target.value
@@ -60,24 +58,24 @@ const EditProfile = () => {
         ...profile,
         joinedDate: event.target.value
     });
-    const updateJobTitle= (event) => setProfile({
+    // const updateJobTitle= (event) => setProfile({
+    //     ...profile,
+    //     jobTitle: event.target.value
+    // });
+    const updateCharlieCardBalance = (event) => setProfile({
         ...profile,
-        jobTitle: event.target.value
-    });
-    const updateCharlieCard= (event) => setProfile({
-        ...profile,
-        charlieCard: event.target.value
+        charlieCardBalance: event.target.value
     });
 
 
     return(
         <>
             <div className="row ">
-                <div className="col-2"> <Button onClick={()=> navigate('/profile')} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
+                <div className="col-2"> <Button onClick={()=> navigate(-1)} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
                 <div className="col-8">
                     <h5 className="fw-bold">Edit Profile</h5>
                 </div>
-                <Button className="col-2 btn-primary rounded-pill mb-1 " onClick={saveProfile}>
+                <Button  className="col-2 btn-primary rounded-pill mb-1 " onClick={()=>saveProfile()}>
                     Save
                 </Button>
             </div><div className='border border-black bg-light rounded-2 ps-2 pe-2'>
@@ -109,14 +107,14 @@ const EditProfile = () => {
                 </label>
                 <input className="border-1 form-control" value={profile.password} onChange={updatePassword}/>
 
-                <label className='control-label  mt-2'>
-                    Edit Role
-                </label>
-                <select className="border-1 form-control" value={profile.userRole} onChange={updateRole}>
-                    <option>Commuter</option>
-                    <option>Conductor</option>
-                    <option>Admin</option>
-                </select>
+                {/*<label className='control-label  mt-2'>*/}
+                {/*    Edit Role*/}
+                {/*</label>*/}
+                {/*<select className="border-1 form-control" value={profile.userRole} onChange={updateRole}>*/}
+                {/*    <option>Commuter</option>*/}
+                {/*    <option>Conductor</option>*/}
+                {/*    <option>Admin</option>*/}
+                {/*</select>*/}
 
                 <label className='control-label mt-2'>
                     Edit Home stop
@@ -131,6 +129,12 @@ const EditProfile = () => {
                     Edit Joined Date
                 </label>
                 <input className="border-1 form-control" value={profile.dateJoined} onChange={updateJoinedDate}/>
+
+                <label className='control-label mt-2 '>
+                    Edit CharlieCard Balance
+                </label>
+                <input type='number' className="border-1 form-control" value={profile.charlieCardBalance} onChange={updateCharlieCardBalance}/>
+
                 {/*<label className='control-label mt-2'>*/}
                 {/*    Edit Job Title*/}
                 {/*</label>*/}
@@ -138,7 +142,6 @@ const EditProfile = () => {
 
 
             </div>
-
 
 
 
