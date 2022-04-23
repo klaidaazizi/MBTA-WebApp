@@ -8,7 +8,6 @@ import Register from "./components/register-screen";
 import ProfileScreen from "./components/profile-screen";
 import SearchScreen from "./components/search-screen";
 import PrivacyPolicy from "./components/privacy-policy";
-import HomeScreen from "./components/home-screen";
 import Home from "./components";
 import PostList from "./components/post-list";
 import RapidTransitRoutes from "./components/search-screen/rapid-transit-routes";
@@ -73,22 +72,8 @@ function App() {
                              element={<StopSearchScreen/>}/>
                       <Route path="search/details/:stopId"
                              element={<SearchStopDetails/>}/>
-                      {/*<Route path="search/rapid-transit/:routeId/:routeName"*/}
-                      {/*       element={<RapidRouteStops/>}/>*/}
-                      {/*<Route path="search/commuter-rail"*/}
-                      {/*       element={<CommuterRailRoutes/>}/>*/}
-                      {/*<Route path="search/commuter-rail/:routeId/:routeName"*/}
-                      {/*       element={<CommuterRailRouteStops/>}/>*/}
-                      {/*<Route path="search/bus"*/}
-                      {/*       element={<BusRoutes/>}/>*/}
-                      {/*<Route path="search/bus/:routeId/:routeName"*/}
-                      {/*       element={<BusRouteStops/>}/>*/}
-                      {/*<Route path="search/ferry"*/}
-                      {/*       element={<FerryRoutes/>}/>*/}
-                      {/*<Route path="search/ferry/:routeId/:routeName"*/}
-                      {/*       element={<FerryRouteStops/>}/>*/}
-                      {/*<Route path="search/:transitType/:routeId/:routeName/stop/:stopId/:stopName"*/}
-                      {/*       element={<TransitStop/>}/>*/}
+                      <Route path="search/details/:stopId/users-pinned"
+                             element={<SearchStopDetails/>}/>
                       <Route path="posts"
                              element={<PostList/>}/>
                       <Route path="policy"

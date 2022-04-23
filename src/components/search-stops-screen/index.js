@@ -52,7 +52,7 @@ const StopSearchBar = () => {
         <div className='row mb-2'>
             <div className='col-10'>
                 <input className='form-control ' type="text"
-                       placeholder='Search user by username...'
+                       placeholder='Search for your stop...'
                        onChange={e=> onChangeHandler(e.target.value)}
                        value={text}
                        onBlur={()=> {
@@ -80,38 +80,6 @@ const StopSearchBar = () => {
             <Button className='col-2 h-25 bg-success' onClick={() => goToDetail(id)}>Go
             </Button>
         </div>
-        // <div className='row mb-2 wrap-search'>
-        //     <div className='  '>
-        //         <input className='form-control ' type="text"
-        //                placeholder='Search for an MBTA stop'
-        //                onChange={e=> onChangeHandler(e.target.value)}
-        //                value={text}
-        //                onBlur={()=> {
-        //                    setTimeout(() => {
-        //                        setSuggestions([])
-        //                    }, 100);
-        //                }}
-        //         />
-        //         <div className=''> {suggestions && suggestions.map((suggestion,i) =>
-        //             <div key={i} className='justify-content-center suggestion'
-        //                  onClick={() =>
-        //                      onSuggestHandler(suggestion.id)
-        //
-        //                  }
-        //             >{suggestion.attributes.name}
-        //             <br/>
-        //                 {suggestion.id}
-        //             <br/>
-        //                 {suggestion.attributes.vehicle_type}
-        //             </div>
-        //         )}
-        //         </div>
-        //     </div>
-        // <div>
-        //     <Button className='go-button ' onClick={()=>navigate(`/search/details/${text}`)}>Go
-        //     </Button>
-        // </div>
-        // </div>
     )
 
 }

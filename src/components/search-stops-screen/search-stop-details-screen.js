@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Link, Route, Routes, useLocation, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findAStopById} from "../../actions/search-action";
+import UsersWhoPinnedStops from "./users-who-pinned";
+import "../user-search/index.css"
 
 
 const SearchStopDetails = () => {
@@ -42,13 +44,33 @@ const SearchStopDetails = () => {
         return false;
     }
 
+    const wheelchairReady = (number) => {
+        if(number === 1){
+            return true;
+        }
+    }
+
+    const vehicle = (number) => {
+        if(number === 0 || number === 1 || number === 2){
+            return "Train";
+        }
+        if(number === 3){
+            return "Bus";
+        }
+        if(number === 4){
+            return "Ferry";
+        }
+        return "";
+    }
+
     return(
+        <>
         <div>
             <ul className='list-group'>
                 <li className="list-group-item ">
-                    <div className=' container'>
+                    <div className=' container '>
                         <span className=' row text-center'>
-                          <div className='col-6'>
+                          <div className='col-8'>
                                <span className="col-6 btn back-button-transit-stop float-start"
                                      onClick={goBack}>
                                                  Back
@@ -56,80 +78,75 @@ const SearchStopDetails = () => {
                                                   </div>
 
                             {singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id ?
-                                <div className='col-6'>
+                                <div className='col-4'>
 
-                                <Link to={`/search/users-pinned/${singleStop.relationships.parent_station.data.id}`}>
-                                    <span className="col-12 btn btn-success float-end">
+                                <Link to={`/search/details/${singleStop.relationships.parent_station.data.id}/users-pinned`}>
+                                    <span className=" btn btn-success ">
                                     View Users Who Pinned This Stop
                                     </span>
                                 </Link>
                                 </div>
 
                                 :
-                                    <div className='col-6'>
+                                    <div className='col-4'>
 
-                                    <Link to={`/search/users-pinned/${singleStop.id}`}>
-                                    <span className="col-12 btn btn-success float-end">
+                                    <Link to={`/search/details/${singleStop.id}/users-pinned`}>
+                                    <span className=" btn btn-success ">
                                     View Users Who Pinned This Stop
                                     </span>
                                     </Link>
                                     </div>
 
                             }
-
-                            {/*{singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id ? */}
-                            {/*//      <div className='col-6'>*/}
-                            {/*//                  <span className="col-6 btn btn-success float-end"*/}
-                            {/*//                        onClick={goToParentStation(singleStop.relationships.parent_station.data.id)}>*/}
-                            {/*//                      Parent Station*/}
-                            {/*//                  </span>*/}
-                            {/*//     <Link to={`/search/details/${singleStop.relationships.parent_station.data.id}`}  onClick={goToParentStation}>*/}
-                            {/*// <span className="col-6 btn btn-success float-end">*/}
-                            {/*//         Parent Station*/}
-                            {/*// </span>*/}
-                            {/*//     </Link>*/}
-                            {/*//  </div>*/}
-                            {/*    : '' }*/}
-
+                            <div>
+                                <img className="stop-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSydZELE8FuIKGERoONJbfyqRrhpk6o_98KJA&usqp=CAU"/>
+                            </div>
 
                         </span>
                     </div>
                 </li>
-                <li className="transit-stop-no-list">
+                <li className="transit-stop-no-list stop-search-unit">
 
-                    <div className={`list-group-item`}>
-                        <div className='col-12' >
+                    <div className="list-group-item">
                             <div className='row mt-1'>
-                        <span className="fw-bold text-black h3 col justify-content-center d-flex">
-                            Stop Name:
-                            {singleStop.attributes && singleStop.attributes.name ? singleStop.attributes.name: '' }
-                                <br/>
-                            {singleStop.attributes && singleStop.attributes.address ? `Stop Address: ${singleStop.attributes.address}`: '' }
+                        <span className="fw-bold text-black h3   ">
+                            {singleStop.attributes && singleStop.attributes.name ? `Stop Name: ${singleStop.attributes.name}`: '' }
                             <br/>
-                            Stop Description:
-                            {singleStop.attributes && singleStop.attributes.description ? singleStop.attributes.description: '' }
+                                                            <br/>
+                            {singleStop.attributes && singleStop.attributes.address ? `Address: ${singleStop.attributes.address}`: `Address: N/A` }
                             <br/>
-                            {singleStop.attributes && singleStop.attributes.municipality ? singleStop.attributes.municipality: '' }
-                            <br/>
-                            {singleStop.attributes && singleStop.attributes.wheelchair_boarding ? singleStop.attributes.wheelchair_boarding: '' }
-                            <br/>
-                            {singleStop.attributes && singleStop.attributes.vehicle_type ? singleStop.attributes.vehicle_type: '' }
-                            <br/>
-                            {singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id ? singleStop.relationships.parent_station.data.id: '' }
-                            {/*{singleStop.relationships.parent_station.data.id}*/}
-                            {/*/!*{isSingleStopNull({singleStop}) === false && singleStop.attributes && singleStop.relationships.parent_station.data?*!/*/}
-                            {/*    <>*/}
-                            {/*    </>*/}
-                            {/*    : ''}*/}
+                                                            <br/>
+                            {singleStop.attributes && singleStop.attributes.municipality ? `Municipality: ${singleStop.attributes.municipality}`: `Municipality: Unknown` }
+                           <br/>
+                                                            <br/>
 
+                            {singleStop.attributes && singleStop.attributes.description ? `Description: ${singleStop.attributes.description}`: `Description: N/A` }
+                            <br/>
+                                                            <br/>
 
+                            {singleStop.attributes && singleStop.attributes.wheelchair_boarding === 1 ? 'Wheelchair Boarding: Yes': `Wheelchair Boarding: No` }
+                            <br/>
+                                                            <br/>
+
+                            {singleStop.attributes && singleStop.attributes.vehicle_type && singleStop.attributes.vehicle_type !== null ? `Vehicle Type: ${vehicle(singleStop.attributes.vehicle_type)}`: `Vehicle Type: Information available upon arrival` }
+                            <br/>
+                                                            <br/>
                         </span>
                             </div>
                         </div>
-                    </div>
                 </li>
             </ul>
         </div>
+
+            <div>
+                {singleStop ?                 <UsersWhoPinnedStops stop={singleStop}/>
+                : ''}
+            </div>
+
+            {/*<Routes>*/}
+            {/*    <Route path="/users-pinned" element={<UsersWhoPinnedStops/>}/>*/}
+            {/*</Routes>*/}
+        </>
     )
 };
 

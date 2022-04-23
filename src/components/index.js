@@ -28,6 +28,7 @@ const reducers = combineReducers({
     charlieCard: CharlieCardReducer,
     sessionReducer: SessionReducer,
     users: UserReducer,
+    usersWhoPinnedStops: PinnedStopsReducer,
     pinnedStops: PinnedStopsReducer,
     pinExists: PinnedStopsReducer
 });
