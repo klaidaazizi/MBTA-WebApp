@@ -23,10 +23,10 @@ const Login = () => {
             <h6>Log In</h6>
             <form>
             <div className='input-container'>
-                <label> Username or Email </label>
+                <label> Username </label>
                 <div>
                 <input type='text'
-                       placeholder='Enter username or email'
+                       placeholder='Enter username'
                        className='form-control'
                        onChange={handleUsername}/>
                 </div>

@@ -77,7 +77,8 @@ const Register = () => {
                     <div className='mt-2'>
                         Role:
                         <div className='mb-2'>
-                        <select className='form-control' defaultValue={'Commuter'} value = {newUser.userRole} onChange={handleRole}>
+                        <select className='form-control' value = {newUser.userRole} onChange={handleRole}>
+                            <option label='Select Role' selected>Select Role</option>
                             <option value ='Commuter'>Commuter</option>
                             <option value='Conductor'>Conductor</option>
                             <option value='Admin'>Admin</option>

@@ -12,7 +12,6 @@ import './index.css';
 import UserSearchBar from "../user-search";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../actions/auth-actions";
-import UserSearchScreen from "../user-search/user-search-screen";
 
 const Profile = () => {
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
@@ -24,21 +23,16 @@ const Profile = () => {
     const [profile, setProfile] = useState({});
 
     useEffect(() => {
-        try{
-            //const user = await service.profile();
-            setProfile(user);
-        }
-        catch (e) {
-            alert(e + "User not logged in.")
-            navigate('/profile-search');
-        }
+        {loggedIn ? setProfile(user) : navigate('/profile-search')}
+        // catch (e) {
+        //     alert(e + "User not logged in.")
+        // }
     }, []);
 
     //const date = new Date(profile.dateOfBirth).toDateString();
 
     return(
         <>
-            {loggedIn ?
                 <div className='container'>
                 <div className='box top'>
                     <UserSearchBar/>
@@ -149,8 +143,7 @@ const Profile = () => {
                 </div>
 
             </div>
-                :
-            <UserSearchScreen/> }
+
         </>
 
 
