@@ -3,25 +3,24 @@ import Stops from "./pinned-stops-list";
 import {unpinStop} from "../../../services/pinned-stop-service";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllPinnedStopsByUser} from "../../../actions/pinned-stops-action";
+import {useParams} from "react-router-dom";
 
+const PinnedStops = ({userProfile}) => {
+    const params = useParams();
 
-const PinnedStops = () => {
     const pinnedStops = useSelector(state => state.pinnedStops);
     const dispatch = useDispatch();
-    useEffect(()=> findAllPinnedStopsByUser(dispatch, "me"),
-        []);
-    const unPinStop = (pid) => unpinStop(pid).then(findAllPinnedStopsByUser(dispatch, "me"));
 
-    // const [stops, setStops] = useState([]);
-    //
-    // const findMyStops = () => {
-    //     findAllPinnedStopsByUser("me").then((stops) => setStops(stops));
-    // };
-    // useEffect( () => findMyStops, []);
-    // const unPinStop = (pid) => unpinStop(pid).then(findMyStops);
-    // console.log(findMyStops())
+    let user = "me";
+    if(params.username){
+        user = userProfile._id;
+    }
+    useEffect(()=> findAllPinnedStopsByUser(dispatch, user),
+        []);
+    const unPinStop = (pid) => unpinStop(pid).then(findAllPinnedStopsByUser(dispatch, user));
+
     return(
-        <Stops stops={pinnedStops} unpinStop={unPinStop}/>
+        <Stops stops={pinnedStops} unpinStop={unPinStop} user={user}/>
     );
 };
 
