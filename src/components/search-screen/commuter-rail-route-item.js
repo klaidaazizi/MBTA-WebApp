@@ -10,7 +10,7 @@ const CommuterRailRouteItem = ({crRoute}) => {
         <div>
             <li className='list-group-item cr-color '>
                 <div className='row ' >
-                    <Link to={`/search/commuter-rail/${crRoute.id}/${routeName}`} className="line-ends-links ">
+                    <Link to={`/home/commuter-rail/${crRoute.id}/${routeName}`} className="line-ends-links ">
                         <span className="fw-bold rapid-transit-route-id">{crRoute.attributes.long_name}</span>
                         <div className="rt-route-text-alignment">
                             <div>

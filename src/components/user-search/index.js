@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import './index.css';
-import * as service from '../../services/user-service'
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllUsers} from "../../actions/user-actions";
@@ -10,6 +9,7 @@ const UserSearchBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const users = useSelector(state => state.users);
+    console.log('users', users)
     const [allUsers, setUsers] = useState([]);
     const [text, setText] = useState('');
     const [suggestions, setSuggestions] = useState([]);

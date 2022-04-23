@@ -40,7 +40,9 @@ const Profile = () => {
                 <div className='mt-5 box border border-black bg-light rounded-2 ps-2 pe-2'>
                     <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
                         <div className="col-1">
-                            <i className={"fa fa-train"}/>
+                            {profile && profile.userRole === 'Commuter' ? <i className={"fa fa-briefcase"}/>: ''}
+                            {profile && profile.userRole === 'Conductor' ? <i className={"fa fa-train"}/>: ''}
+                            {profile && profile.userRole === 'Admin' ? <i className={"fa fa-desktop"}/>: ''}
                         </div>
                         <div className="col-11">
                             <h5>
