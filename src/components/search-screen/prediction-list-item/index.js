@@ -1,11 +1,9 @@
 import React from "react";
-import {Button} from "react-bootstrap";
 import {takeRide} from "../../../actions/auth-actions";
 import {useDispatch, useSelector} from "react-redux";
 
 const PredictionListItem = ({prediction}) => {
     const user = useSelector(state => state.sessionReducer.profileData);
-    console.log(user)
     const dispatch = useDispatch();
     const currentTime = new Date();
     let trainTime;

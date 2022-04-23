@@ -1,0 +1,17 @@
+[
+  {
+    "name": "None",
+    "value": "",
+    "selected": false
+  },
+  {
+    "name": "Ruggles",
+    "value": "place-rugg",
+    "selected": true
+  },
+  {
+    "name": "Green Street",
+    "value": "place-grnst",
+    "selected": false
+  }
+]
