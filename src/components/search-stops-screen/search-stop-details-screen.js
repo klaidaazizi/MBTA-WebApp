@@ -105,11 +105,11 @@ const SearchStopDetails = () => {
                         </span>
                     </div>
                 </li>
-                <li className="transit-stop-no-list stop-search-unit">
+                <li className="transit-stop-no-list ">
 
                     <div className="list-group-item">
                             <div className='row mt-1'>
-                        <span className="fw-bold text-black h3   ">
+                        <span className="fw-bold text-black h4   ">
                             {singleStop.attributes && singleStop.attributes.name ? `Stop Name: ${singleStop.attributes.name}`: '' }
                             <br/>
                                                             <br/>
@@ -139,13 +139,20 @@ const SearchStopDetails = () => {
         </div>
 
             <div>
-                {singleStop ?                 <UsersWhoPinnedStops stop={singleStop}/>
+                {singleStop ?
+                    <>
+                    {singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id ?
+                        <>
+                            <UsersWhoPinnedStops stop={singleStop}
+                                                 parentStopId={singleStop.relationships.parent_station.data.id}/>
+                        </>
+                        :
+                        <UsersWhoPinnedStops stop={singleStop} parentStopId={singleStop.id}/>
+                    }
+                    </>
                 : ''}
             </div>
 
-            {/*<Routes>*/}
-            {/*    <Route path="/users-pinned" element={<UsersWhoPinnedStops/>}/>*/}
-            {/*</Routes>*/}
         </>
     )
 };
