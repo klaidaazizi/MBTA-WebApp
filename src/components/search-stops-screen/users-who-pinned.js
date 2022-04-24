@@ -6,13 +6,16 @@ import {findAllUsersWhoPinnedStop} from "../../services/pinned-stop-service";
 import {useParams} from "react-router-dom";
 
 
-const UsersWhoPinnedStops = () => {
+const UsersWhoPinnedStops = ({stop, parentStopId}) => {
     const usersWhoPinnedStops = useSelector(state => state.usersWhoPinnedStops);
     const params = useParams();
     const stopId = params.stopId;
     console.log(params.stopId)
     const dispatch = useDispatch();
-    useEffect(()=> findAllUsersWhoPinnedStop(dispatch, params.stopId),
+    // useEffect(()=> findAllUsersWhoPinnedStop(dispatch, params.stopId),
+    //     []);
+    const [users, setUsers] = useState([]);
+    useEffect(()=> findAllUsersWhoPinnedStop(parentStopId).then((users) => setUsers(users)),
         []);
     // useEffect(()=> findAllUsersWhoPinnedStop(dispatch, stopId),
     //     []);
@@ -20,8 +23,8 @@ const UsersWhoPinnedStops = () => {
     // useEffect( () => {
     //         findAllUsersWhoPinnedStop(stopId).then((users) => setUsers(users));
     // , []}
-    console.log(findAllUsersWhoPinnedStop(stopId), "zebra")
-    //const unPinStop = (pid) => unpinStop(pid).then(findAllUsersWhoPinnedStop(dispatch, "me"));
+    // console.log(findAllUsersWhoPinnedStop(parentStopId), "zebra")
+    console.log(users)
 
     // const [stops, setStops] = useState([]);
     //
@@ -32,7 +35,7 @@ const UsersWhoPinnedStops = () => {
     // const unPinStop = (pid) => unpinStop(pid).then(findMyStops);
     // console.log(findMyStops())
     return(
-        <UsersWhoPinned users={usersWhoPinnedStops}/>
+        <UsersWhoPinned users={users}/>
     );
 };
 

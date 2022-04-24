@@ -13,7 +13,7 @@ function UsersWhoPinned({users}) {
                         console.log(user)
                         return (
                             <UserUnit key={user._id}
-                                      stop={user}/>
+                                      user={user}/>
                         );
                     })
                 }
