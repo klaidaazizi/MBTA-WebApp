@@ -27,6 +27,8 @@ import SearchStopDetails from "./components/search-stops-screen/search-stop-deta
 import CommuterRegister from "./components/register-screen/commuter-register";
 import ConductorRegistration from "./components/register-screen/conductor-registration";
 import AdminRegistration from "./components/register-screen/admin-registration";
+import PostFeedItem from "./components/post-list/post-feed-item";
+import Posts from "./components/post-list/post-list-test";
 
 function App() {
   return (
