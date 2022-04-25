@@ -42,26 +42,27 @@ const EditProfile = () => {
         ...profile,
         password: event.target.value
     });
-    // const updateRole = (event) => setProfile({
-    //     ...profile,
-    //     userRole: event.target.value
-    // });
+
     const updateHomeStop = (event) => setProfile({
         ...profile,
         homeStop: event.target.value
     });
+
     const updateDOB = (event) => setProfile({
         ...profile,
         dateOfBirth: event.target.value
     });
+
     const updateJoinedDate= (event) => setProfile({
         ...profile,
         joinedDate: event.target.value
     });
-    // const updateJobTitle= (event) => setProfile({
-    //     ...profile,
-    //     jobTitle: event.target.value
-    // });
+
+    const updateJobTitle= (event) => setProfile({
+        ...profile,
+        jobTitle: event.target.value
+    });
+
     const updateCharlieCardBalance = (event) => setProfile({
         ...profile,
         charlieCardBalance: event.target.value
@@ -107,19 +108,15 @@ const EditProfile = () => {
                 </label>
                 <input className="border-1 form-control" value={profile.password} onChange={updatePassword}/>
 
-                {/*<label className='control-label  mt-2'>*/}
-                {/*    Edit Role*/}
-                {/*</label>*/}
-                {/*<select className="border-1 form-control" value={profile.userRole} onChange={updateRole}>*/}
-                {/*    <option>Commuter</option>*/}
-                {/*    <option>Conductor</option>*/}
-                {/*    <option>Admin</option>*/}
-                {/*</select>*/}
-
-                <label className='control-label mt-2'>
-                    Edit Home stop
-                </label>
-                <input className="border-1 form-control" value={profile.homeStop} onChange={updateHomeStop}/>
+                {profile.userRole === "Commuter" ?
+                    <>
+                        <label className='control-label mt-2'>
+                            Edit Home stop
+                        </label>
+                        <input className="border-1 form-control" value={profile.homeStop} onChange={updateHomeStop}/>
+                    </>
+                    : ""
+                }
 
                 <label className='control-label mt-2 '>
                     Edit Date of Birth
@@ -135,10 +132,15 @@ const EditProfile = () => {
                 </label>
                 <input type='number' className="border-1 form-control" value={profile.charlieCardBalance} onChange={updateCharlieCardBalance}/>
 
-                {/*<label className='control-label mt-2'>*/}
-                {/*    Edit Job Title*/}
-                {/*</label>*/}
-                {/*<input className="border-1 " value={profile.jobTitle} onChange={updateJobTitle}/>*/}
+                {profile.userRole === "Admin" ?
+                    <>
+                    <label className='control-label mt-2'>
+                        Edit Job Title
+                    </label>
+                    <input className="border-1 form-control" value={profile.jobTitle} onChange={updateJobTitle}/>
+                    </>
+                    : ""
+                }
 
 
             </div>
