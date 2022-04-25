@@ -12,17 +12,16 @@ const PostFeedItem = (
                 likes: 0,
                 applauds: 0
             },
-            poster: "",
+            user: "",
             timePosted: "",
         }
     }) => {
     const dispatch = useDispatch();
     return (
         <div>
-            <h2 className="mb-2">Community Posts</h2>
             <div className="acct-info">
                 <div className="w-100 postContainer p-2">
-                    <span className="posterName">{post.poster} - </span>
+                    <span className="posterName">{post.user} - </span>
                     <span className="posterHandle">{post.timePosted}</span>
                     <p className="postContent">{post.post}</p>
                     <div>
