@@ -1,0 +1,22 @@
+[
+  {
+    "stats":{"likes":10,"applauds":20},
+    "_id":"6265fa3d154860f201534da2",
+    "post":"testing",
+    "timePosted":"","__v":0
+  },
+
+  {
+    "stats":{"likes":66,"applauds":201},
+    "_id":"6265fc8c346a2954040ff0e0",
+    "post":"hey there hi there ho there",
+    "timePosted":"9:42pm","__v":0
+  },
+
+  {
+    "stats":{"likes":1,"applauds":22},
+    "_id":"6265fc9f346a2954040ff0e2",
+    "post":"salt air, and the rest on your door",
+    "timePosted":"9:43pm","__v":0
+  }
+]

@@ -6,15 +6,17 @@ import {
     UPDATE_STATS,
     DELETE_POST
 } from "../actions/posts-actions";
+import posts from "../data/post.json"
 
-const postReducer = (state = [], action) => {
+const postReducer =
+    (state = posts, action) => {
     switch(action.type) {
         case FIND_ALL_POSTS:
             return action.posts;
         case CREATE_POST:
             return [
-                action.newPost,
-                ...state
+                ...state,
+                action.newPost
             ];
         case FIND_POST_BY_ID:
             return action.sPost;

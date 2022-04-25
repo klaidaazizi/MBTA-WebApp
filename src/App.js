@@ -20,6 +20,7 @@ import CommuterRailRouteStops from "./components/search-screen/commuter-rail-rou
 import BusRouteStops from "./components/search-screen/bus-route-stops";
 import FerryRouteStops from "./components/search-screen/ferry-route-stops";
 import Index from "./components/search-screen/transit-stop";
+import PostFeedItem from "./components/post-list/post-feed-item";
 
 function App() {
   return (

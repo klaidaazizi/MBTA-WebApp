@@ -13,10 +13,10 @@ export const findAllPosts = async (dispatch) => {
         type: FIND_ALL_POSTS,
         posts
     });
-};
+}
 
 export const createPost = async (dispatch) => {
-    const newPost = await service.userPostsAPost(post);
+    const newPost = await service.userPostsAPost();
     dispatch({
         type: CREATE_POST,
         newPost

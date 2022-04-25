@@ -4,7 +4,7 @@ const API_BASE = process.env.REACT_APP_API_BASE;
 const POST_API = `${API_BASE}/posts`;
 
 export const findAllPosts = async () => {
-    const response = await axios.get(`${POST_API}`);
+    const response = await axios.get(POST_API);
     return response.data;
 };
 
