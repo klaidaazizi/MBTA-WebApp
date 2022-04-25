@@ -13,6 +13,7 @@ import UserSearchBar from "../user-search";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../actions/auth-actions";
 import UserSearchScreen from "../user-search/user-search-screen";
+import {findAlertsByStop} from "../../actions/alerts-action";
 
 const Profile = () => {
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
@@ -34,6 +35,9 @@ const Profile = () => {
         }
     }, []);
 
+    const goToConductorRoute = () => {
+        navigate('/home');
+    }
     //const date = new Date(profile.dateOfBirth).toDateString();
 
     return(
@@ -83,14 +87,53 @@ const Profile = () => {
 
                     </div>
                     <div className="font-size-15 border-top pt-2 ps-2 pe-1 pb-3">
-                <span><i className='fa fa-home ms-1 me-1'/>
-                    Home stop: {profile && profile.homeStop? profile.homeStop: ''}</span>
+                        {profile.userRole === "Commuter" ?
+                            <>
+                            <span><i className='fa fa-home ms-1 me-1'/>
+                                Home stop: {profile.homeStop}
+                            </span>
+                            </>
+                            :
+                            <>
+                                {profile.userRole === "Admin" ?
+                                    <>
+                                    <span><i className='fa fa-building ms-1 me-1'/>
+                                        Job title: {profile.jobTitle}
+                                    </span>
+                                    </>
+                                    :
+                                    <>
+                                        {profile.userRole === "Conductor" ?
+                                            <>
+                                                {profile.currentRouteConducting !== '' ?
+                                                    <>
+                                                        <Link  to={profile.currentRouteConducting}>
+                                                        <span className="col-4 btn bg-warning ms-1 me-1" >
+                                                            View/Update My Route
+                                                        </span>
+                                                        </Link>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <Link  to="/home">
+                                                        <span className="col-3 btn bg-warning ms-1 me-1">
+                                                            Choose My Route
+                                                        </span>
+                                                        </Link>
+                                                    </>
+                                                }
+                                                </>
+                                                :
+                                                ""
+                                        }
+                                    </>
+                                }
+                            </>
+                        }
                         <span><i className='fa fa-birthday-cake ms-3 me-1'/>
                  Born: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>
                         <span><i className='fa fa-calendar me-1 ms-3'/>
                     Joined: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>
-                        {/*<span><i className='fa fa-building me-1 ms-3'/>*/}
-                        {/*    Job title: {profile.jobTitle}</span>*/}
                     </div>
 
 
@@ -130,11 +173,14 @@ const Profile = () => {
                                     Liked conductors</Link>
                             </li>
 
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/lists/pinned-stops"
-                                      className={`nav-link ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active':''}`}>
-                                    Pinned Stops</Link>
-                            </li>
+                            {user && user.userRole === "Commuter" ?
+                                <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                    <Link to="/profile/lists/pinned-stops"
+                                          className={`nav-link ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
+                                        Pinned Stops</Link>
+                                </li>
+                                : ""
+                            }
                         </ul>
 
                     </div>
@@ -146,7 +192,7 @@ const Profile = () => {
                         <Route path="/your-posts" element={<Posts/>}/>
                         <Route path="/applauds" element={<Applauds/>}/>
                         <Route path="/conductor-likes" element={<ConductorLikes/>}/>
-                        <Route path="/pinned-stops" element={<PinnedStops/>}/>
+                        <Route path="/pinned-stops" element={<PinnedStops userProfile={user}/> }/>
                     </Routes>
                 </div>
 

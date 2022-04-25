@@ -6,12 +6,22 @@ import * as service from "../../../services/authentication-service";
 import {findAlertsByStop} from "../../../actions/alerts-action";
 import {pinStop} from "../../../services/pinned-stop-service";
 
-const StopUnit = ({unpinStop, stop}) => {
-    const routeType = stop.routeType;
-    const stopName = stop.stopName.replace("*","/");
-    const routeName = stop.routeName.replace("*","/");
-    const routeNameForNavigation = stop.routeName.replace(/ /g, '_');
-    const stopNameForNavigation =  stop.stopName.replace(/ /g, '_');
+const StopUnit = ({unpinStop, stop, user}) => {
+    console.log(stop, user, "in stop unit")
+    let routeType;
+    let stopName;
+    let routeName;
+    let routeNameForNavigation;
+    let stopNameForNavigation;
+
+    if(stop.routeType && stop.stopName && stop.routeName){
+        routeType = stop.routeType;
+        stopName = stop.stopName.replace("*","/");
+        routeName = stop.routeName.replace("*","/");
+        routeNameForNavigation = stop.routeName.replace(/ /g, '_');
+        stopNameForNavigation =  stop.stopName.replace(/ /g, '_');
+    }
+
 
     // let backgroundColor;
     // if(routeType === 'rapid-transit') {
@@ -30,18 +40,29 @@ const StopUnit = ({unpinStop, stop}) => {
     return(
         <div>
             <li className={`list-group-item ${backgroundColor}`}>
-                <Link to={`/home/${routeType}/${stop.routeId}/${routeNameForNavigation}/stop/${stop.stopId}/${stopNameForNavigation}`} className="line-ends-links" >
+                {user === "me" ?
+                    <>
+                    <Link to={`/home/${routeType}/${stop.routeId}/${routeNameForNavigation}/stop/${stop.stopId}/${stopNameForNavigation}`} className="line-ends-links" >
                     <span className=''>
                             <span className="col-3 btn  btn-warning float-start">
                                     See Next Arrivals
                             </span>
                     </span>
-                </Link>
-                <span className=''>
+                    </Link>
+                        <span className=''>
                             <span onClick={() => unpinStop(stop._id)} className="col-3 btn  btn-warning float-end">
                                     UnPin Stop
                             </span>
                 </span>
+                    </>
+                    : <Link to={`/home/${routeType}/${stop.routeId}/${routeNameForNavigation}/stop/${stop.stopId}/${stopNameForNavigation}`} className="line-ends-links" >
+                    <span className=''>
+                            <span className="col-3 btn  btn-warning float-end">
+                                    See Next Arrivals
+                            </span>
+                    </span>
+                    </Link>
+                }
                 <br/>
                 <br/>
                 <div className=' ' >

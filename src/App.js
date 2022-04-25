@@ -83,7 +83,7 @@ function App() {
                              element={<StopSearchScreen/>}/>
                       <Route path="search/details/:stopId"
                              element={<SearchStopDetails/>}/>
-                      <Route path="search/details/:stopId/users-pinned"
+                      <Route path="search/details/:stopId/users-pinned/*"
                              element={<SearchStopDetails/>}/>
                       <Route path="posts"
                              element={<PostList/>}/>

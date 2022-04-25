@@ -26,7 +26,7 @@ const BusRouteStops = () => {
                     <button id="buttonBackToSearchMain" type="button" className=" button-sizing btn  ">
                         <Link to="/home/bus" className="-search-main-buttons-text">Back</Link>
                     </button>
-                    <span className="bus-routes-title">{routeNameForStopsList} Stops</span></li>
+                    <span className="bus-routes-title">Bus Route {routeNameForStopsList} Stops</span></li>
                 {rapidRouteStops.map(
                     rapidRouteStop => {
                         return(<BusRouteStopsItem key={rapidRouteStop.id}
