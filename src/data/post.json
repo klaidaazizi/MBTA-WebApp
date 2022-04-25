@@ -1,0 +1,22 @@
+[
+  {
+    "stats":{"likes":10,"applauds":20},
+    "post":"testing",
+    "user": "john",
+    "timePosted":""
+  },
+
+  {
+    "stats":{"likes":66,"applauds":201},
+    "post":"hey there hi there ho there",
+    "user": "galen",
+    "timePosted":"9:42pm"
+  },
+
+  {
+    "stats":{"likes":1,"applauds":22},
+    "post":"salt air, and the rest on your door",
+    "user": "patrick",
+    "timePosted":"9:43pm"
+  }
+]
