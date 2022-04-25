@@ -12,6 +12,7 @@ import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {findUserByUsername} from "../../actions/user-actions";
+import {followUser} from "../../services/follow-service";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
@@ -37,8 +38,6 @@ const PublicProfile = () => {
             //navigate('/');
         }
     }, []);
-
-    console.log(profile)
 
     return(
         <>
@@ -66,7 +65,7 @@ const PublicProfile = () => {
                 { loggedIn ?
                 <div className='float-end mt-2 '>
 
-                    <Button className='btn-primary rounded-pill'>Follow</Button>
+                    <Button className='btn-primary rounded-pill' onClick={()=> followUser("me",profile._id).then()}>Follow</Button>
                     { profile.userRole === 'Conductor' ?
                         <Button className='btn-info ms-2 rounded-pill'>Like</Button> : ''}
                 </div>
