@@ -7,11 +7,12 @@ import NavigationBar from "./navigation-bar";
 import AlertsBar from "./alerts-bar";
 import {Outlet} from "react-router-dom";
 import NavigationReducer from "../reducers/navigation-reducer";
-import SearchStopReducer from "../reducers/serach-stop-reducer";
+import SearchStopReducer from "../reducers/search-stop-reducer";
 import SessionReducer from "../reducers/auth-reducer";
 import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
-import CharlieCardReducer from "../reducers/charlie-card-reducer";
+import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
+import SingleStopReducer from "../reducers/single-stop-reducer";
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,
@@ -20,10 +21,15 @@ const reducers = combineReducers({
     crRoutes: SearchReducer,
     busRoutes: SearchReducer,
     ferryRoutes: SearchReducer,
+    MBTAStops: SearchStopReducer,
+    singleStop: SingleStopReducer,
     rapidRouteStops: SearchStopReducer,
-    charlieCard: CharlieCardReducer,
     sessionReducer: SessionReducer,
-    userReducer: UserReducer
+    updatedProfile: SessionReducer,
+    users: UserReducer,
+    usersWhoPinnedStops: PinnedStopsReducer,
+    pinnedStops: PinnedStopsReducer,
+    pinExists: PinnedStopsReducer
 });
 const store = createStore(reducers);
 

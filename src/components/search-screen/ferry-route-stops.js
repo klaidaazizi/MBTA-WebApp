@@ -10,6 +10,9 @@ const FerryRouteStops = () => {
 
     const params = useParams();
     const routeId2 = params.routeId;
+    const routeName = params.routeName;
+    const routeNameForStopsList = routeName.replace(/_/g," ").replace("*","/");
+
     const rapidRouteStops = useSelector(state => state.rapidRouteStops);
 
     const dispatch = useDispatch();
@@ -23,9 +26,9 @@ const FerryRouteStops = () => {
             <ul className='list-group'>
                 <li className=' list-group-item fw-bold back-button-and-title-rt-route'>
                     <button id="buttonBackToSearchMain" type="button" className=" button-sizing btn ">
-                        <Link to="/search/ferry" className="-search-main-buttons-text">Back</Link>
+                        <Link to="/home/ferry" className="-search-main-buttons-text">Back</Link>
                     </button>
-                    <span className="ferry-routes-title">{routeId2} Stops</span></li>
+                    <span className="ferry-routes-title">{routeNameForStopsList} Stops</span></li>
                 {rapidRouteStops.map(
                     rapidRouteStop => {
                         return(<FerryRouteStopsItem key={rapidRouteStop.id}

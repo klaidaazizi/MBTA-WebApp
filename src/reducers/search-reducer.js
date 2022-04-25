@@ -1,5 +1,7 @@
-import {FIND_ALL_RAPID_TRANSIT_ROUTES, FIND_ALL_COMMUTER_RAIL_ROUTES,
-    FIND_ALL_BUS_ROUTES, FIND_ALL_FERRY_ROUTES} from "../actions/search-action";
+import {
+    FIND_ALL_RAPID_TRANSIT_ROUTES, FIND_ALL_COMMUTER_RAIL_ROUTES,
+    FIND_ALL_BUS_ROUTES, FIND_ALL_FERRY_ROUTES
+} from "../actions/search-action";
 
 const SearchReducer = (state = [], action) => {
     switch (action.type){

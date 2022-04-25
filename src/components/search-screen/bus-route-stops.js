@@ -9,6 +9,9 @@ import './search.css';
 const BusRouteStops = () => {
     const params = useParams();
     const routeId2 = params.routeId;
+    const routeName = params.routeName;
+    const routeNameForStopsList = routeName.replace(/_/g," ").replace("*","/");
+
 
     const rapidRouteStops = useSelector(state => state.rapidRouteStops);
 
@@ -21,9 +24,9 @@ const BusRouteStops = () => {
             <ul className='list-group'>
                 <li className=' list-group-item fw-bold back-button-and-title-rt-route'>
                     <button id="buttonBackToSearchMain" type="button" className=" button-sizing btn  ">
-                        <Link to="/search/bus" className="-search-main-buttons-text">Back</Link>
+                        <Link to="/home/bus" className="-search-main-buttons-text">Back</Link>
                     </button>
-                    <span className="bus-routes-title">{routeId2} Stops</span></li>
+                    <span className="bus-routes-title">Bus Route {routeNameForStopsList} Stops</span></li>
                 {rapidRouteStops.map(
                     rapidRouteStop => {
                         return(<BusRouteStopsItem key={rapidRouteStop.id}
