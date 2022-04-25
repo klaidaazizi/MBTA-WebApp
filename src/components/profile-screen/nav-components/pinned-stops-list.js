@@ -1,9 +1,10 @@
 import React from "react";
 import StopUnit from "./stop-unit";
 
-function Stops({stops = [], unpinStop}) {
+function Stops({stops = [], unpinStop, user}) {
     console.log("in list")
     console.log(stops)
+    console.log(user)
 
     return (
         <div>
@@ -14,7 +15,8 @@ function Stops({stops = [], unpinStop}) {
                         return (
                             <StopUnit key={stop._id}
                                       unpinStop={unpinStop}
-                                      stop={stop}/>
+                                      stop={stop}
+                                      user={user}/>
                         );
                     })
                 }

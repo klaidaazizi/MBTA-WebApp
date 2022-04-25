@@ -27,6 +27,7 @@ export const findAllUsersWhoPinnedStop = async (dispatch, sid) => {
 
 export const pinnedStopAlreadyExists = async (dispatch, routeType, routeId, stopId, userId) => {
     const pinExists = await service.pinExistsAlready(routeType, routeId, stopId, userId);
+    console.log(pinExists, routeType, routeId, stopId, userId)
     dispatch({
         type: PIN_ALREADY_EXISTS,
         pinExists

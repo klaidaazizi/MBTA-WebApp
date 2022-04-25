@@ -11,6 +11,12 @@ export const findAllPinnedStopsByUser = (uid) =>
     api.get(`${API_BASE}/users/${uid}/pins`).then(response => response.data);
 
 
+export const findAllUsersWhoPinnedStop = (sid) => {
+    const resp = api.get(`${API_BASE}/stops/${sid}/pins`).then(response => response.data);
+    return resp;
+}
+
+
 export const pinExistsAlready = (routeType, routeId, stopId, userId) =>
     api.get(`${API_BASE}/pins/${routeType}/${routeId}/${stopId}/${userId}`).then(response => response.data);
 
@@ -23,10 +29,9 @@ export const unpinStop = async (pid) => {
 export const findOnePinnedStopsByUser = async (pid) => {
     const response = await axios.get(`${API_BASE}/pins/${pid}`);
     return response.data;
-}
+};
 
-export const findAllUsersWhoPinnedStop = (sid) =>
-    api.get(`${API_BASE}/stops/${sid}/pins`).then(response => response.data);
+
 
 
 
