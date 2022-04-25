@@ -13,6 +13,8 @@ import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
 import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
 import SingleStopReducer from "../reducers/single-stop-reducer";
+import FollowReducer from "../reducers/follow-reducer";
+
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,
@@ -29,7 +31,10 @@ const reducers = combineReducers({
     users: UserReducer,
     usersWhoPinnedStops: PinnedStopsReducer,
     pinnedStops: PinnedStopsReducer,
-    pinExists: PinnedStopsReducer
+    pinExists: PinnedStopsReducer,
+    followers: FollowReducer,
+    following: FollowReducer,
+    followExists: FollowReducer
 });
 const store = createStore(reducers);
 

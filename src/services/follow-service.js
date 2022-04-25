@@ -8,20 +8,20 @@ export const api = axios.create(
 export const followUser = async (uid, uid2) =>
     api.post(`${API_BASE}/users/${uid}/follows/${uid2}`).then(response => response.data);
 
-export const unfollowUser = async (uid, uid2) =>
-    api.delete(`${API_BASE}/users/${uid}/unfollows/${uid2}`).then(response => response.data);
-
+export const unfollowUser = async (fid) => {
+    const response = await axios.delete(`${API_BASE}/follows/${fid}`);
+    return response.data;
+}
 export const findAllFollowsByUser = (uid) =>
     api.get(`${API_BASE}/users/${uid}/follows`).then(response => response.data);
 
 export const findAllUserFollowers = (uid) =>
-    api.get(`${API_BASE}/users/${uid}/followedBy`).then(response => response.data);
+    api.get(`${API_BASE}/users/${uid}/followers`).then(response => response.data);
 
-export const followExistsAlready = (routeType, routeId, stopId, userId) =>
-    api.get(`${API_BASE}/pins/${routeType}/${routeId}/${stopId}/${userId}`).then(response => response.data);
+export const followExistsAlready = (uid, uid2) =>
+    api.get(`${API_BASE}/follows/${uid}/${uid2}`).then(response => response.data);
 
-
-export const findFollowbyId = async (uid) => {
-    const response = await axios.get(`${API_BASE}/follows/${uid}`);
+export const findFollowbyId = async (fid) => {
+    const response = await axios.get(`${API_BASE}/follows/${fid}`);
     return response.data;
 }

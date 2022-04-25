@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import * as service from '../../services/authentication-service';
 import {Link, Route, Routes, HashRouter, useLocation, useNavigate, useParams} from "react-router-dom";
 import PinnedStops from "./nav-components/pinned-stops";
-import Followers from "./nav-components/followers";
-import Following from "./nav-components/following";
+import Followers from "./nav-components/followers-list";
+import Following from "./nav-components/following-list";
 import LikedPosts from "./nav-components/liked-posts";
 import Posts from "./nav-components/posts";
 import Applauds from "./nav-components/applauds";
@@ -29,7 +29,7 @@ const Profile = () => {
         // }
     }, []);
 
-    //const date = new Date(profile.dateOfBirth).toDateString();
+    console.log('profile',profile._id);
 
     return(
         <>
@@ -69,8 +69,7 @@ const Profile = () => {
                     </div>
                     <div className="m-2 ms-3">
                         <span className=" fw-bold">@{profile && profile.username? profile.username :''}</span>
-                        {/*<span className="fw-bold float-end ">{profile.followingCount}*/}
-                        {/*    <span className='text-muted'>Following</span></span>*/}
+
 
                         <div className="mt-1">{profile && profile.email? profile.email: ''}</div>
 
@@ -83,13 +82,12 @@ const Profile = () => {
                  Born: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>
                         <span><i className='fa fa-calendar me-1 ms-3'/>
                     Joined: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>
-                        {/*<span><i className='fa fa-building me-1 ms-3'/>*/}
-                        {/*    Job title: {profile.jobTitle}</span>*/}
+
                     </div>
 
 
                     <div className='ms-2'>
-                        <ul className='nav mb-2 nav-tabs'>
+                        <ul className='nav mb-2 nav-tabs '>
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to="/profile/lists/posts"
                                       className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
