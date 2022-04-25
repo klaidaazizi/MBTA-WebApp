@@ -1,53 +1,47 @@
 import React, {useEffect, useState} from "react";
-import {Link, Route, Routes, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Link, Route, Routes, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findAStopById} from "../../actions/search-action";
 import UsersWhoPinnedStops from "./users-who-pinned";
 import "../user-search/index.css"
+import {findAllUsersWhoPinnedStop} from "../../actions/pinned-stops-action";
+import UsersWhoPinned from "./users-who-pinned-stops-list";
 
 
 const SearchStopDetails = () => {
 
     const dispatch = useDispatch();
     const singleStop = useSelector(state => state.singleStop);
+    const usersWhoPinnedStops = useSelector(state => state.usersWhoPinnedStops);
     const navigate = useNavigate();
     const params = useParams();
     const stopId = params.stopId;
-    console.log(stopId)
 
-    // const isSingleStopNull = (singleStop) => {
-    //     console.log(singleStop === null + " null")
-    //     console.log(singleStop === undefined + " undefined")
-    //     console.log(singleStop === null || singleStop === undefined + " both")
-    //
-    //     return singleStop === null || singleStop === undefined;
-    // }
+    const findParentStopId = (singleStop) => {
+        if(singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id !== null) {
+            return singleStop.relationships.parent_station.data.id;
+        }
+        else{
+            return singleStop.id;
+        }
+        return "";
+    }
 
-
-    useEffect(() => findAStopById(dispatch, stopId),
+    useEffect( () => {
+             findAStopById(dispatch, stopId)
+        }
+        ,
         []);
 
-    console.log(singleStop)
+    useEffect( () => {
+            findAllUsersWhoPinnedStop(dispatch, findParentStopId(singleStop));
+        }
+        ,
+        [singleStop]);
 
 
     const goBack = () => {
         navigate('/search');
-        //navigate(-1);
-    }
-
-    // const goToParentStation = (text) => {
-    //     navigate(`/search/details/${text}`);
-    // }
-
-    const goToParentStation = () => {
-        window.location.reload();
-        return false;
-    }
-
-    const wheelchairReady = (number) => {
-        if(number === 1){
-            return true;
-        }
     }
 
     const vehicle = (number) => {
@@ -62,6 +56,12 @@ const SearchStopDetails = () => {
         }
         return "";
     }
+
+    const reload = () => {
+        window.location.reload();
+    }
+
+
 
     return(
         <>
@@ -81,7 +81,7 @@ const SearchStopDetails = () => {
                                 <div className='col-4'>
 
                                 <Link to={`/search/details/${singleStop.relationships.parent_station.data.id}/users-pinned`}>
-                                    <span className=" btn btn-success ">
+                                    <span className=" btn btn-success " >
                                     View Users Who Pinned This Stop
                                     </span>
                                 </Link>
@@ -139,18 +139,9 @@ const SearchStopDetails = () => {
         </div>
 
             <div>
-                {singleStop ?
-                    <>
-                    {singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id ?
-                        <>
-                            <UsersWhoPinnedStops stop={singleStop}
-                                                 parentStopId={singleStop.relationships.parent_station.data.id}/>
-                        </>
-                        :
-                        <UsersWhoPinnedStops stop={singleStop} parentStopId={singleStop.id}/>
-                    }
-                    </>
-                : ''}
+                <UsersWhoPinned users={usersWhoPinnedStops}></UsersWhoPinned>
+                {/*<UsersWhoPinnedStops usersWhoPinnedStops={usersWhoPinnedStops}></UsersWhoPinnedStops>*/}
+                {/*<UsersWhoPinnedStops parentStopId={findParentStopId(singleStop)}></UsersWhoPinnedStops>*/}
             </div>
 
         </>

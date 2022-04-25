@@ -14,7 +14,9 @@ const BusRouteItem = ({busRoute}) => {
     const [conductor, setConductor] = useState({});
 
     useEffect(  () => {
-        {loggedIn ? setConductor(user) : navigate('/login')}
+        if(loggedIn){
+            setConductor(user)
+        }
     }, [loggedIn]);
 
     const saveProfile = () => {
@@ -29,11 +31,6 @@ const BusRouteItem = ({busRoute}) => {
         }
     }
 
-    // const updateRouteToConduct = () => setConductor({
-    //     ...conductor,
-    //     currentRouteConducting: `/home/bus/${busRoute.id}/${routeName}`
-    // });
-    //
 
     return(
         <div>
@@ -43,7 +40,7 @@ const BusRouteItem = ({busRoute}) => {
                         {loggedIn === true && user.userRole === "Conductor" ?
                             <>
                                 <span onClick={saveProfile} className="col-4 btn btn-light">
-                                                 Conduct This Route
+                                                 Conduct This Route, {`${user.name}`}!
                                 </span>
                                 <span className="fw-bold rapid-transit-route-id">{busRoute.attributes.short_name}</span>
                             </>

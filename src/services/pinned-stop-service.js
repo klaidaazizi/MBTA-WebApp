@@ -11,8 +11,10 @@ export const findAllPinnedStopsByUser = (uid) =>
     api.get(`${API_BASE}/users/${uid}/pins`).then(response => response.data);
 
 
-export const findAllUsersWhoPinnedStop = (sid) =>
-    api.get(`${API_BASE}/stops/${sid}/pins`).then(response => response.data);
+export const findAllUsersWhoPinnedStop = (sid) => {
+    const resp = api.get(`${API_BASE}/stops/${sid}/pins`).then(response => response.data);
+    return resp;
+}
 
 
 export const pinExistsAlready = (routeType, routeId, stopId, userId) =>

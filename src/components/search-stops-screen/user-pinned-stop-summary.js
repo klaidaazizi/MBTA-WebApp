@@ -6,8 +6,6 @@ import {pinStop} from "../../services/pinned-stop-service";
 // import "../../search-screen/search.css";
 
 const UserUnit = ({user}) => {
-    console.log(user)
-
 
     return(
         <div>
