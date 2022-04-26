@@ -127,17 +127,17 @@ const PublicProfile = () => {
                 <div className='ms-2'>
                     <ul className='nav mb-2 nav-tabs'>
                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                            <Link to={`/profile/${profile.username}/lists/posts`}
+                            <Link to={`/profile/${profile.username}/lists/your-posts`}
                                   className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
                                 Posts
                             </Link>
                         </li>
 
-                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                            <Link to="/profile/lists/liked-post"
-                                  className={`nav-link ${location.pathname.indexOf('liked-post') >= 0 ? 'active':''}`}>
-                                Liked Posts</Link>
-                        </li>
+                        {/*<li className="nav-item ms-1 mb-1 border border-primary rounded-2">*/}
+                        {/*    <Link to="/profile/lists/liked-post"*/}
+                        {/*          className={`nav-link ${location.pathname.indexOf('liked-post') >= 0 ? 'active':''}`}>*/}
+                        {/*        Liked Posts</Link>*/}
+                        {/*</li>*/}
                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                             <Link to="/profile/lists/followers"
                                   className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
@@ -148,11 +148,11 @@ const PublicProfile = () => {
                                   className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
                                 Following</Link>
                         </li>
-                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2 ">
-                            <Link to="/profile/lists/applauds"
-                                  className={`nav-link ${location.pathname.indexOf('applauds') >= 0 ? 'active':''}`}>
-                                Applauds</Link>
-                        </li>
+                        {/*<li className="nav-item ms-1 mb-1 border border-primary rounded-2 ">*/}
+                        {/*    <Link to="/profile/lists/applauds"*/}
+                        {/*          className={`nav-link ${location.pathname.indexOf('applauds') >= 0 ? 'active':''}`}>*/}
+                        {/*        Applauds</Link>*/}
+                        {/*</li>*/}
 
                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                             <Link to="/profile/lists/conductor-likes"
@@ -176,9 +176,9 @@ const PublicProfile = () => {
             <Routes>
                 <Route path="lists/followers" element={<Followers/>}/>
                 <Route path="lists/following" element={<Following/>}/>
-                <Route path="lists/liked-post" element={<LikedPosts/>}/>
-                <Route path="lists/your-posts" element={<Posts/>}/>
-                <Route path="lists/applauds" element={<Applauds/>}/>
+                {/*<Route path="lists/liked-post" element={<LikedPosts/>}/>*/}
+                <Route path="lists/your-posts" element={<Posts userProfile={profile}/>}/>
+                {/*<Route path="lists/applauds" element={<Applauds/>}/>*/}
                 <Route path="lists/conductor-likes" element={<ConductorLikes/>}/>
                 { profile._id ?
                     <Route path="lists/pinned-stops" element={<PinnedStops userProfile={profile}/>}/>
