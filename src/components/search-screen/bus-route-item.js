@@ -48,6 +48,17 @@ const BusRouteItem = ({busRoute}) => {
                             <span className="fw-bold rapid-transit-route-id">{busRoute.attributes.short_name}</span>
                         }
                         {/*<span className="fw-bold rapid-transit-route-id">{busRoute.attributes.short_name}</span>*/}
+                        {loggedIn === true && user.userRole === "Conductor" ?
+                            <>
+                                <span onClick={saveProfile} className="col-4 btn btn-light">
+                                                 Conduct This Route, {`${user.username}`}!
+                                </span>
+                                <span className="fw-bold rapid-transit-route-id">{busRoute.attributes.short_name}</span>
+                            </>
+                        :
+                            <span className="fw-bold rapid-transit-route-id">{busRoute.attributes.short_name}</span>
+                        }
+                        {/*<span className="fw-bold rapid-transit-route-id">{busRoute.attributes.short_name}</span>*/}
                         <div className="rt-route-text-alignment">
                             <div>
                                 <span className='col-6  rt-route-test-color'>{busRoute.attributes.direction_destinations[0]}</span>

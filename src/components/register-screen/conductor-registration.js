@@ -8,7 +8,9 @@ import {changeHighlight} from "../../actions/nav-bar-action";
 
 const ConductorRegistration = () => {
     const [newUser, setNewUser] = useState({
-        userRole: 'Conductor'
+        userRole: 'Conductor',
+        currentRouteConducting: ""
+
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -84,19 +86,19 @@ const ConductorRegistration = () => {
                                    required={true}/>
                         </div>
                     </div>
-                    <div className='input-container'>
-                        <label> Current Route Conducting </label>
-                        <div>
-                            <select className='form-select' onChange={handleConductingRouteChange}
-                                    required={true}>
-                                {routes.map(route =>
-                                    <option value={route.value} selected={route.selected}>
-                                        {route.name}
-                                    </option>)
-                                }
-                            </select>
-                        </div>
-                    </div>
+                    {/*<div className='input-container'>*/}
+                    {/*    <label> Current Route Conducting </label>*/}
+                    {/*    <div>*/}
+                    {/*        <select className='form-select' onChange={handleConductingRouteChange}*/}
+                    {/*                required={true}>*/}
+                    {/*            {routes.map(route =>*/}
+                    {/*                <option value={route.value} selected={route.selected}>*/}
+                    {/*                    {route.name}*/}
+                    {/*                </option>)*/}
+                    {/*            }*/}
+                    {/*        </select>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <br/>
                     <div className="button-container">
                         <Button className="btn btn-secondary me-2" onClick={createAccount} >Create Account</Button>

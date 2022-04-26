@@ -4,33 +4,36 @@ import {
     FIND_POST_BY_ID,
     UPDATE_POST,
     UPDATE_STATS,
-    DELETE_POST
+    DELETE_POST, FIND_ALL_POSTS_BY_USER
 } from "../actions/posts-actions";
-import posts from "../data/post.json"
+//import posts from "../data/post.json"
 
-const postReducer =
-    (state = posts, action) => {
+const PostReducer =
+    (state = [], action) => {
     switch(action.type) {
         case FIND_ALL_POSTS:
-            return action.posts;
+            return action.allPosts;
+        case FIND_ALL_POSTS_BY_USER:
+            return action.postsByUser;
         case CREATE_POST:
             return [
                 ...state,
                 action.newPost
             ];
-        case FIND_POST_BY_ID:
-            return action.sPost;
-        case UPDATE_POST:
-            return state.map(post => post._id === action.post._id ? action.post : post);
-        case UPDATE_STATS:
-            return state.map(stats => stats._id === action.post._id ? action.stats : stats);
+        // case FIND_POST_BY_ID:
+        //     return action.sPost;
+        // case UPDATE_POST:
+        //     return state.map(post => post._id === action.post._id ? action.post : post);
+        // case UPDATE_STATS:
+        //     return state.map(stats => stats._id === action.post._id ? action.stats : stats);
         case DELETE_POST:
             return state.filter(
                 post => post._id !== action.post._id
             );
         default:
+            console.log("return default in post reducer")
             return state;
     }
 }
 
-export default postReducer;
+export default PostReducer;

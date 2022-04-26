@@ -6,17 +6,28 @@ export const FIND_POST_BY_ID = "FIND_POST_BY_ID";
 export const UPDATE_POST = "UPDATE_POST";
 export const UPDATE_STATS = "UPDATE_STATS";
 export const DELETE_POST = "DELETE_POST";
+export const FIND_ALL_POSTS_BY_USER = "FIND_ALL_POSTS_BY_USER";
+
 
 export const findAllPosts = async (dispatch) => {
-    const posts = await service.findAllPosts();
+    const allPosts = await service.findAllPosts();
+    console.log(allPosts, " in action post")
     dispatch({
         type: FIND_ALL_POSTS,
-        posts
+        allPosts
     });
 }
 
-export const createPost = async (dispatch) => {
-    const newPost = await service.userPostsAPost();
+export const findAllPostsByUser = async (dispatch, uid) => {
+    const postsByUser = await service.findAllPostsByUser(uid);
+    dispatch({
+        type: FIND_ALL_POSTS_BY_USER,
+        postsByUser
+    });
+}
+
+export const createPost = async (dispatch, uid, post) => {
+    const newPost = await service.userPostsAPost(uid, post);
     dispatch({
         type: CREATE_POST,
         newPost
