@@ -1,4 +1,5 @@
 import {
+    DELETE_PROFILE,
     LOGIN,
     LOGOUT,
     REGISTER,
@@ -6,7 +7,6 @@ import {
     UPDATE_CHARLIE_CARD_VALUE
 } from "../actions/auth-actions";
 
-import {DELETE_USER} from "../actions/user-actions";
 
 const authReducer = (state = {
     profileData: {
@@ -48,7 +48,7 @@ const authReducer = (state = {
                 profileData: action.response,
                 isLoggedIn: true
             };
-        case DELETE_USER:
+        case DELETE_PROFILE:
             return {
                 ...state,
                 profileData: action.response,

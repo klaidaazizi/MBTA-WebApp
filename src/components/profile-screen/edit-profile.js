@@ -4,27 +4,23 @@ import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {save} from "../../actions/auth-actions";
+import {deleteProfile, save} from "../../actions/auth-actions";
 import {deleteUser} from "../../actions/user-actions";
 
 const EditProfile = () => {
     const navigate = useNavigate();
     const user = useSelector(state => state.sessionReducer.profileData)
-    const [loggedIn,setLoggedIn] = useState(
-        useSelector(state => state.sessionReducer.isLoggedIn));
+    const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const dispatch = useDispatch();
     const [profile, setProfile] = useState({});
 
     useEffect(  () => {
-        {loggedIn ? setProfile(user) :
-            alert("Please log in to edit profile!")
-            navigate('/login')}
-    }, [loggedIn]);
+        {loggedIn ? setProfile(user): alert("Please log in to edit profile!");
+    }}, []);
 
     const saveProfile = () => {
         try {
             save(dispatch, profile).then(r => navigate(`/profile`));
-            console.log(profile.charlieCardBalance);
         } catch (e){
             alert("Failed to update!")
         }
@@ -59,7 +55,7 @@ const EditProfile = () => {
 
     const updateJoinedDate= (event) => setProfile({
         ...profile,
-        joinedDate: event.target.value
+        dateJoined: event.target.value
     });
 
     const updateJobTitle= (event) => setProfile({
@@ -73,9 +69,8 @@ const EditProfile = () => {
     });
 
 
-    const deleteProfile = () => {
-        deleteUser(dispatch, profile._id).then(()=> setLoggedIn(false));
-        navigate('/login');
+    const deleteAccount = () => {
+        deleteProfile(dispatch, profile._id).then(()=>navigate('/login'));
     }
 
     return(
@@ -85,9 +80,6 @@ const EditProfile = () => {
                 <div className="col-8">
                     <h5 className="fw-bold">Edit Profile</h5>
                 </div>
-                <Button  className="col-2 btn-primary rounded-pill mb-1 " onClick={()=>saveProfile()}>
-                    Save
-                </Button>
             </div><div className='border border-black bg-light rounded-2 ps-2 pe-2'>
             <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
 
@@ -134,7 +126,7 @@ const EditProfile = () => {
                 <label className='control-label mt-2 '>
                     Edit Joined Date
                 </label>
-                <input className="border-1 form-control" value={profile.dateJoined} onChange={updateJoinedDate}/>
+                <input className="border-1 form-control" type='date' value={profile.dateJoined} onChange={updateJoinedDate}/>
 
                 <label className='control-label mt-2 '>
                     Edit CharlieCard Balance
@@ -150,10 +142,15 @@ const EditProfile = () => {
                     </>
                     : ""
                 }
-                <Button  className="btn-danger mb-1 mt-3" onClick={deleteProfile}>
+
+            </div>
+            <div className='row ms-2 me-2 mt-3'>
+                <Button  className="col-5 btn-primary mb-1 ms-3 me-3" onClick={()=>saveProfile()}>
+                    Save
+                </Button>
+                <Button  className="col-5 btn-danger mb-1" onClick={()=> deleteAccount()}>
                     Delete Account
                 </Button>
-
             </div>
 
         </div>

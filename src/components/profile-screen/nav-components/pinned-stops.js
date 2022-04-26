@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Stops from "./pinned-stops-list";
 import {unpinStop} from "../../../services/pinned-stop-service";
 import {useDispatch, useSelector} from "react-redux";
@@ -28,5 +28,3 @@ const PinnedStops = ({userProfile}) => {
 };
 
 export default PinnedStops;
-
-

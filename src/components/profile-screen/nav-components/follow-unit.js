@@ -1,18 +1,21 @@
 import React from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {unfollowUser} from "../../../services/follow-service";
+import {followExistsAlready, followUser, unfollowUser} from "../../../services/follow-service";
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {findAllUserFollowers} from "../../../actions/follow-actions";
+import {findAllUserFollowers, followAlreadyExists} from "../../../actions/follow-actions";
 import {findUserById} from "../../../services/user-service";
 
-const Follow = ({follow, profile}) => {
+const Follow = ({follow,unfollow}) => {
+
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
     const user = follow.user;
     const follower = follow.follower;
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    console.log(follow._id,follower,user);
+    //const followExists = followExistsAlready(user._id,follower._id));
+    //console.log('follow exists?', followExists);
+
     return(
         <div>
             <li className={`list-group-item`}>
@@ -28,10 +31,14 @@ const Follow = ({follow, profile}) => {
                               className="btn btn-info">
                                     Go To Profile
                             </Button>
-                            {loggedIn ? <Button onClick={() => unfollowUser(follow._id).then(findAllUserFollowers(dispatch,user))}
-                              className="btn btn-danger ms-2">
-                                    Unfollow
-                            </Button> :''}
+                            {loggedIn ?
+                                <Button onClick={() => unfollow(follow._id)}
+                                                              className="btn btn-danger ms-2">
+                                        Unfollow </Button>
+                                    // <Button onClick={() => followUser(user._id,follower._id)}
+                                    //         className="btn btn-danger ms-2">
+                                    //     Follow </Button>}
+                            : ''}
                         </div>
                     </div>
             </li>

@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import Follow from "./follow-unit";
 import {useParams} from "react-router-dom";
+import {unfollowUser} from "../../../services/follow-service";
 
 const Followers = (profile) => {
     const params = useParams();
@@ -12,8 +13,9 @@ const Followers = (profile) => {
     if(params.username){
         user = profile._id;
     }
-    useEffect( ()=> findAllUserFollowers(dispatch,user),
+    useEffect( async ()=> await findAllUserFollowers(dispatch,user),
         []);
+    const unfollow = (fid) => unfollowUser(fid).then(findAllFollowsByUser(dispatch, user));
 
     return(
         <div>
@@ -23,7 +25,7 @@ const Followers = (profile) => {
                         return (
                             <Follow key={follow._id}
                                     follow={follow}
-                                    profile={user}/>
+                                    unfollow={unfollow}/>
 
                         );
                     })

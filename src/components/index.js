@@ -27,7 +27,6 @@ const reducers = combineReducers({
     singleStop: SingleStopReducer,
     rapidRouteStops: SearchStopReducer,
     sessionReducer: SessionReducer,
-    updatedProfile: SessionReducer,
     users: UserReducer,
     usersWhoPinnedStops: PinnedStopsReducer,
     pinnedStops: PinnedStopsReducer,

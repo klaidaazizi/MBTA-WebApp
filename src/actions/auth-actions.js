@@ -41,13 +41,13 @@ export const logout = async (dispatch) => {
     });
 };
 
-// export const deleteProfile = async (dispatch, user) => {
-//     const response = await user_service.deleteUser(user);
-//     dispatch({
-//         type: DELETE_PROFILE,
-//         response,
-//     });
-// };
+export const deleteProfile = async (dispatch, user) => {
+    const response = await user_service.deleteUser(user);
+    dispatch({
+        type: DELETE_PROFILE,
+        response,
+    });
+};
 
 export const addMoney = async (dispatch, amount, user) => {
     user.charlieCardBalance += amount;
