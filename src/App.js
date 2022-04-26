@@ -19,7 +19,6 @@ import CommuterRailRouteStops from "./components/search-screen/commuter-rail-rou
 import BusRouteStops from "./components/search-screen/bus-route-stops";
 import FerryRouteStops from "./components/search-screen/ferry-route-stops";
 import PostFeedItem from "./components/post-list/post-feed-item";
-import Posts from "./components/post-list/post-list-test";
 import TransitStop from "./components/search-screen/transit-stop";
 import PublicProfile from "./components/profile-screen/public-profile";
 import EditProfile from "./components/profile-screen/edit-profile";

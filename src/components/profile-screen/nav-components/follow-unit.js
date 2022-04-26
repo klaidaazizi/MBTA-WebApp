@@ -2,11 +2,16 @@ import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {unfollowUser} from "../../../services/follow-service";
 import {Button} from "react-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
+import {findAllUserFollowers} from "../../../actions/follow-actions";
+import {findUserById} from "../../../services/user-service";
 
-const Follow = ({follow}) => {
+const Follow = ({follow, profile}) => {
+    const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
     const user = follow.user;
     const follower = follow.follower;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     console.log(follow._id,follower,user);
     return(
         <div>
@@ -23,10 +28,10 @@ const Follow = ({follow}) => {
                               className="btn btn-info">
                                     Go To Profile
                             </Button>
-                        <Button onClick={() => unfollowUser(follow._id)}
+                            {loggedIn ? <Button onClick={() => unfollowUser(follow._id).then(findAllUserFollowers(dispatch,user))}
                               className="btn btn-danger ms-2">
                                     Unfollow
-                            </Button>
+                            </Button> :''}
                         </div>
                     </div>
             </li>

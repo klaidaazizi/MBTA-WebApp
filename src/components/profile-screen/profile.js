@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import * as service from '../../services/authentication-service';
 import {Link, Route, Routes, HashRouter, useLocation, useNavigate, useParams} from "react-router-dom";
 import PinnedStops from "./nav-components/pinned-stops";
-import Followers from "./nav-components/followers";
-import Following from "./nav-components/following";
+import Followers from "./nav-components/followers-list";
+import Following from "./nav-components/following-list";
 import LikedPosts from "./nav-components/liked-posts";
 import Posts from "./nav-components/posts";
 import Applauds from "./nav-components/applauds";
@@ -25,14 +25,8 @@ const Profile = () => {
     const [profile, setProfile] = useState({});
 
     useEffect(() => {
-        try{
-            //const user = await service.profile();
-            setProfile(user);
-        }
-        catch (e) {
-            alert(e + "User not logged in.")
-            navigate('/profile-search');
-        }
+        {loggedIn ? setProfile(user) : navigate('/profile-search')}
+        //const user = await service.profile();
     }, []);
 
     const goToConductorRoute = () => {
@@ -42,7 +36,6 @@ const Profile = () => {
 
     return(
         <>
-            {loggedIn ?
                 <div className='container'>
                 <div className='box top'>
                     <UserSearchBar/>
@@ -186,8 +179,8 @@ const Profile = () => {
                     </div>
 
                     <Routes>
-                        <Route path="/followers" element={<Followers/>}/>
-                        <Route path="/following" element={<Following/>}/>
+                        <Route path="/followers" element={<Followers profile={user}/>}/>
+                        <Route path="/following" element={<Following profile={user}/>}/>
                         <Route path="/liked-post" element={<LikedPosts/>}/>
                         <Route path="/your-posts" element={<Posts/>}/>
                         <Route path="/applauds" element={<Applauds/>}/>
@@ -197,8 +190,7 @@ const Profile = () => {
                 </div>
 
             </div>
-                :
-            <UserSearchScreen/> }
+
         </>
 
 

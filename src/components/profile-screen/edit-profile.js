@@ -5,16 +5,20 @@ import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {save} from "../../actions/auth-actions";
+import {deleteUser} from "../../actions/user-actions";
 
 const EditProfile = () => {
     const navigate = useNavigate();
     const user = useSelector(state => state.sessionReducer.profileData)
-    const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
+    const [loggedIn,setLoggedIn] = useState(
+        useSelector(state => state.sessionReducer.isLoggedIn));
     const dispatch = useDispatch();
     const [profile, setProfile] = useState({});
 
     useEffect(  () => {
-        {loggedIn ? setProfile(user) : navigate('/login')}
+        {loggedIn ? setProfile(user) :
+            alert("Please log in to edit profile!")
+            navigate('/login')}
     }, [loggedIn]);
 
     const saveProfile = () => {
@@ -68,6 +72,11 @@ const EditProfile = () => {
         charlieCardBalance: event.target.value
     });
 
+
+    const deleteProfile = () => {
+        deleteUser(dispatch, profile._id).then(()=> setLoggedIn(false));
+        navigate('/login');
+    }
 
     return(
         <>
@@ -141,11 +150,11 @@ const EditProfile = () => {
                     </>
                     : ""
                 }
-
+                <Button  className="btn-danger mb-1 mt-3" onClick={deleteProfile}>
+                    Delete Account
+                </Button>
 
             </div>
-
-
 
         </div>
 

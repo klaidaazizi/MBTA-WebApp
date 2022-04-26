@@ -5,6 +5,7 @@ export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const SAVE_PROFILE = 'SAVE_PROFILE';
+export const DELETE_PROFILE = 'DELETE_PROFILE';
 export const UPDATE_CHARLIE_CARD_VALUE = 'UPDATE_CHARLIE_CARD_VALUE';
 
 
@@ -39,6 +40,14 @@ export const logout = async (dispatch) => {
         response,
     });
 };
+
+// export const deleteProfile = async (dispatch, user) => {
+//     const response = await user_service.deleteUser(user);
+//     dispatch({
+//         type: DELETE_PROFILE,
+//         response,
+//     });
+// };
 
 export const addMoney = async (dispatch, amount, user) => {
     user.charlieCardBalance += amount;

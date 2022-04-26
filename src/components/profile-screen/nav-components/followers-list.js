@@ -2,11 +2,17 @@ import {findAllFollowsByUser, findAllUserFollowers} from "../../../actions/follo
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import Follow from "./follow-unit";
+import {useParams} from "react-router-dom";
 
-const Followers = () => {
+const Followers = (profile) => {
+    const params = useParams();
     const followers = useSelector(state => state.followers)
     const dispatch = useDispatch();
-    useEffect( ()=> findAllUserFollowers(dispatch,"me"),
+    let user = "me";
+    if(params.username){
+        user = profile._id;
+    }
+    useEffect( ()=> findAllUserFollowers(dispatch,user),
         []);
 
     return(
@@ -16,7 +22,8 @@ const Followers = () => {
                     followers.map && followers.map(follow => {
                         return (
                             <Follow key={follow._id}
-                                    follow={follow}/>
+                                    follow={follow}
+                                    profile={user}/>
 
                         );
                     })

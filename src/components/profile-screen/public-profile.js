@@ -12,6 +12,7 @@ import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {findUserByUsername} from "../../actions/user-actions";
+import {followUser} from "../../services/follow-service";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ const PublicProfile = () => {
         }
         catch (e) {
             alert(e);
-            //navigate('/');
+            navigate('/');
         }
     }, []);
 
@@ -47,7 +48,7 @@ const PublicProfile = () => {
 
     return(
         <>
-            <div className="col-2"> <Button onClick={() => navigate('/profile')} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
+            <div className="col-2"> <Button onClick={() => navigate(-1)} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
 
             <div className='mt-2 border border-black bg-light rounded-2 ps-2 pe-2'>
                 <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
@@ -71,7 +72,7 @@ const PublicProfile = () => {
                 { loggedIn ?
                 <div className='float-end mt-2 '>
 
-                    <Button className='btn-primary rounded-pill'>Follow</Button>
+                    <Button className='btn-primary rounded-pill' onClick={()=> followUser("me",profile._id).then()}>Follow</Button>
                     { profile.userRole === 'Conductor' ?
                         <Button className='btn-info ms-2 rounded-pill'>Like</Button> : ''}
                 </div>
@@ -139,12 +140,12 @@ const PublicProfile = () => {
                                 Liked Posts</Link>
                         </li>
                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                            <Link to="/profile/lists/followers"
+                            <Link to={`/profile/${profile.username}/lists/followers`}
                                   className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
                                 Followers</Link>
                         </li>
                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                            <Link to="/profile/lists/following"
+                            <Link to={`/profile/${profile.username}/lists/following`}
                                   className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
                                 Following</Link>
                         </li>
@@ -174,14 +175,14 @@ const PublicProfile = () => {
 
             </div>
             <Routes>
-                <Route path="lists/followers" element={<Followers/>}/>
-                <Route path="lists/following" element={<Following/>}/>
+                <Route path="lists/followers" element={<Followers profile={profile}/>}/>
+                <Route path="lists/following" element={<Following profile={profile}/>}/>
                 <Route path="lists/liked-post" element={<LikedPosts/>}/>
                 <Route path="lists/your-posts" element={<Posts/>}/>
                 <Route path="lists/applauds" element={<Applauds/>}/>
                 <Route path="lists/conductor-likes" element={<ConductorLikes/>}/>
                 { profile._id ?
-                    <Route path="lists/pinned-stops" element={<PinnedStops userProfile={profile}/>}/>
+                    <Route path="lists/pinned-stops" element={<PinnedStops user={profile}/>}/>
                     :""
                 }
             </Routes>
