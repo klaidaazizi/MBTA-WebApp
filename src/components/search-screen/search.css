@@ -58,8 +58,9 @@
 
 
 .search-page-text{
-    font-size: 36px;
-    /*margin-left: 200px;*/
+    font-size: 35px;
+    margin-left: 5px;
+    margin-bottom: 16px;
 
 }
 
@@ -209,6 +210,47 @@
 .back-button-transit-stop{
     background-color: #55524D;
 
+}
+
+.like-div{
+    display: flex;
+}
+
+.like-buttons{
+    display:inline-block;
+}
+
+.blurb{
+    margin-top: 16px;
+    margin-left: 66px;
+    font-size: 19px;
+    color: black;
+    font-family: "Helvetica Neue";
+}
+
+.blurbdiv{
+    margin-top: 16px;
+}
+
+.slogan{
+    color: #5cb85c;
+    font-size: 19px;
+    margin-left: 146px;
+    font-family: "Helvetica Neue";
+    font-weight: bold;
+}
+
+.home-button-login{
+    height: 70px;
+    width: 150px;
+    justify-content: center;
+}
+
+#wrapper {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
