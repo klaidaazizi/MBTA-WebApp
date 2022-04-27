@@ -3,11 +3,8 @@ import {Link, useNavigate} from "react-router-dom";
 import {followExistsAlready, followUser, unfollowUser} from "../../../services/follow-service";
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {findAllUserFollowers, followAlreadyExists} from "../../../actions/follow-actions";
-import {findUserById} from "../../../services/user-service";
 
 const Follow = ({follow,unfollow}) => {
-
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
     const user = follow.user;
     const follower = follow.follower;

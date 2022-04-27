@@ -15,7 +15,7 @@ const Followers = (profile) => {
     }
     useEffect( async ()=> await findAllUserFollowers(dispatch,user),
         []);
-    const unfollow = (fid) => unfollowUser(fid).then(findAllFollowsByUser(dispatch, user));
+    const unfollow = (fid) => unfollowUser(fid).then(()=> findAllUserFollowers(dispatch, user));
 
     return(
         <div>

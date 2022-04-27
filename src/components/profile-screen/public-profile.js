@@ -21,7 +21,7 @@ const PublicProfile = () => {
     const [profile, setProfile] = useState({});
     console.log(profile.currentRouteConducting)
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
-    //const followExists = useSelector(state => state.followExists);
+    const followExists = useSelector(state => state.followExists);
 
     useEffect(async () => {
         try {
@@ -33,25 +33,24 @@ const PublicProfile = () => {
             const user = await service.findUserByUsername(username);
             //findUserByUsername(dispatch,username)
             setProfile(user);
-            //followAlreadyExists(dispatch,"me", profile._id);
+            await followAlreadyExists(dispatch, "me", profile._id);
         } catch (e) {
             alert(e);
             navigate('/');
         }
     }, []);
 
-    // let followExists;
-    // if (profile) {
-    //     followExists = followAlreadyExists(dispatch, "me", profile._id)
-    // }
+
     const goToConductorRoute = () => {
         navigate('/home');
     }
 
     const follow = () =>{
-        // {followExists === 0 ?
-        followUser("me", profile._id).then()
-            // alert("Already following user!")
+        try{
+            followUser("me", profile._id)}
+        catch(e){
+            alert("Already following user!");
+        }
     }
     console.log('profile', profile)
 

@@ -27,7 +27,7 @@ const Profile = () => {
     useEffect(() => {
         {loggedIn ? setProfile(user) : navigate('/profile-search')}
         //const user = await service.profile();
-    }, []);
+    }, [loggedIn]);
 
     const goToConductorRoute = () => {
         navigate('/home');
@@ -144,16 +144,16 @@ const Profile = () => {
                                       className={`nav-link ${location.pathname.indexOf('liked-post') >= 0 ? 'active':''}`}>
                                     Liked Posts</Link>
                             </li>
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                            {user && <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to="/profile/lists/followers"
                                       className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
                                     Followers</Link>
-                            </li>
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                            </li>}
+                            {user && <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to="/profile/lists/following"
                                       className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
                                     Following</Link>
-                            </li>
+                            </li>}
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2 ">
                                 <Link to="/profile/lists/applauds"
                                       className={`nav-link ${location.pathname.indexOf('applauds') >= 0 ? 'active':''}`}>

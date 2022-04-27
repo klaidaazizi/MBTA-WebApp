@@ -15,7 +15,7 @@ const Following = ({profile}) => {
     }
     useEffect( async ()=> await findAllFollowsByUser(dispatch,user),
         []);
-    const unfollow = (fid) => unfollowUser(fid).then(findAllFollowsByUser(dispatch, user));
+    const unfollow = (fid) => unfollowUser(fid).then(()=> findAllFollowsByUser(dispatch, user));
     console.log(profile, "profile in following")
     console.log(following, " following list")
 
@@ -25,9 +25,7 @@ const Following = ({profile}) => {
                 {
                     following.map && following.map(follow => {
                         return (
-                            <Follow key={follow._id}
-                                    follow={follow}
-                                    unfollow={unfollow}/>
+                            <Follow key={follow._id} follow={follow} unfollow={unfollow}/>
                         );
                     })
                 }
