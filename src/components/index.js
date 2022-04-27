@@ -14,6 +14,7 @@ import SearchReducer from "../reducers/search-reducer";
 import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
 import SingleStopReducer from "../reducers/single-stop-reducer";
 import PostReducer from "../reducers/post-reducer";
+import ConductorLikesReducer from "../reducers/conductor-likes-reducer";
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,
@@ -33,7 +34,10 @@ const reducers = combineReducers({
     pinExists: PinnedStopsReducer,
     allPosts: PostReducer,
     newPost: PostReducer,
-    postsByUser: PostReducer
+    postsByUser: PostReducer,
+    conductorlikes: ConductorLikesReducer,
+    commuterLikes: ConductorLikesReducer,
+    conductorLikeExists: ConductorLikesReducer
 });
 const store = createStore(reducers);
 

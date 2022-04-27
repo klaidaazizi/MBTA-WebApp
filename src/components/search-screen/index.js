@@ -1,11 +1,14 @@
 import React from "react";
-import {Link, Route, Routes} from "react-router-dom";
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
 
 import './search.css';
+import {useSelector} from "react-redux";
 
 
 const SearchScreen = () => {
+    const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
 
+    const navigate = useNavigate();
     return (
         <div>
             <h4 className="search-page-text "> Explore Massachusetts with the MBTA </h4>
@@ -29,6 +32,32 @@ const SearchScreen = () => {
                     Ferry
                 </button>
             </Link>
+
+
+
+            <div className="blurb">
+                <span>Are you an employee of the Massachusetts Bay Transportation Authority?</span>
+                <br/>
+                <span className="slogan"> Use Teasy for all your MBTA needs! </span>
+                <br/>
+                <span>Visiting the Boston area? Are you a seasoned commuter of the MBTA?</span>
+                <br/>
+                <span className="slogan"> Use Teasy to get around with ease! </span>
+            </div>
+
+            <div id="wrapper">
+            {!loggedIn ?
+
+                <button onClick={() => navigate('/login')} type="button" className="col-3 btn  btn-dark home-button-login ">
+                    Login
+                </button>
+                :
+                <button onClick={() => navigate('/profile')} className="col-3 btn btn-dark home-button-login">
+                Your Profile
+            </button>
+            }
+            </div>
+
 
         </div>
     )

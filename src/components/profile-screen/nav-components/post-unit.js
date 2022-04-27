@@ -11,10 +11,10 @@ const PostUnit = ({deletePost, post, user}) => {
             <li className={`list-group-item`}>
                 {user === "me" ?
                     <>
-                        <Link to={`/posts/${post._id}`} className="line-ends-links" >
+                        <Link to={`/posts`} className="line-ends-links" >
                     <span className=''>
                             <span className="col-3 btn  btn-warning float-start">
-                                    See Post
+                                    See All Posts
                             </span>
                     </span>
                         </Link>
@@ -24,10 +24,10 @@ const PostUnit = ({deletePost, post, user}) => {
                             </span>
                 </span>
                     </>
-                    : <Link to={`/posts/${post._id}`} className="line-ends-links" >
+                    : <Link to={`/posts`} className="line-ends-links" >
                     <span className=''>
                             <span className="col-3 btn  btn-warning float-end">
-                                    See Post
+                                    See All Posts
                             </span>
                     </span>
                     </Link>

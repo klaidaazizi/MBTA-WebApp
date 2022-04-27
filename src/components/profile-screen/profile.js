@@ -146,11 +146,6 @@ const Profile = () => {
                                 </Link>
                             </li>
 
-                            {/*<li className="nav-item ms-1 mb-1 border border-primary rounded-2">*/}
-                            {/*    <Link to="/profile/lists/liked-post"*/}
-                            {/*          className={`nav-link ${location.pathname.indexOf('liked-post') >= 0 ? 'active':''}`}>*/}
-                            {/*        Liked Posts</Link>*/}
-                            {/*</li>*/}
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to="/profile/lists/followers"
                                       className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
@@ -161,17 +156,27 @@ const Profile = () => {
                                       className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
                                     Following</Link>
                             </li>
-                            {/*<li className="nav-item ms-1 mb-1 border border-primary rounded-2 ">*/}
-                            {/*    <Link to="/profile/lists/applauds"*/}
-                            {/*          className={`nav-link ${location.pathname.indexOf('applauds') >= 0 ? 'active':''}`}>*/}
-                            {/*        Applauds</Link>*/}
-                            {/*</li>*/}
 
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/lists/conductor-likes"
-                                      className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active':''}`}>
-                                    Liked conductors</Link>
-                            </li>
+                                {profile.userRole === "Conductor" ?
+                                    <>
+                                    <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                    <Link to="/profile/lists/conductor-likes"
+                                              className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                            Commuters Who Like You </Link>
+                                    </li>
+                                    </>
+                                    :
+                                    <>
+                                    {profile.userRole === "Commuter" ?
+                                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                        <Link to="/profile/lists/conductor-likes"
+                                              className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                            Conductors You Like </Link>
+                                        </li>
+                                        : ""
+                                    }
+                                    </>
+                                }
 
                             {user && user.userRole === "Commuter" ?
                                 <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
@@ -188,10 +193,8 @@ const Profile = () => {
                     <Routes>
                         <Route path="/followers" element={<Followers/>}/>
                         <Route path="/following" element={<Following/>}/>
-                        {/*<Route path="/liked-post" element={<LikedPosts/>}/>*/}
                         <Route path="/your-posts" element={<Posts userProfile={user}/>}/>
-                        {/*<Route path="/applauds" element={<Applauds/>}/>*/}
-                        <Route path="/conductor-likes" element={<ConductorLikes/>}/>
+                        <Route path="/conductor-likes" element={<ConductorLikes userProfile={user}/>}/>
                         <Route path="/pinned-stops" element={<PinnedStops userProfile={user}/> }/>
                     </Routes>
                 </div>
