@@ -18,11 +18,14 @@ export const logout = (user) =>
     api.post(`${SECURITY_API}/logout`, user)
         .then(response => response.data);
 
-
 export const profile = () =>
     api.post(`${SECURITY_API}/profile`)
         .then(response => response.data);
 
 export const reset = (user) =>
     api.post(`${SECURITY_API}/reset`, user)
+        .then(response => response.data);
+
+export const adminResetsUser = (user) =>
+    api.post(`${SECURITY_API}/admin/reset`, user)
         .then(response => response.data);
