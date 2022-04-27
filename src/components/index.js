@@ -15,7 +15,6 @@ import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
 import SingleStopReducer from "../reducers/single-stop-reducer";
 import PostReducer from "../reducers/post-reducer";
 import ConductorLikesReducer from "../reducers/conductor-likes-reducer";
-import {adminSave} from "../actions/auth-actions";
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,

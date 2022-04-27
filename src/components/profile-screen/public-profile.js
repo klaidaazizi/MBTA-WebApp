@@ -26,7 +26,6 @@ const PublicProfile = () => {
         return;
     }
 
-
     const queryURL = window.location.pathname;
     const params = queryURL.toString().split('/');
     console.log(params)
