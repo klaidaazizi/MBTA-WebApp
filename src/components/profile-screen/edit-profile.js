@@ -1,28 +1,84 @@
 import React, {useEffect, useState} from "react";
 import * as service from '../../services/authentication-service';
+import {findUserByUsername} from '../../services/user-service';
 import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {deleteProfile, save} from "../../actions/auth-actions";
-import {deleteUser} from "../../actions/user-actions";
+import {save, adminSave} from "../../actions/auth-actions";
 
 const EditProfile = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
     const user = useSelector(state => state.sessionReducer.profileData)
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const dispatch = useDispatch();
     const [profile, setProfile] = useState({});
 
-    useEffect(  () => {
-        {loggedIn ? setProfile(user): alert("Please log in to edit profile!");
-    }}, []);
+    /**
+     * Allow admin to edit user's profile, different edit profile page url
+     * @type {string}
+     */
+    // const location = useLocation().pathname.split("/");
+    // const stopId = newLocation[newLocation.length-2];
+    // const stopName = newLocation[newLocation.length-1];
+
+    const queryURL = window.location.pathname;
+    const params = queryURL.toString().split('/');
+    console.log(params)
+    const username = params[params.length-1];
+    // const username = params[-1].toString();
+    console.log(username)
+
+    // let publicUser = null;
+    // if(username !== "editprofile"){
+    //     publicUser = findUserByUsername(username);
+    // }
+    // console.log(publicUser)
+
+    useEffect( async () => {
+            {
+                if(loggedIn && username !== "editprofile") {
+                    const publicUser = await findUserByUsername(username);
+                    setProfile(publicUser);
+                }
+                else{
+                    setProfile(user);
+                }
+            }
+        },
+        [username]);
+
+
+
+    // useEffect(  () => {
+    //         {loggedIn && username === "editprofile" ? setProfile(user) : setProfile(publicUser)}
+    //     },
+    //     [loggedIn]);
+
+    console.log(profile)
+
+
+
+    // useEffect(  () => {
+    //     {loggedIn ? setProfile(user) : navigate('/login')}
+    // }, [loggedIn]);
 
     const saveProfile = () => {
         try {
             save(dispatch, profile).then(r => navigate(`/profile`));
+            console.log(profile.charlieCardBalance);
         } catch (e){
             alert("Failed to update!")
+        }
+    }
+
+    const adminSaveProfile = () => {
+        try {
+            adminSave(dispatch, profile).then(r => navigate(`/profile/${profile.username}`));
+        } catch (e){
+            alert("Admin failed to update!")
         }
     }
 
@@ -55,7 +111,7 @@ const EditProfile = () => {
 
     const updateJoinedDate= (event) => setProfile({
         ...profile,
-        dateJoined: event.target.value
+        joinedDate: event.target.value
     });
 
     const updateJobTitle= (event) => setProfile({
@@ -69,17 +125,23 @@ const EditProfile = () => {
     });
 
 
-    const deleteAccount = () => {
-        deleteProfile(dispatch, profile._id).then(()=>navigate('/login'));
-    }
-
     return(
         <>
+
             <div className="row ">
                 <div className="col-2"> <Button onClick={()=> navigate(-1)} className={"fa fa-arrow-left btn-dark mt-1"}/> </div>
                 <div className="col-8">
                     <h5 className="fw-bold">Edit Profile</h5>
                 </div>
+                {username === "editprofile" ?
+                    <Button className="col-2 btn-primary rounded-pill mb-1 " onClick={() => saveProfile()}>
+                        Save
+                    </Button>
+                    :
+                    <Button className="col-2 btn-primary rounded-pill mb-1 " onClick={() => adminSaveProfile()}>
+                        Save
+                    </Button>
+                }
             </div><div className='border border-black bg-light rounded-2 ps-2 pe-2'>
             <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
 
@@ -95,21 +157,26 @@ const EditProfile = () => {
                 <label className='control-label'>
                     Edit Name
                 </label>
-                <input className="border-1 form-control" value={profile.name} onChange={updateName}/>
-                <label className='control-label mt-2'>
-                    Edit Username
-                </label>
-                <input className="border-1 form-control" value={profile.username} onChange={updateUsername}/>
-                <label className='control-label mt-2'>
+                {loggedIn && profile && profile.name && profile.username && profile.email && profile.password ?
+                    <>
+                    <input className="border-1 form-control" value={profile.name} onChange={updateName}/>
+                    <label className='control-label mt-2'>
+                        Edit Username
+                    </label>
+                    <input className="border-1 form-control" value={profile.username} onChange={updateUsername}/>
+                    <label className='control-label mt-2'>
                     Edit Email
-                </label>
-                <input className="border-1 form-control" value={profile.email} onChange={updateEmail}/>
-                <label className='control-label mt-2'>
+                    </label>
+                    <input className="border-1 form-control" value={profile.email} onChange={updateEmail}/>
+                    <label className='control-label mt-2'>
                     Edit Password
-                </label>
-                <input className="border-1 form-control" value={profile.password} onChange={updatePassword}/>
+                    </label>
+                    <input className="border-1 form-control" value={profile.password} onChange={updatePassword}/>
+                    </>
+                    : ""
+                }
 
-                {profile.userRole === "Commuter" ?
+                {profile && profile.userRole && profile.userRole === "Commuter" ?
                     <>
                         <label className='control-label mt-2'>
                             Edit Home stop
@@ -119,16 +186,22 @@ const EditProfile = () => {
                     : ""
                 }
 
-                <label className='control-label mt-2 '>
-                    Edit Date of Birth
-                </label>
-                <input className="border-1 form-control" type="date" value={profile.dateOfBirth} onChange={updateDOB}/>
-                <label className='control-label mt-2 '>
-                    Edit Joined Date
-                </label>
-                <input className="border-1 form-control" type='date' value={profile.dateJoined} onChange={updateJoinedDate}/>
+                {profile ?
+                    <>
+                        <label className='control-label mt-2 '>
+                            Edit Date of Birth
+                        </label>
+                        <input className="border-1 form-control" value={profile.dateOfBirth} onChange={updateDOB}/>
+                        <label className='control-label mt-2 '>
+                            Edit Joined Date
+                        </label>
+                        <input className="border-1 form-control" value={profile.dateJoined}
+                               onChange={updateJoinedDate}/>
+                    </>
+                    : ""
+                }
 
-                {profile.userRole === "Commuter" ?
+                {profile && profile.userRole && profile.userRole === "Commuter" ?
                     <>
                     <label className='control-label mt-2 '>
                         Edit CharlieCard Balance
@@ -139,7 +212,7 @@ const EditProfile = () => {
                     :
                     ""
                 }
-                {profile.userRole === "Admin" ?
+                {profile && profile.userRole && profile.userRole === "Admin" ?
                     <>
                     <label className='control-label mt-2'>
                         Edit Job Title
@@ -149,15 +222,10 @@ const EditProfile = () => {
                     : ""
                 }
 
+
             </div>
-            <div className='row ms-2 me-2 mt-3'>
-                <Button  className="col-5 btn-primary mb-1 ms-3 me-3" onClick={()=>saveProfile()}>
-                    Save
-                </Button>
-                <Button  className="col-5 btn-danger mb-1" onClick={()=> deleteAccount()}>
-                    Delete Account
-                </Button>
-            </div>
+
+
 
         </div>
 

@@ -56,6 +56,8 @@ function App() {
                              element={<UserSearchScreen/>}/>
                       <Route path="profile/editprofile"
                              element={<EditProfile/>}/>
+                      <Route path="profile/editprofile/:username"
+                             element={<EditProfile/>}/>
                       <Route path="profile/:username/*"
                              element={<PublicProfile/>}/>
                       <Route path="home"

@@ -24,16 +24,15 @@ const PublicProfile = () => {
     const conductorLikeExists = useSelector(state => state.conductorLikeExists);
     const followExists = useSelector(state => state.followExists);
 
-    //console.log(conductorLikeExists)
 
     const blockLike = () => {
         alert("You have already liked this conductor.");
         return;
     }
 
+
     const queryURL = window.location.pathname;
     const params = queryURL.toString().split('/');
-    //console.log(params)
     const username = params[2].toString();
 
     useEffect( async () => {
@@ -41,8 +40,10 @@ const PublicProfile = () => {
             const user = await service.findUserByUsername(username);
             setProfile(user);
             //console.log(user)
-            conductorLikeAlreadyExists(dispatch, user._id, userViewing._id)
-            followAlreadyExists(dispatch, user._id, userViewing._id)
+            if(loggedIn){
+                await conductorLikeAlreadyExists(dispatch, user._id, userViewing._id)
+                await followAlreadyExists(dispatch, user._id, userViewing._id)
+            }
         }
         catch (e) {
             alert(e);
@@ -86,6 +87,14 @@ const PublicProfile = () => {
 
                 { loggedIn ?
                 <div className='float-end mt-2 me-1'>
+                    {profile.userRole !== "Admin" && userViewing.userRole === "Admin" ?
+                        <button onClick={() => navigate(`/profile/editprofile/${profile.username}`)}
+                                type='button'
+                                className='btn btn-secondary  rounded-pill  me-2'>Edit User's Profile
+                        </button>
+                        :
+                        ""
+                    }
                     <Button className='btn-primary rounded-pill' onClick={()=> follow()}>Follow</Button>
                     { profile.userRole === 'Conductor' && userViewing.userRole === "Commuter" ?
                         <>
@@ -148,12 +157,15 @@ const PublicProfile = () => {
 
                 <div className='ms-2'>
                     <ul className='nav mb-2 nav-tabs'>
-                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                            <Link to={`/profile/${profile.username}/lists/your-posts`}
-                                  className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
-                                Posts
-                            </Link>
-                        </li>
+                        {loggedIn ?
+                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                <Link to={`/profile/${profile.username}/lists/your-posts`}
+                                      className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active' : ''}`}>
+                                    Posts
+                                </Link>
+                            </li>
+                            : ""
+                        }
 
                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                             <Link to={`/profile/${profile.username}/lists/followers`}
@@ -207,8 +219,7 @@ const PublicProfile = () => {
                 <Route path="lists/followers" element={<Followers userProfile={profile}/>}/>
                 <Route path="lists/following" element={<Following userProfile={profile}/>}/>
                 <Route path="lists/your-posts" element={<Posts userProfile={profile}/>}/>
-                <Route path="lists/conductor-likes" element={<ConductorLikes userProfile={profile}/>}/>
-               <Route path="lists/conductor-likes" element={<ConductorLikes userProfile={profile} userViewing={userViewing}/>}/>
+                <Route path="lists/conductor-likes" element={<ConductorLikes userProfile={profile} userViewing={userViewing}/>}/>
                 { profile._id ?
                     <Route path="lists/pinned-stops" element={<PinnedStops userProfile={profile}/>}/>
                     :""

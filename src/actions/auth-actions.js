@@ -5,8 +5,9 @@ export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const SAVE_PROFILE = 'SAVE_PROFILE';
-export const DELETE_PROFILE = 'DELETE_PROFILE';
+export const ADMIN_SAVE_PROFILE = 'ADMIN_SAVE_PROFILE';
 export const UPDATE_CHARLIE_CARD_VALUE = 'UPDATE_CHARLIE_CARD_VALUE';
+
 
 
 export const register = async (dispatch, user) => {
@@ -33,18 +34,18 @@ export const save = async (dispatch, user) => {
     });
 };
 
+export const adminSave = async (dispatch, user) => {
+    const adminSave = await authentication_service.adminResetsUser(user);
+    dispatch({
+        type: ADMIN_SAVE_PROFILE,
+        adminSave,
+    });
+};
+
 export const logout = async (dispatch) => {
     const response = await authentication_service.logout();
     dispatch({
         type: LOGOUT,
-        response,
-    });
-};
-
-export const deleteProfile = async (dispatch, user) => {
-    const response = await user_service.deleteUser(user);
-    dispatch({
-        type: DELETE_PROFILE,
         response,
     });
 };

@@ -74,7 +74,11 @@ const PostList = () => {
                                 }
                                 </>
                             }
-                            <span className="posterName"> {post.user.name} -- @{post.user.username}  </span>
+                            <span className="posterName">  <span className="userRoleType">{post.user.userRole}, </span> {post.user.name}  </span>
+                            <br/>
+                            <span className="posterName">  @{post.user.username}  </span>
+                            <br/>
+                            <br/>
                             <p className="postContent">{post.post}</p>
                         </li>
 
