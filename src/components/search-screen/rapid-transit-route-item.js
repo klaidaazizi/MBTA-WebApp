@@ -38,7 +38,7 @@ const RapidTransitRouteItem = ({rtRoute}) => {
                         {loggedIn === true && user.userRole === "Conductor" ?
                             <>
                                 <span onClick={saveProfile} className="col-4 btn btn-light">
-                                                 Conduct This Route, {`${user.name}`}!
+                                                 Conduct This Route, {`${user.username}`}!
                                 </span>
                                 <span className="fw-bold rapid-transit-route-id">{rtRoute.attributes.long_name}</span>
                             </>

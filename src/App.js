@@ -9,7 +9,7 @@ import ProfileScreen from "./components/profile-screen";
 import SearchScreen from "./components/search-screen";
 import PrivacyPolicy from "./components/privacy-policy";
 import Home from "./components";
-import PostList from "./components/post-list";
+import PostList from "./components/post-list/index";
 import RapidTransitRoutes from "./components/search-screen/rapid-transit-routes";
 import CommuterRailRoutes from "./components/search-screen/commuter-rail-routes";
 import BusRoutes from "./components/search-screen/bus-routes";

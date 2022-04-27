@@ -128,11 +128,17 @@ const EditProfile = () => {
                 </label>
                 <input className="border-1 form-control" type='date' value={profile.dateJoined} onChange={updateJoinedDate}/>
 
-                <label className='control-label mt-2 '>
-                    Edit CharlieCard Balance
-                </label>
-                <input type='number' className="border-1 form-control" value={profile.charlieCardBalance} onChange={updateCharlieCardBalance}/>
-
+                {profile.userRole === "Commuter" ?
+                    <>
+                    <label className='control-label mt-2 '>
+                        Edit CharlieCard Balance
+                    </label>
+                    <input type='number' className="border-1 form-control" value={profile.charlieCardBalance}
+                           onChange={updateCharlieCardBalance}/>
+                    </>
+                    :
+                    ""
+                }
                 {profile.userRole === "Admin" ?
                     <>
                     <label className='control-label mt-2'>

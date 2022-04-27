@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import * as service from '../../services/authentication-service';
 import {Link, Route, Routes, HashRouter, useLocation, useNavigate, useParams} from "react-router-dom";
 import PinnedStops from "./nav-components/pinned-stops";
-import Followers from "./nav-components/followers-list";
-import Following from "./nav-components/following-list";
+import Followers from "./nav-components/followers";
+import Following from "./nav-components/following";
 import LikedPosts from "./nav-components/liked-posts";
 import Posts from "./nav-components/posts";
 import Applauds from "./nav-components/applauds";
@@ -26,7 +26,6 @@ const Profile = () => {
 
     useEffect(() => {
         {loggedIn ? setProfile(user) : navigate('/profile-search')}
-        //const user = await service.profile();
     }, [loggedIn]);
 
     const goToConductorRoute = () => {
@@ -133,39 +132,42 @@ const Profile = () => {
                     <div className='ms-2'>
                         <ul className='nav mb-2 nav-tabs'>
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/lists/posts"
+                                <Link to="/profile/lists/your-posts"
                                       className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
                                     Posts
                                 </Link>
                             </li>
 
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/lists/liked-post"
-                                      className={`nav-link ${location.pathname.indexOf('liked-post') >= 0 ? 'active':''}`}>
-                                    Liked Posts</Link>
-                            </li>
-                            {user && <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to="/profile/lists/followers"
                                       className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
                                     Followers</Link>
-                            </li>}
-                            {user && <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                            </li>
+                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to="/profile/lists/following"
                                       className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
                                     Following</Link>
-                            </li>}
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2 ">
-                                <Link to="/profile/lists/applauds"
-                                      className={`nav-link ${location.pathname.indexOf('applauds') >= 0 ? 'active':''}`}>
-                                    Applauds</Link>
                             </li>
-
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                <Link to="/profile/lists/conductor-likes"
-                                      className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active':''}`}>
-                                    Liked conductors</Link>
-                            </li>
-
+                            {profile.userRole === "Conductor" ?
+                                <>
+                                    <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                        <Link to="/profile/lists/conductor-likes"
+                                              className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                            Commuters Who Like You </Link>
+                                    </li>
+                                </>
+                                :
+                                <>
+                                    {profile.userRole === "Commuter" ?
+                                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                            <Link to="/profile/lists/conductor-likes"
+                                                  className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                                Conductors You Like </Link>
+                                        </li>
+                                        : ""
+                                    }
+                                </>
+                            }
                             {user && user.userRole === "Commuter" ?
                                 <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                     <Link to="/profile/lists/pinned-stops"
@@ -181,16 +183,13 @@ const Profile = () => {
                     <Routes>
                         <Route path="/followers" element={<Followers profile={user}/>}/>
                         <Route path="/following" element={<Following profile={user}/>}/>
-                        <Route path="/liked-post" element={<LikedPosts/>}/>
-                        <Route path="/your-posts" element={<Posts/>}/>
-                        <Route path="/applauds" element={<Applauds/>}/>
-                        <Route path="/conductor-likes" element={<ConductorLikes/>}/>
+                        <Route path="/your-posts" element={<Posts userProfile={user}/>}/>
+                        <Route path="/conductor-likes" element={<ConductorLikes userProfile={user}/>}/>
                         <Route path="/pinned-stops" element={<PinnedStops userProfile={user}/> }/>
                     </Routes>
                 </div>
 
             </div>
-
         </>
 
 

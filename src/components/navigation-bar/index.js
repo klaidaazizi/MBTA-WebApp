@@ -8,6 +8,7 @@ import "./nav-bar.css"
 const NavigationBar = () => {
     const navigationData = useSelector(state => state.navigationData)
     const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
+    const user = useSelector(state => state.sessionReducer.profileData)
     const dispatch = useDispatch();
 
     return(
@@ -46,13 +47,16 @@ const NavigationBar = () => {
                     Search Users
                 </span>
             </Link>
-            <Link to='/posts'
+            {isLoggedIn ?
+                <Link to='/posts'
                   className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'posts')}>
                 <span>
                     Posts
                 </span>
             </Link>
+                :
+                ''}
             <Link to='/policy'
                   className={`list-group-item ${navigationData.activePage === "privacy" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'privacy')}>
@@ -68,7 +72,7 @@ const NavigationBar = () => {
                   }}
                   className={`bg-danger list-group-item text-white fw-bold`}>
                 <span>
-                    Logout
+                    Logout, {user.username}
                 </span>
             </Link> :
             <Link to='/login'

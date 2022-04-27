@@ -3,13 +3,22 @@ import axios from "axios";
 const API_BASE = process.env.REACT_APP_API_BASE;
 const POST_API = `${API_BASE}/posts`;
 
+export const api = axios.create({withCredentials: true});
+
 export const findAllPosts = async () => {
     const response = await axios.get(POST_API);
+    console.log(response.data)
     return response.data;
 };
 
-export const userPostsAPost = async (post) => {
-    const response = await axios.post(`${POST_API}`, post);
+export const findAllPostsByUser = async (uid) => {
+    const response = await api.get(`${API_BASE}/users/${uid}/posts`);
+    console.log(response, "posts by user")
+    return response.data;
+};
+
+export const userPostsAPost = async (uid, post) => {
+    const response = await api.post(`${API_BASE}/users/${uid}/posts`, post);
     return response.data;
 }
 
