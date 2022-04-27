@@ -1,31 +1,20 @@
-import {findAllFollowsByUser, findAllUserFollowers} from "../../../actions/follow-actions";
-import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect} from "react";
-import Follow from "./follow-unit";
-import {useParams} from "react-router-dom";
-import {unfollowUser} from "../../../services/follow-service";
+import React from "react";
+import FollowerUnit from "./follower-unit";
 
-const Followers = (profile) => {
-    const params = useParams();
-    const followers = useSelector(state => state.followers)
-    const dispatch = useDispatch();
-    let user = "me";
-    if(params.username){
-        user = profile._id;
-    }
-    useEffect( async ()=> await findAllUserFollowers(dispatch,user),
-        []);
-    const unfollow = (fid) => unfollowUser(fid).then(()=> findAllUserFollowers(dispatch, user));
+const FollowersList= ({follows=[],removeFollow, user}) => {
 
     return(
         <div>
             <ul className=" list-group">
                 {
-                    followers.map && followers.map(follow => {
+                    follows.map && follows.map(follow => {
+                        //console.log(follow)
                         return (
-                            <Follow key={follow._id}
+                            <FollowerUnit key={follow._id}
                                     follow={follow}
-                                    unfollow={unfollow}/>
+                                    removeFollow={removeFollow}
+                                    user={user}
+                            />
 
                         );
                     })
@@ -34,4 +23,4 @@ const Followers = (profile) => {
         </div>
     )
 }
-export default Followers;
+export default FollowersList;

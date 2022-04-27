@@ -13,6 +13,9 @@ import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
 import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
 import SingleStopReducer from "../reducers/single-stop-reducer";
+import FollowReducer from "../reducers/follow-reducer";
+import PostReducer from "../reducers/post-reducer";
+import ConductorLikesReducer from "../reducers/conductor-likes-reducer";
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,

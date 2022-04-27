@@ -4,27 +4,27 @@ import {Link, Route, Routes, HashRouter, useLocation, useNavigate} from "react-r
 import PinnedStops from "./nav-components/pinned-stops";
 import Followers from "./nav-components/followers";
 import Following from "./nav-components/following";
-import LikedPosts from "./nav-components/liked-posts";
 import Posts from "./nav-components/posts";
 import ConductorLikes from "./nav-components/conductor-likes";
 import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {followExistsAlready, followUser} from "../../services/follow-service";
+import {followUser} from "../../services/follow-service";
 import {followAlreadyExists} from "../../actions/follow-actions";
+import {conductorLikeAlreadyExists} from "../../actions/conductor-likes-action";
+import {likeConductor} from "../../services/conductor-likes-service";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
     const [profile, setProfile] = useState({currentRouteConducting: ''});
-    // console.log(profile.currentRouteConducting)
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const userViewing = useSelector(state => state.sessionReducer.profileData)
     const conductorLikeExists = useSelector(state => state.conductorLikeExists);
     const followExists = useSelector(state => state.followExists);
 
-    console.log(conductorLikeExists)
+    //console.log(conductorLikeExists)
 
     const blockLike = () => {
         alert("You have already liked this conductor.");
@@ -33,15 +33,16 @@ const PublicProfile = () => {
 
     const queryURL = window.location.pathname;
     const params = queryURL.toString().split('/');
-    console.log(params)
+    //console.log(params)
     const username = params[2].toString();
 
     useEffect( async () => {
         try{
             const user = await service.findUserByUsername(username);
             setProfile(user);
-            console.log(user)
+            //console.log(user)
             conductorLikeAlreadyExists(dispatch, user._id, userViewing._id)
+            followAlreadyExists(dispatch, user._id, userViewing._id)
         }
         catch (e) {
             alert(e);
@@ -53,13 +54,11 @@ const PublicProfile = () => {
     }
 
     const follow = () =>{
-        try{
-            followUser("me", profile._id)}
-        catch(e){
-            alert("Already following user!");
-        }
+        {followExists === 0 ?
+            followUser("me", profile._id) :
+            alert("Already following user!")}
     }
-    console.log('profile', profile)
+    //console.log('profile', profile)
 
 
     return(
@@ -86,8 +85,7 @@ const PublicProfile = () => {
                 <img src='/images/thomas.png' alt='' className="profile-pic"/>
 
                 { loggedIn ?
-                <div className='float-end mt-2 '>
-
+                <div className='float-end mt-2 me-1'>
                     <Button className='btn-primary rounded-pill' onClick={()=> follow()}>Follow</Button>
                     { profile.userRole === 'Conductor' && userViewing.userRole === "Commuter" ?
                         <>
@@ -206,8 +204,8 @@ const PublicProfile = () => {
 
             </div>
             <Routes>
-                <Route path="lists/followers" element={<Followers profile={profile}/>}/>
-                <Route path="lists/following" element={<Following profile={profile}/>}/>
+                <Route path="lists/followers" element={<Followers userProfile={profile}/>}/>
+                <Route path="lists/following" element={<Following userProfile={profile}/>}/>
                 <Route path="lists/your-posts" element={<Posts userProfile={profile}/>}/>
                 <Route path="lists/conductor-likes" element={<ConductorLikes userProfile={profile}/>}/>
                <Route path="lists/conductor-likes" element={<ConductorLikes userProfile={profile} userViewing={userViewing}/>}/>

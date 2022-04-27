@@ -122,7 +122,7 @@ const EditProfile = () => {
                 <label className='control-label mt-2 '>
                     Edit Date of Birth
                 </label>
-                <input className="border-1 form-control" value={profile.dateOfBirth} onChange={updateDOB}/>
+                <input className="border-1 form-control" type="date" value={profile.dateOfBirth} onChange={updateDOB}/>
                 <label className='control-label mt-2 '>
                     Edit Joined Date
                 </label>
