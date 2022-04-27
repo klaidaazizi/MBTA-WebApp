@@ -37,7 +37,8 @@ const reducers = combineReducers({
     postsByUser: PostReducer,
     conductorlikes: ConductorLikesReducer,
     commuterLikes: ConductorLikesReducer,
-    conductorLikeExists: ConductorLikesReducer
+    conductorLikeExists: ConductorLikesReducer,
+    adminSave: SessionReducer
 });
 const store = createStore(reducers);
 

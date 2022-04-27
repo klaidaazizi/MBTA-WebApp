@@ -3,7 +3,8 @@ import {
     LOGOUT,
     REGISTER,
     SAVE_PROFILE,
-    UPDATE_CHARLIE_CARD_VALUE
+    ADMIN_SAVE_PROFILE,
+    UPDATE_CHARLIE_CARD_VALUE, adminSave
 } from "../actions/auth-actions";
 
 const authReducer = (state = {
@@ -45,6 +46,11 @@ const authReducer = (state = {
                 ...state,
                 profileData: action.response,
                 isLoggedIn: true
+            };
+        case ADMIN_SAVE_PROFILE:
+            return {
+                ...state,
+                adminSave: action.adminSave
             };
         case UPDATE_CHARLIE_CARD_VALUE:
             return {
