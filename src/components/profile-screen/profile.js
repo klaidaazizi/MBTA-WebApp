@@ -4,16 +4,12 @@ import {Link, Route, Routes, HashRouter, useLocation, useNavigate, useParams} fr
 import PinnedStops from "./nav-components/pinned-stops";
 import Followers from "./nav-components/followers";
 import Following from "./nav-components/following";
-import LikedPosts from "./nav-components/liked-posts";
 import Posts from "./nav-components/posts";
-import Applauds from "./nav-components/applauds";
 import ConductorLikes from "./nav-components/conductor-likes";
 import './index.css';
 import UserSearchBar from "../user-search";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../actions/auth-actions";
-import UserSearchScreen from "../user-search/user-search-screen";
-import {findAlertsByStop} from "../../actions/alerts-action";
 
 const Profile = () => {
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
@@ -25,24 +21,15 @@ const Profile = () => {
     const [profile, setProfile] = useState({});
 
     useEffect(() => {
-        try{
-            //const user = await service.profile();
-            setProfile(user);
-        }
-        catch (e) {
-            alert(e + "User not logged in.")
-            navigate('/profile-search');
-        }
-    }, []);
+        {loggedIn ? setProfile(user) : navigate('/profile-search')}
+    }, [loggedIn]);
 
     const goToConductorRoute = () => {
         navigate('/home');
     }
-    //const date = new Date(profile.dateOfBirth).toDateString();
 
     return(
         <>
-            {loggedIn ?
                 <div className='container'>
                 <div className='box top'>
                     <UserSearchBar/>
@@ -68,19 +55,17 @@ const Profile = () => {
                     </div>
                     <img src='/images/thomas.png' alt='' className="profile-pic"/>
 
-                    <div className='float-end'>
+                    <div className='float-end me-1 mt-1'>
                         <button onClick={() => navigate('/profile/editprofile')}
                                 type='button'
-                                className='btn btn-secondary  rounded-pill mt-2 me-2'>Edit Profile
+                                className='btn btn-primary rounded-pill mt-2 me-2'>Edit Profile
                         </button>
-                        <button onClick={() => logout(dispatch).then(navigate('/profile-search'))} className=" btn btn-warning rounded-pill mt-2 me-2">
+                        <button onClick={() => logout(dispatch).then(navigate('/profile-search'))} className=" btn btn-danger rounded-pill mt-2 me-2">
                             Logout
                         </button>
                     </div>
                     <div className="m-2 ms-3">
                         <span className=" fw-bold">@{profile && profile.username? profile.username :''}</span>
-                        {/*<span className="fw-bold float-end ">{profile.followingCount}*/}
-                        {/*    <span className='text-muted'>Following</span></span>*/}
 
                         <div className="mt-1">{profile && profile.email? profile.email: ''}</div>
 
@@ -156,28 +141,26 @@ const Profile = () => {
                                       className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
                                     Following</Link>
                             </li>
-
-                                {profile.userRole === "Conductor" ?
-                                    <>
+                            {profile.userRole === "Conductor" ?
+                                <>
                                     <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                    <Link to="/profile/lists/conductor-likes"
+                                        <Link to="/profile/lists/conductor-likes"
                                               className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
                                             Commuters Who Like You </Link>
                                     </li>
-                                    </>
-                                    :
-                                    <>
+                                </>
+                                :
+                                <>
                                     {profile.userRole === "Commuter" ?
                                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                                        <Link to="/profile/lists/conductor-likes"
-                                              className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                            Conductors You Like </Link>
+                                            <Link to="/profile/lists/conductor-likes"
+                                                  className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                                Conductors You Like </Link>
                                         </li>
                                         : ""
                                     }
-                                    </>
-                                }
-
+                                </>
+                            }
                             {user && user.userRole === "Commuter" ?
                                 <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                     <Link to="/profile/lists/pinned-stops"
@@ -191,8 +174,8 @@ const Profile = () => {
                     </div>
 
                     <Routes>
-                        <Route path="/followers" element={<Followers/>}/>
-                        <Route path="/following" element={<Following/>}/>
+                        <Route path="/followers" element={<Followers userProfile={user}/>}/>
+                        <Route path="/following" element={<Following userProfile={user}/>}/>
                         <Route path="/your-posts" element={<Posts userProfile={user}/>}/>
                         <Route path="/conductor-likes" element={<ConductorLikes userProfile={user}/>}/>
                         <Route path="/pinned-stops" element={<PinnedStops userProfile={user}/> }/>
@@ -200,8 +183,6 @@ const Profile = () => {
                 </div>
 
             </div>
-                :
-            <UserSearchScreen/> }
         </>
 
 

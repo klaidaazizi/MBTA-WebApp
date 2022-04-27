@@ -111,7 +111,7 @@ const CommuterRegister = () => {
                     </div>
                     <br/>
                     <div className="button-container">
-                        <Button className="btn btn-secondary me-2" onClick={createAccount} >Create Account</Button>
+                        <Button className="btn btn-danger me-2" onClick={createAccount} >Create Account</Button>
                         <Link onClick={() => changeHighlight(dispatch, 'privacy')} to='/policy' className="btn btn-info">Privacy Policy</Link>
                     </div>
                 </form>

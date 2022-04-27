@@ -9,15 +9,13 @@ const UserSearchBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const users = useSelector(state => state.users);
-    console.log('users', users)
+    //console.log('users', users)
     const [allUsers, setUsers] = useState([]);
     const [text, setText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     useEffect(() => {
-        findAllUsers(dispatch);
-            // .then(()=> {
-            // setUsers(allUsers);
-            console.log('users', users);}
+        findAllUsers(dispatch)}
+            //console.log('users', users);}
     , []);
 
     const onChangeHandler = (text) => {

@@ -23,10 +23,10 @@ const Login = () => {
             <h6>Log In</h6>
             <form>
             <div className='input-container'>
-                <label> Username or Email </label>
+                <label> Username </label>
                 <div>
                 <input type='text'
-                       placeholder='Enter username or email'
+                       placeholder='Enter username'
                        className='form-control'
                        onChange={handleUsername}/>
                 </div>
@@ -42,7 +42,7 @@ const Login = () => {
             <div className="button-container">
                 <Button className="btn btn-primary mt-2" onClick={logIn} >Log In</Button>
                 <div>
-                    Don't have an account? <Link to={'/register'} className="btn btn-secondary me-2" >Create Account</Link>
+                    Don't have an account? <Link to={'/register'} className="btn btn-danger me-2" >Create Account</Link>
             </div>
             </div>
             </form>

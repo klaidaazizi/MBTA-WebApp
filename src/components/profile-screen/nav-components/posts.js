@@ -18,7 +18,7 @@ const UserPosts = ({userProfile}) => {
             await findAllPostsByUser(dispatch, user),
         []);
     const deletePost = (pid) => userDeletesAPost(pid).then(findAllPostsByUser(dispatch, user));
-    console.log(postsByUser, " pins in user posts")
+    //console.log(postsByUser, " pins in user posts")
 
     return(
         <Posts posts={postsByUser} deletePost={deletePost} user={user}/>

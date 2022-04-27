@@ -7,7 +7,7 @@ import {findAlertsByStop} from "../../../actions/alerts-action";
 import {pinStop} from "../../../services/pinned-stop-service";
 
 const StopUnit = ({unpinStop, stop, user}) => {
-    console.log(stop, user, "in stop unit")
+    //console.log(stop, user, "in stop unit")
     let routeType;
     let stopName;
     let routeName;
