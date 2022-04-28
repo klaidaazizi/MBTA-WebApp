@@ -12,17 +12,17 @@ const PostList = () => {
     const user = useSelector(state => state.sessionReducer.profileData)
     console.log(user)
     const [newPost, setPost] =
-        useState({post: 'New post', user: "me"});
+        useState({post: 'New post', user: {username: user.username}});
 
     useEffect(  async () => {
              await findAllPosts(dispatch)
         }
         ,
-        []);
+        [user]);
+
 
     const createAndUpdateList = (newPost) => createPost(dispatch, "me", newPost);
     const deleteAndUpdateList = (postId) => deletePost(dispatch, postId).then(findAllPosts(dispatch));
-
     return(
         <div>
             <h2>MBTA Community Posts</h2>
@@ -36,7 +36,7 @@ const PostList = () => {
 
                     <textarea className="form-control w-75"
                               onChange={(e) =>
-                                  setPost({post: e.target.value})} placeholder="Share your thoughts..."></textarea>
+                                    setPost({post: e.target.value})} placeholder="Share your thoughts..."></textarea>
                 </li>
 
 
@@ -76,8 +76,11 @@ const PostList = () => {
                                 }
                                 </>
                             }
-                            <span className="posterName">{post.user.username} - </span>
-                            <span className="posterHandle">{post.timePosted}</span>
+                            <span className="posterName">  <span className="userRoleType">{post.user.userRole}, </span> {post.user.name}  </span>
+                            <br/>
+                            <span className="posterName">  @{post.user.username}  </span>
+                            <br/>
+                            <br/>
                             <p className="postContent">{post.post}</p>
                         </li>
 

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {logout} from "../../actions/auth-actions";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import "./nav-bar.css"
 
 const NavigationBar = () => {
@@ -14,10 +15,11 @@ const NavigationBar = () => {
         <div className='list-group'>
             <Link to='/'
                   className={`list-group-item`}>
-                <span><img className='img-fluid float-start' src="/images/teasy.png"/></span>
+                <span className="d-none d-lg-inline"><img className='img-fluid float-start' src="/images/teasy.png"/></span>
             </Link>
             <Link to='/'
                   className={`list-group-item ${navigationData.activePage === "home" ? 'active': ''}`}>
+                <FontAwesomeIcon icon="fa-solid fa-house" className="me-1" />
                 <span>
                     Home
                 </span>
@@ -25,6 +27,7 @@ const NavigationBar = () => {
             {isLoggedIn ?
             <Link to='/profile'
                   className={`list-group-item ${navigationData.activePage === "profile" ? 'active': ''}`}>
+                <FontAwesomeIcon icon="fa-solid fa-user" className="me-1"/>
                 <span>
                     Your Profile
                 </span>
@@ -32,12 +35,14 @@ const NavigationBar = () => {
             ''}
             <Link to='/search'
                   className={`list-group-item ${navigationData.activePage === "search_stations" ? 'active': ''}`}>
+                <FontAwesomeIcon icon="fa-solid fa-train-subway" className="me-1"/>
                 <span>
                     Search Stations
                 </span>
             </Link>
             <Link to='/profile-search'
                   className={`list-group-item ${navigationData.activePage === "search_users" ? 'active': ''}`}>
+                <FontAwesomeIcon icon="fa-solid fa-user-group" className="me-1"/>
                 <span>
                     Search Users
                 </span>
@@ -45,14 +50,16 @@ const NavigationBar = () => {
             {isLoggedIn ?
                 <Link to='/posts'
                   className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}>
-                <span>
+                    <FontAwesomeIcon icon="fa-solid fa-bullhorn" className="me-1"/>
+                    <span>
                     Posts
-                </span>
-            </Link>
+                    </span>
+                </Link>
                 :
                 ''}
             <Link to='/policy'
                   className={`list-group-item ${navigationData.activePage === "privacy" ? 'active': ''}`}>
+                <FontAwesomeIcon icon="fa-solid fa-shield-halved" className="me-1"/>
                 <span>
                     Privacy Policy
                 </span>
@@ -62,12 +69,14 @@ const NavigationBar = () => {
                   onClick={() => {
                       logout(dispatch)}}
                   className={`bg-danger list-group-item text-white fw-bold`}>
+                <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" className="me-1"/>
                 <span>
                     Logout, {user.username}
                 </span>
             </Link> :
             <Link to='/login'
                   className={`bg-primary list-group-item text-white fw-bold`}>
+                <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" className="me-1"/>
                 <span>
                     Login
                 </span>

@@ -13,8 +13,10 @@ import UserReducer from "../reducers/user-reducer";
 import SearchReducer from "../reducers/search-reducer";
 import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
 import SingleStopReducer from "../reducers/single-stop-reducer";
+import FollowReducer from "../reducers/follow-reducer";
 import PostReducer from "../reducers/post-reducer";
 import ConductedRoutesReducer from "../reducers/conducted-routes-reducer";
+import ConductorLikesReducer from "../reducers/conductor-likes-reducer";
 
 const reducers = combineReducers({
     navigationData: NavigationReducer,
@@ -27,15 +29,21 @@ const reducers = combineReducers({
     singleStop: SingleStopReducer,
     rapidRouteStops: SearchStopReducer,
     sessionReducer: SessionReducer,
-    updatedProfile: SessionReducer,
     users: UserReducer,
     usersWhoPinnedStops: PinnedStopsReducer,
     pinnedStops: PinnedStopsReducer,
     pinExists: PinnedStopsReducer,
+    followers: FollowReducer,
+    following: FollowReducer,
+    followExists: FollowReducer,
     allPosts: PostReducer,
     newPost: PostReducer,
     postsByUser: PostReducer,
-    conductedRoute: ConductedRoutesReducer
+    conductedRoute: ConductedRoutesReducer,
+    conductorlikes: ConductorLikesReducer,
+    commuterLikes: ConductorLikesReducer,
+    conductorLikeExists: ConductorLikesReducer,
+    adminSave: SessionReducer
 });
 const store = createStore(reducers);
 

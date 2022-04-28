@@ -6,9 +6,11 @@ export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const SAVE_PROFILE = 'SAVE_PROFILE';
+export const ADMIN_SAVE_PROFILE = 'ADMIN_SAVE_PROFILE';
 export const UPDATE_CHARLIE_CARD_VALUE = 'UPDATE_CHARLIE_CARD_VALUE';
 export const CLEAR_CONDUCTED_ROUTE = 'CLEAR_CONDUCTED_ROUTE'
 export const LOAD_CONDUCTED_ROUTE = 'LOAD_CONDUCTED_ROUTE'
+
 
 export const register = async (dispatch, user) => {
     const response = await authentication_service.register(user);
@@ -39,6 +41,14 @@ export const save = async (dispatch, user) => {
     dispatch({
         type: SAVE_PROFILE,
         response,
+    });
+};
+
+export const adminSave = async (dispatch, user) => {
+    const adminSave = await authentication_service.adminResetsUser(user);
+    dispatch({
+        type: ADMIN_SAVE_PROFILE,
+        adminSave,
     });
 };
 

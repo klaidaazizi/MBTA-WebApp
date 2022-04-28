@@ -6,6 +6,7 @@ import UsersWhoPinnedStops from "./users-who-pinned";
 import "../user-search/index.css"
 import {findAllUsersWhoPinnedStop} from "../../actions/pinned-stops-action";
 import UsersWhoPinned from "./users-who-pinned-stops-list";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 const SearchStopDetails = () => {
@@ -71,31 +72,33 @@ const SearchStopDetails = () => {
                     <div className=' container '>
                         <span className=' row text-center'>
                           <div className='col-8'>
-                               <span className="col-6 btn back-button-transit-stop float-start"
+                               <span className="col-6 btn back-button-transit-stop float-start p-2"
                                      onClick={goBack}>
-                                                 Back
+                                   <span className="d-md-block d-none">Back</span>
+                                   <span className="d-md-none"><FontAwesomeIcon icon="fa-solid fa-left-long" /></span>
                                </span>
-                                                  </div>
+                          </div>
 
                             {singleStop.relationships && singleStop.relationships.parent_station && singleStop.relationships.parent_station.data && singleStop.relationships.parent_station.data.id ?
                                 <div className='col-4'>
 
                                 <Link to={`/search/details/${singleStop.relationships.parent_station.data.id}/users-pinned`}>
-                                    <span className=" btn btn-success " >
-                                    View Users Who Pinned This Stop
+                                    <span className=" btn btn-success">
+                                        <span>View Users Who Pinned This Stop</span>
                                     </span>
                                 </Link>
                                 </div>
 
                                 :
-                                    <div className='col-4'>
+                                <div className='col-4'>
 
                                     <Link to={`/search/details/${singleStop.id}/users-pinned`}>
                                     <span className=" btn btn-success ">
-                                    View Users Who Pinned This Stop
+                                        <span className="d-md-block d-none">View Users Who Pinned This Stop</span>
+                                        <span className="d-md-none"><FontAwesomeIcon icon="fa-solid fa-binoculars" className="fa-xl" /></span>
                                     </span>
                                     </Link>
-                                    </div>
+                                </div>
 
                             }
                             <div>

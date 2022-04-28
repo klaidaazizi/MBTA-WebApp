@@ -4,46 +4,63 @@ import {Link, Route, Routes, HashRouter, useLocation, useNavigate} from "react-r
 import PinnedStops from "./nav-components/pinned-stops";
 import Followers from "./nav-components/followers";
 import Following from "./nav-components/following";
-import LikedPosts from "./nav-components/liked-posts";
 import Posts from "./nav-components/posts";
-import Applauds from "./nav-components/applauds";
 import ConductorLikes from "./nav-components/conductor-likes";
 import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {findUserByUsername} from "../../actions/user-actions";
+import {followUser} from "../../services/follow-service";
+import {followAlreadyExists} from "../../actions/follow-actions";
+import {conductorLikeAlreadyExists} from "../../actions/conductor-likes-action";
+import {likeConductor} from "../../services/conductor-likes-service";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
-    const [profile, setProfile] = useState({});
-    console.log(profile.currentRouteConducting)
+    const [profile, setProfile] = useState({currentRouteConducting: ''});
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
+    const userViewing = useSelector(state => state.sessionReducer.profileData)
+    const conductorLikeExists = useSelector(state => state.conductorLikeExists);
+    const followExists = useSelector(state => state.followExists);
 
+
+    const blockLike = () => {
+        alert("You have already liked this conductor.");
+        return;
+    }
+
+
+    const queryURL = window.location.pathname;
+    const params = queryURL.toString().split('/');
+    const username = params[2].toString();
 
     useEffect( async () => {
         try{
-            const queryURL = window.location.pathname;
-            const params = queryURL.toString().split('/');
-            //console.log('params', params[2].toString());
-            const username = params[2].toString();
-            //console.log(username);
             const user = await service.findUserByUsername(username);
-            //findUserByUsername(dispatch,username)
             setProfile(user);
+            //console.log(user)
+            if(loggedIn){
+                await conductorLikeAlreadyExists(dispatch, user._id, userViewing._id)
+                await followAlreadyExists(dispatch, user._id, userViewing._id)
+            }
         }
         catch (e) {
             alert(e);
-            //navigate('/');
         }
-    }, []);
+    }, [username]);
 
     const goToConductorRoute = () => {
         navigate('/home');
     }
 
-    console.log(profile)
+    const follow = () =>{
+        {followExists === 0 ?
+            followUser("me", profile._id) :
+            alert("Already following user!")}
+    }
+    //console.log('profile', profile)
+
 
     return(
         <>
@@ -69,19 +86,33 @@ const PublicProfile = () => {
                 <img src='/images/thomas.png' alt='' className="profile-pic"/>
 
                 { loggedIn ?
-                <div className='float-end mt-2 '>
-
-                    <Button className='btn-primary rounded-pill'>Follow</Button>
-                    { profile.userRole === 'Conductor' ?
-                        <Button className='btn-info ms-2 rounded-pill'>Like</Button> : ''}
+                <div className='float-end mt-2 me-1'>
+                    {profile.userRole !== "Admin" && userViewing.userRole === "Admin" ?
+                        <button onClick={() => navigate(`/profile/editprofile/${profile.username}`)}
+                                type='button'
+                                className='btn btn-secondary  rounded-pill  me-2'>Edit User's Profile
+                        </button>
+                        :
+                        ""
+                    }
+                    <Button className='btn-primary rounded-pill' onClick={()=> follow()}>Follow</Button>
+                    { profile.userRole === 'Conductor' && userViewing.userRole === "Commuter" ?
+                        <>
+                            {conductorLikeExists === 0 && profile && profile._id ?
+                                <Button className='btn-info ms-2 rounded-pill'
+                                        onClick={() => likeConductor(userViewing._id, profile._id)}>Like
+                                    Conductor</Button>
+                                :
+                                <Button className='btn-info ms-2 rounded-pill' onClick={blockLike}>Like
+                                    Conductor</Button>
+                            }
+                        </>
+                        : ""
+                    }
                 </div>
                     : ''}
                 <div className="m-2 ms-3">
                     <span className=" fw-bold">@{profile.username}</span>
-                    {/*<span className="fw-bold float-end ">{profile.followingCount}*/}
-                    {/*    <span className='text-muted'>Following</span></span>*/}
-
-                    {/*<div className="mt-1">{profile.email}</div>*/}
 
 
                 </div>
@@ -126,39 +157,50 @@ const PublicProfile = () => {
 
                 <div className='ms-2'>
                     <ul className='nav mb-2 nav-tabs'>
-                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                            <Link to={`/profile/${profile.username}/lists/your-posts`}
-                                  className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
-                                Posts
-                            </Link>
-                        </li>
+                        {loggedIn ?
+                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                <Link to={`/profile/${profile.username}/lists/your-posts`}
+                                      className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active' : ''}`}>
+                                    Posts
+                                </Link>
+                            </li>
+                            : ""
+                        }
 
-                        {/*<li className="nav-item ms-1 mb-1 border border-primary rounded-2">*/}
-                        {/*    <Link to="/profile/lists/liked-post"*/}
-                        {/*          className={`nav-link ${location.pathname.indexOf('liked-post') >= 0 ? 'active':''}`}>*/}
-                        {/*        Liked Posts</Link>*/}
-                        {/*</li>*/}
                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                            <Link to="/profile/lists/followers"
+                            <Link to={`/profile/${profile.username}/lists/followers`}
                                   className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
                                 Followers</Link>
                         </li>
                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                            <Link to="/profile/lists/following"
+                            <Link to={`/profile/${profile.username}/lists/following`}
                                   className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
                                 Following</Link>
                         </li>
-                        {/*<li className="nav-item ms-1 mb-1 border border-primary rounded-2 ">*/}
-                        {/*    <Link to="/profile/lists/applauds"*/}
-                        {/*          className={`nav-link ${location.pathname.indexOf('applauds') >= 0 ? 'active':''}`}>*/}
-                        {/*        Applauds</Link>*/}
-                        {/*</li>*/}
 
-                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
-                            <Link to="/profile/lists/conductor-likes"
-                                  className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active':''}`}>
-                                Liked conductors</Link>
-                        </li>
+                            {profile.userRole === "Conductor" ?
+                                <>
+                                <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                <Link to={`/profile/${profile.username}/lists/conductor-likes`}
+                                      className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                    Likes By Commuters
+                                </Link>
+                                </li>
+                                </>
+                                :
+                                <>
+                                {profile.userRole === "Commuter" ?
+                                    <>
+                                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                        <Link to={`/profile/${profile.username}/lists/conductor-likes`}
+                                          className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                        Conductors {profile.username} Likes </Link>
+                                    </li>
+                                    </>
+                                    : ""
+                                }
+                                </>
+                            }
 
                         {profile && profile.userRole === "Commuter" ?
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
@@ -174,12 +216,10 @@ const PublicProfile = () => {
 
             </div>
             <Routes>
-                <Route path="lists/followers" element={<Followers/>}/>
-                <Route path="lists/following" element={<Following/>}/>
-                {/*<Route path="lists/liked-post" element={<LikedPosts/>}/>*/}
+                <Route path="lists/followers" element={<Followers userProfile={profile}/>}/>
+                <Route path="lists/following" element={<Following userProfile={profile}/>}/>
                 <Route path="lists/your-posts" element={<Posts userProfile={profile}/>}/>
-                {/*<Route path="lists/applauds" element={<Applauds/>}/>*/}
-                <Route path="lists/conductor-likes" element={<ConductorLikes/>}/>
+                <Route path="lists/conductor-likes" element={<ConductorLikes userProfile={profile} userViewing={userViewing}/>}/>
                 { profile._id ?
                     <Route path="lists/pinned-stops" element={<PinnedStops userProfile={profile}/>}/>
                     :""

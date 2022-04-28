@@ -30,8 +30,6 @@
     left: 50%;
 }
 
-
-
 #button1 , #button2 {
     display:inline-block;
     /* additional code */
@@ -58,8 +56,9 @@
 
 
 .search-page-text{
-    font-size: 36px;
-    /*margin-left: 200px;*/
+    font-size: 30px;
+    margin-left: 5px;
+    margin-bottom: 16px;
 
 }
 
@@ -140,10 +139,10 @@
 }
 
 .rapid-transit-routes-title{
-    margin-left: 80px;
+    margin-left: 40px;
     font-size: 30px;
-    color: #D6053E;
     align-items: center;
+    color: #D6053E;
     justify-content: center;
 }
 
@@ -156,7 +155,7 @@
 }
 
 .bus-routes-title{
-    margin-left: 140px;
+    margin-left: 40px;
     font-size: 30px;
     color: #008332;
     align-items: center;
@@ -164,7 +163,7 @@
 }
 
 .ferry-routes-title{
-    margin-left: 120px;
+    margin-left: 40px;
     font-size: 30px;
     color: #0086A2;
     align-items: center;
@@ -209,6 +208,47 @@
 .back-button-transit-stop{
     background-color: #55524D;
 
+}
+
+.like-div{
+    display: flex;
+}
+
+.like-buttons{
+    display:inline-block;
+}
+
+.blurb{
+    margin-top: 16px;
+    margin-left: 66px;
+    font-size: 19px;
+    color: black;
+    font-family: "Helvetica Neue";
+}
+
+.blurbdiv{
+    margin-top: 16px;
+}
+
+.slogan{
+    color: #5cb85c;
+    font-size: 19px;
+    margin-left: 146px;
+    font-family: "Helvetica Neue";
+    font-weight: bold;
+}
+
+.home-button-login{
+    height: 70px;
+    width: 150px;
+    justify-content: center;
+}
+
+#wrapper {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 

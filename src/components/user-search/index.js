@@ -13,10 +13,8 @@ const UserSearchBar = () => {
     const [text, setText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     useEffect(() => {
-        findAllUsers(dispatch);
-            // .then(()=> {
-            // setUsers(allUsers);
-        }
+        findAllUsers(dispatch)}
+            //console.log('users', users);}
     , []);
 
     const onChangeHandler = (text) => {
@@ -59,7 +57,7 @@ const UserSearchBar = () => {
                 )}
                 </div>
             </div>
-            <Button className='col-2 h-25' onClick={()=>navigate(`/profile/${text}`)}>Go
+            <Button className='col-2 h-25 p-2' onClick={()=>navigate(`/profile/${text}`)}>Go
             </Button>
         </div>
     )

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findAllFerryRoutes} from "../../actions/search-action";
 import {Link} from "react-router-dom";
 import './search.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 const FerryRoutes = () => {
@@ -19,6 +20,7 @@ const FerryRoutes = () => {
                     <Link to="/home" className="-search-main-buttons-text btn btn-lg btn-dark">
                         Back
                     </Link>
+                    <span className="ferry-routes-title d-md-none"><FontAwesomeIcon icon="fa-solid fa-ferry" className="fa-xl" /></span>
                     <span className="ferry-routes-title">Ferry Routes</span></li>
                 {ferryRoutes.map(
                     route => {
