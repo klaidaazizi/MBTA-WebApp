@@ -21,7 +21,7 @@ const CommuterRailRoutes = () => {
                         Back
                     </Link>
                     <span className="commuter-rail-routes-title d-md-none"> <FontAwesomeIcon icon="fa-solid fa-train-tram" className="fa-xl"/></span>
-                    <span className="commuter-rail-routes-title">Commuter Rail Routes</span></li>
+                    <span className="commuter-rail-routes-title d-md-block d-none">Commuter Rail Routes</span></li>
                 {crRoutes.map(
                     route => {
                         return(<CommuterRailRouteItem key={route.id}

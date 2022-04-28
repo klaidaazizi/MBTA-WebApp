@@ -21,7 +21,7 @@ const FerryRoutes = () => {
                         Back
                     </Link>
                     <span className="ferry-routes-title d-md-none"><FontAwesomeIcon icon="fa-solid fa-ferry" className="fa-xl" /></span>
-                    <span className="ferry-routes-title">Ferry Routes</span></li>
+                    <span className="ferry-routes-title d-md-block d-none">Ferry Routes</span></li>
                 {ferryRoutes.map(
                     route => {
                         return(<FerryRouteItem key={route.id}

@@ -19,7 +19,7 @@ const NavigationBar = () => {
             <Link to='/'
                   className={`list-group-item ${navigationData.activePage === "home" ? 'active': ''}`}>
                 <FontAwesomeIcon icon="fa-solid fa-house" className="me-1" />
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Home
                 </span>
             </Link>
@@ -36,7 +36,7 @@ const NavigationBar = () => {
                   className={`list-group-item ${navigationData.activePage === "search_stations" ? 'active': ''}`}>
                 <FontAwesomeIcon icon="fa-solid fa-train-subway" className="me-1"/>
                 <span className="d-none d-xl-inline">
-                    Search Stations
+                    Search Station
                 </span>
             </Link>
             <Link to='/profile-search'

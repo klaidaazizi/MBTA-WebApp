@@ -19,7 +19,7 @@ const BusRoutes = () => {
                         Back
                     </Link>
                     <span className="bus-routes-title d-md-none"><FontAwesomeIcon icon="fa-solid fa-bus" className="fa-xl" /></span>
-                    <span className="bus-routes-title">Bus Routes</span></li>
+                    <span className="bus-routes-title d-md-block d-none">Bus Routes</span></li>
                 {busRoutes.map(
                     route => {
                         return(<BusRouteItem key={route.id}
