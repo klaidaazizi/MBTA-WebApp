@@ -22,6 +22,7 @@ const PredictionListItem = ({prediction}) => {
     if(prediction.status) {
         predictionDisplay = prediction.status;
     }
+
     else if(timeToArrival < 0) {
         predictionDisplay = 'Left Station';
     }
