@@ -139,7 +139,7 @@
 }
 
 .rapid-transit-routes-title{
-    margin-left: 80px;
+    margin-left: 40px;
     font-size: 30px;
     align-items: center;
     color: #D6053E;
@@ -155,7 +155,7 @@
 }
 
 .bus-routes-title{
-    margin-left: 140px;
+    margin-left: 40px;
     font-size: 30px;
     color: #008332;
     align-items: center;
@@ -163,7 +163,7 @@
 }
 
 .ferry-routes-title{
-    margin-left: 120px;
+    margin-left: 40px;
     font-size: 30px;
     color: #0086A2;
     align-items: center;
