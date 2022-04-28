@@ -4,6 +4,7 @@ import '../user-search/index.css';
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllStopsInMBTA} from "../../actions/search-action";
+import {changeHighlight} from "../../actions/nav-bar-action";
 
 const StopSearchBar = () => {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ const StopSearchBar = () => {
     console.log('stops', MBTAStops)
 
     const dispatch = useDispatch();
+    changeHighlight(dispatch, 'search_stations')
     useEffect(() => {
             findAllStopsInMBTA(dispatch);
         }, []);

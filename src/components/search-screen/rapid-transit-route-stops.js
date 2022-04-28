@@ -22,9 +22,9 @@ const RapidRouteStops = () => {
         <div>
             <ul className='list-group'>
                 <li className=' list-group-item fw-bold text-danger back-button-and-title-rt-route'>
-                    <button id="buttonBackToSearchMain" type="button" className=" button-sizing btn btn-danger ">
-                        <Link to={`/home/rapid-transit`} className="-search-main-buttons-text">Back</Link>
-                    </button>
+                    <Link to="/home/rapid-transit" className="-search-main-buttons-text btn btn-lg btn-dark">
+                        Back
+                    </Link>
                     <span className="rapid-transit-routes-title">{routeNameForStopsList} Stops</span></li>
                 {rapidRouteStops.map(
                     rapidRouteStop => {

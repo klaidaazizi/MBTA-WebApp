@@ -2,9 +2,11 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllPosts, deletePost, createPost} from "../../actions/posts-actions";
 import {userDeletesAPost, userPostsAPost} from "../../services/post-service";
+import {changeHighlight} from "../../actions/nav-bar-action";
 
 const PostList = () => {
     const dispatch = useDispatch();
+    changeHighlight(dispatch, 'posts')
     const allPosts = useSelector(state => state.allPosts);
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
     const user = useSelector(state => state.sessionReducer.profileData)

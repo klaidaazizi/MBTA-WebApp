@@ -10,6 +10,7 @@ import './index.css';
 import UserSearchBar from "../user-search";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../actions/auth-actions";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Profile = () => {
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
@@ -17,16 +18,11 @@ const Profile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const params = useParams();
     const [profile, setProfile] = useState({});
 
     useEffect(() => {
         {loggedIn ? setProfile(user) : navigate('/profile-search')}
     }, [loggedIn]);
-
-    const goToConductorRoute = () => {
-        navigate('/home');
-    }
 
     return(
         <>
@@ -44,7 +40,7 @@ const Profile = () => {
                         <div className="col-11">
                             <h5>
                                 <span className='fw-bold text-white'>{profile && profile.name? profile.name: ''}</span>
-                                <span className="d-none d-lg-block float-end text-primary">{profile && profile.userRole? profile.userRole: ''}</span>
+                                <span className="d-none d-md-block float-end text-primary">{profile && profile.userRole? profile.userRole: ''}</span>
                             </h5>
 
                         </div>
@@ -56,10 +52,14 @@ const Profile = () => {
                     <img src='/images/thomas.png' alt='' className="profile-pic"/>
 
                     <div className='float-end mt-1'>
+
                         <button onClick={() => navigate('/profile/editprofile')}
                                 type='button'
-                                className='btn btn-primary rounded-pill mt-2 me-2 p-2'>Edit Profile
+                                className='btn btn-primary rounded-pill mt-2 me-2 p-2'>
+                            <span className="d-none d-sm-block">Edit Profile</span>
+                            <span className="d-xs-block d-sm-none"><FontAwesomeIcon icon="fa-solid fa-pen-to-square" /></span>
                         </button>
+
                         <button onClick={() => logout(dispatch).then(navigate('/profile-search'))} className=" btn btn-danger rounded-pill mt-2 me-2">
                             Logout
                         </button>
@@ -91,23 +91,13 @@ const Profile = () => {
                                     <>
                                         {profile.userRole === "Conductor" ?
                                             <>
-                                                {profile.currentRouteConducting !== '' ?
-                                                    <>
-                                                        <Link  to={profile.currentRouteConducting}>
-                                                        <span className="col-4 btn bg-warning ms-1 me-1" >
-                                                            View/Update My Route
-                                                        </span>
-                                                        </Link>
-                                                    </>
-                                                    :
-                                                    <>
-                                                        <Link  to="/home">
-                                                        <span className="col-3 btn bg-warning ms-1 me-1">
-                                                            Choose My Route
-                                                        </span>
-                                                        </Link>
-                                                    </>
-                                                }
+                                                <>
+                                                    <Link  to="/home">
+                                                    <span className="col-3 btn bg-warning ms-1 me-1">
+                                                        Choose My Route
+                                                    </span>
+                                                    </Link>
+                                                </>
                                                 </>
                                                 :
                                                 ""

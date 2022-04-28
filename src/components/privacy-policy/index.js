@@ -1,6 +1,10 @@
 import React from "react";
+import {useDispatch} from "react-redux";
+import {changeHighlight} from "../../actions/nav-bar-action";
 
 const PrivacyPolicy = () => {
+    const dispatch = useDispatch();
+    changeHighlight(dispatch, 'privacy')
     return (
         <div>
             <h1>Privacy Policy</h1>

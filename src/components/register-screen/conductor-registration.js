@@ -3,13 +3,12 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import * as action from '../../actions/auth-actions';
 import {useDispatch} from "react-redux";
-import routes from "./routes.json";
 import {changeHighlight} from "../../actions/nav-bar-action";
 
 const ConductorRegistration = () => {
     const [newUser, setNewUser] = useState({
         userRole: 'Conductor',
-        currentRouteConducting: ""
+        currentRouteConducting: ''
 
     });
     const navigate = useNavigate();
@@ -33,10 +32,6 @@ const ConductorRegistration = () => {
         setNewUser({...newUser, password: e.target.value})
     }
 
-    const handleConductingRouteChange = (e) => {
-        setNewUser({...newUser, currentRouteConducting: e.target.value})
-    }
-
     const handleDateOfBirthChange = (e) => {
         setNewUser({...newUser, dateOfBirth: e.target.value})
     }
@@ -49,7 +44,7 @@ const ConductorRegistration = () => {
     return(
         <>
             <div className='form'>
-                <Button onClick={() => navigate('/register')}>Back</Button>
+                <Button className='btn btn-dark' onClick={() => navigate('/register')}>Back</Button>
                 <h5 className='text-center'>Conductor Account Registration</h5>
                 <form>
                     <div className='input-container'>

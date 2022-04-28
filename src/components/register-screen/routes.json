@@ -1,22 +1,17 @@
 [
   {
-    "name": "None",
-    "value": "",
-    "selected": false
-  },
-  {
     "name": "Red",
-    "value": "Red",
+    "value": "home/rapid-transit/Red/Red_line",
     "selected": false
   },
   {
     "name": "Orange",
-    "value": "Orange",
+    "value": "home/rapid-transit/Orange/Orange_Line",
     "selected": true
   },
   {
     "name": "Blue",
-    "value": "Blue",
+    "value": "home/rapid-transit/Blue/Blue_Line",
     "selected": false
   }
 ]

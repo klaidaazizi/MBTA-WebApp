@@ -15,6 +15,7 @@ import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
 import SingleStopReducer from "../reducers/single-stop-reducer";
 import FollowReducer from "../reducers/follow-reducer";
 import PostReducer from "../reducers/post-reducer";
+import ConductedRoutesReducer from "../reducers/conducted-routes-reducer";
 import ConductorLikesReducer from "../reducers/conductor-likes-reducer";
 
 const reducers = combineReducers({
@@ -38,6 +39,7 @@ const reducers = combineReducers({
     allPosts: PostReducer,
     newPost: PostReducer,
     postsByUser: PostReducer,
+    conductedRoute: ConductedRoutesReducer,
     conductorlikes: ConductorLikesReducer,
     commuterLikes: ConductorLikesReducer,
     conductorLikeExists: ConductorLikesReducer,
@@ -52,10 +54,10 @@ const Home = () => {
                 <div className='col-2'>
                     <LeftSidebar/>
                 </div>
-                <div className='col-7'>
+                <div className='col-10 col-lg-7 col-xl-7'>
                     <Outlet/>
                 </div>
-                <div className='col-3'>
+                <div className='d-none d-lg-block col-3'>
                     <AlertsBar/>
                 </div>
             </div>

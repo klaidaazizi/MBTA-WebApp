@@ -9,7 +9,6 @@ const UserSearchBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const users = useSelector(state => state.users);
-    //console.log('users', users)
     const [allUsers, setUsers] = useState([]);
     const [text, setText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
