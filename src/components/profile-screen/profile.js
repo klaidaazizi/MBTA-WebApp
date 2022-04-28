@@ -20,6 +20,14 @@ const Profile = () => {
     const location = useLocation();
     const [profile, setProfile] = useState({});
 
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    function convertDateBirth(myDate) {
+        let dateWithoutTime = myDate.split("T");
+        var date = dateWithoutTime[0].split("-");
+        return months[Number(date[1]) - 1] + " " + date[2] + ", " + date[0];
+    };
+
     useEffect(() => {
         {loggedIn ? setProfile(user) : navigate('/profile-search')}
     }, [loggedIn]);
@@ -107,9 +115,13 @@ const Profile = () => {
                             </>
                         }
                         <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                            <span className="d-none d-lg-inline">Born</span>: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>
-                        <span><i className='fa fa-calendar me-1 ms-3'/>
-                            <span className="d-none d-lg-inline">Joined</span>: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>
+                            { profile && profile.dateOfBirth?
+                            <span className="d-none d-lg-inline">Born:  {convertDateBirth(profile.dateOfBirth)} </span>
+                                :''}
+                             </span>
+                        {/*<span className="d-none d-lg-inline">Born</span>: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>*/}
+                    {/*    <span><i className='fa fa-calendar me-1 ms-3'/>*/}
+                    {/*        <span className="d-none d-lg-inline">Joined</span>: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>*/}
                     </div>
 
 

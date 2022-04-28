@@ -24,19 +24,18 @@ const FollowerUnit = ({follow,removeFollow, user}) => {
                                         className="btn btn-warning ms-3">
                                     Remove</Button>
                                 : ''}
-                            {user === "me" ?
-                                <>
-                                    <Button onClick={() => navigate(`/profile`)}
-                                            className="btn btn-info float-end">
-                                        Go To Profile
-                                    </Button>
-                                </>
-                                :
-                                <Button onClick={() => navigate(`/profile/${follow.follower.username}`)}
+                                {/*// <>*/}
+                                {/*//     <Button onClick={() => navigate(`/profile`)}*/}
+                                {/*//             className="btn btn-info float-end">*/}
+                                {/*//         Go To Profile*/}
+                                {/*//     </Button>*/}
+                                {/*// </>*/}
+                                {/*// :*/}
+                                    <Button onClick={() => navigate(`/profile/${follow.follower.username}`)}
                                         className="btn btn-info float-end">
                                     Go To Profile
                                 </Button>
-                            }
+
 
                         </div>
                     </div>

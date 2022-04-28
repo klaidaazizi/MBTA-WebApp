@@ -31,6 +31,13 @@ const PublicProfile = () => {
         return;
     }
 
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    function convertDateBirth(myDate) {
+        let dateWithoutTime = myDate.split("T");
+        var date = dateWithoutTime[0].split("-");
+        return months[Number(date[1]) - 1] + " " + date[2] + ", " + date[0];
+    };
 
     const queryURL = window.location.pathname;
     const params = queryURL.toString().split('/');
@@ -141,28 +148,47 @@ const PublicProfile = () => {
                                     </span>
                                 </>
                                 :
-                                <>
-                                    {profile.userRole === "Conductor" && profile.currentRouteConducting !== '' ?
-                                        <>
-                                            <Link  to={profile.currentRouteConducting}>
-                                            <span className="col-3 btn bg-warning ms-1 me-1" >
-                                                View My Route
-                                             </span>
-                                                </Link>
-                                                </>
-                                        :
-                                        ""
-                                    }
-                                </>
+                                ""
+                                // <>
+                                //     {profile.userRole === "Conductor" && profile.currentRouteConducting !== '' ?
+                                //         <>
+                                //             <Link  to={profile.currentRouteConducting}>
+                                //             <span className="col-3 btn bg-warning ms-1 me-1" >
+                                //                 View My Route
+                                //              </span>
+                                //                 </Link>
+                                //                 </>
+                                //         :
+                                //         ""
+                                //     }
+                                // </>
                             }
                         </>
                     }
-                    <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                 Born: newDate{profile.dateOfBirth}</span>
-                    <span><i className='fa fa-calendar me-1 ms-3'/>
-                    Joined: {profile.joinedDate}</span>
-                </div>
+                    {profile && profile.userRole && profile.userRole === "Conductor" ?
+                        <span><i className='fa fa-birthday-cake ms-1 me-1'/>
+                            {profile && profile.dateOfBirth ?
+                                <span
+                                    className="d-none d-lg-inline">Birthday: {convertDateBirth(profile.dateOfBirth)} </span>
+                                : ''}
+                             </span>
+                        :
+                        <span><i className='fa fa-birthday-cake ms-3 me-1'/>
+                            { profile && profile.dateOfBirth?
+                                <span className="d-none d-lg-inline">Birthday:  {convertDateBirth(profile.dateOfBirth)} </span>
+                                :''}
+                             </span>
+                    }
 
+                    {/*<span>*/}
+                    {/*    <i className='fa fa-birthday-cake ms-3 me-1'/>*/}
+                    {/*    Born: newDate{profile.dateOfBirth}*/}
+                    {/*</span>*/}
+                    {/*<span>*/}
+                    {/*    <i className='fa fa-calendar me-1 ms-3'/>*/}
+                    {/*    Joined: {profile.joinedDate}*/}
+                    {/*</span>*/}
+                </div>
 
                 <div className='ms-2'>
                     <ul className='nav mb-2 nav-tabs'>
