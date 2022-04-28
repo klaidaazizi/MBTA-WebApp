@@ -2,9 +2,13 @@ import React from "react";
 import {Link, Route, Routes} from "react-router-dom";
 
 import './search.css';
+import {useDispatch} from "react-redux";
+import {changeHighlight} from "../../actions/nav-bar-action";
 
 
 const SearchScreen = () => {
+    const dispatch = useDispatch();
+    changeHighlight(dispatch, 'home')
 
     return (
         <div>

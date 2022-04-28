@@ -1,10 +1,15 @@
 import React from "react";
 import {takeRide} from "../../../actions/auth-actions";
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {changeHighlight} from "../../../actions/nav-bar-action";
 
 const PredictionListItem = ({prediction}) => {
+    const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn);
     const user = useSelector(state => state.sessionReducer.profileData);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const currentTime = new Date();
     let trainTime;
     if (prediction.arrival_time !== null) {
@@ -16,9 +21,6 @@ const PredictionListItem = ({prediction}) => {
     let predictionDisplay;
     if(prediction.status) {
         predictionDisplay = prediction.status;
-    }
-    else if(prediction.schedule_relationship){
-        predictionDisplay = prediction.schedule_relationship;
     }
     else if(timeToArrival < 0) {
         predictionDisplay = 'Left Station';
@@ -43,7 +45,11 @@ const PredictionListItem = ({prediction}) => {
     return(
         <div className='list-group-item'>
             <span className='text-dark'>{predictionDisplay}</span>
-            <span className='btn btn-primary float-end' onClick={() => takeRide(dispatch, user).catch(e => alert(e))}>
+            <span className='btn btn-primary float-end' onClick={
+                loggedIn ?
+                    () => takeRide(dispatch, user).catch(e => alert(e)):
+                    () => navigate('/login')
+            }>
                 Take Ride
             </span>
         </div>

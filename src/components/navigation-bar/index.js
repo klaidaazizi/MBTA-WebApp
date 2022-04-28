@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {logout} from "../../actions/auth-actions";
-import {changeHighlight} from '../../actions/nav-bar-action';
 import "./nav-bar.css"
 
 const NavigationBar = () => {
@@ -18,39 +17,34 @@ const NavigationBar = () => {
                 <span><img className='img-fluid float-start' src="/images/teasy.png"/></span>
             </Link>
             <Link to='/'
-                  className={`list-group-item ${navigationData.activePage === "home" ? 'active': ''}`}
-                  onClick={() => changeHighlight(dispatch,'home')}>
+                  className={`list-group-item ${navigationData.activePage === "home" ? 'active': ''}`}>
                 <span>
                     Home
                 </span>
             </Link>
             {isLoggedIn ?
             <Link to='/profile'
-                  className={`list-group-item ${navigationData.activePage === "profile" ? 'active': ''}`}
-                  onClick={() => changeHighlight(dispatch,'profile')}>
+                  className={`list-group-item ${navigationData.activePage === "profile" ? 'active': ''}`}>
                 <span>
                     Your Profile
                 </span>
             </Link> :
             ''}
             <Link to='/search'
-                  className={`list-group-item ${navigationData.activePage === "search_stations" ? 'active': ''}`}
-                  onClick={() => changeHighlight(dispatch,'search_stations')}>
+                  className={`list-group-item ${navigationData.activePage === "search_stations" ? 'active': ''}`}>
                 <span>
                     Search Stations
                 </span>
             </Link>
             <Link to='/profile-search'
-                  className={`list-group-item ${navigationData.activePage === "search_users" ? 'active': ''}`}
-                  onClick={() => changeHighlight(dispatch,'search_users')}>
+                  className={`list-group-item ${navigationData.activePage === "search_users" ? 'active': ''}`}>
                 <span>
                     Search Users
                 </span>
             </Link>
             {isLoggedIn ?
                 <Link to='/posts'
-                  className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}
-                  onClick={() => changeHighlight(dispatch,'posts')}>
+                  className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}>
                 <span>
                     Posts
                 </span>
@@ -58,8 +52,7 @@ const NavigationBar = () => {
                 :
                 ''}
             <Link to='/policy'
-                  className={`list-group-item ${navigationData.activePage === "privacy" ? 'active': ''}`}
-                  onClick={() => changeHighlight(dispatch,'privacy')}>
+                  className={`list-group-item ${navigationData.activePage === "privacy" ? 'active': ''}`}>
                 <span>
                     Privacy Policy
                 </span>
@@ -67,17 +60,14 @@ const NavigationBar = () => {
             {isLoggedIn ?
             <Link to='/'
                   onClick={() => {
-                      logout(dispatch)
-                      changeHighlight(dispatch,'home')
-                  }}
+                      logout(dispatch)}}
                   className={`bg-danger list-group-item text-white fw-bold`}>
                 <span>
                     Logout, {user.username}
                 </span>
             </Link> :
             <Link to='/login'
-                  className={`bg-primary list-group-item text-white fw-bold`}
-                  onClick={() => changeHighlight(dispatch,'profile')}>
+                  className={`bg-primary list-group-item text-white fw-bold`}>
                 <span>
                     Login
                 </span>

@@ -34,6 +34,10 @@ const AdminRegistration = () => {
         setNewUser({...newUser, dateOfBirth: e.target.value})
     }
 
+    const handleJobTitle = (e) => {
+        setNewUser({...newUser, jobTitle: e.target.value})
+    }
+
     // handles Register button
     const createAccount = () =>
         action.register(dispatch, newUser)
@@ -41,7 +45,7 @@ const AdminRegistration = () => {
             .catch(e => alert(e + "\n Username already exists. Please login."));
     return(
         <>
-            <Button onClick={() => navigate('/register')}>Back</Button>
+            <Button className='btn btn-dark' onClick={() => navigate('/register')}>Back</Button>
             <div className='form'>
                 <h5 className='text-center'>Admin Account Registration</h5>
                 <form>
@@ -62,7 +66,7 @@ const AdminRegistration = () => {
                     <div className='input-container'>
                         <label> Email </label>
                         <div>
-                            <input type='text' className="form-control" placeholder='Enter Email' onChange={handleEmail}
+                            <input type='text' className="form-control" placeholder='example@example.com' onChange={handleEmail}
                                    required={true}/>
                         </div>
                     </div>
@@ -76,6 +80,13 @@ const AdminRegistration = () => {
                         <label> Date of Birth </label>
                         <div>
                             <input type='date'  className="form-control" placeholder='Enter Charlie Card Balance' onChange={handleDateOfBirthChange}
+                                   required={true}/>
+                        </div>
+                    </div>
+                    <div className='input-container'>
+                        <label> Job Title </label>
+                        <div>
+                            <input type='text'  className="form-control" placeholder='Enter Job Title' onChange={handleJobTitle}
                                    required={true}/>
                         </div>
                     </div>

@@ -3,8 +3,7 @@ import AlertItem from "./alert-item";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllAlerts, findAlertsByRoute, findAlertsByHomeStop} from "../../actions/alerts-action";
 import {Button} from "react-bootstrap";
-import {findAllPinnedStopsByUser} from "../../actions/pinned-stops-action";
-import {map} from "react-bootstrap/ElementChildren";
+import {findConductedRouteByUserId} from "../../actions/conducted-routes-action";
 
 const AlertsBar = () => {
     const dispatch = useDispatch();
@@ -13,26 +12,28 @@ const AlertsBar = () => {
     const stationSpecificAlerts = useSelector(state => state.alertsReducer.stationSpecific);
     const alerts = useSelector(state => state.alertsReducer.alerts);
     const stopName = useSelector(state => state.alertsReducer.stopName);
-
+    const conductedRoute = useSelector(state=> state.conductedRoute)
     let profileAlertKey;
-    if (user && user.userRole === 'Commuter') {
-        profileAlertKey = user.homeStop;
-    } else if (user && user.userRole === 'Conductor') {
-        profileAlertKey = user.currentRouteConducting;
-    }
 
-    useEffect(()=> {
-            {loggedIn ?
-                user.userRole === 'Admin' ?
-                    findAllAlerts(dispatch) :
-                    user.userRole === 'Commuter' ?
-                        findAlertsByHomeStop(dispatch, profileAlertKey) :
-                        findAlertsByRoute(dispatch, profileAlertKey)
-                :
-                findAllAlerts(dispatch)
+    useEffect(async () => {
+            if (user && user.userRole === 'Commuter') {
+                profileAlertKey = user.homeStop;
+            } else if (user && user.userRole === 'Conductor') {
+                const url = conductedRoute.routeString.split('/');
+                profileAlertKey = url.at(3);
+            }
+            {
+                loggedIn ?
+                    user.userRole === 'Admin' ?
+                        findAllAlerts(dispatch) :
+                        user.userRole === 'Commuter' ?
+                            findAlertsByHomeStop(dispatch, profileAlertKey) :
+                            findAlertsByRoute(dispatch, profileAlertKey)
+                    :
+                    findAllAlerts(dispatch)
             }
         },
-        [loggedIn]);
+        [loggedIn, user, conductedRoute]);
 
     return(
         <ul className='list-group'>

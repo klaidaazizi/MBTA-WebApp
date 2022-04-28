@@ -14,19 +14,19 @@ import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../actions/auth-actions";
 import UserSearchScreen from "../user-search/user-search-screen";
 import {findAlertsByStop} from "../../actions/alerts-action";
+import {findConductedRouteByUserId} from "../../services/conducted-route-service";
 
 const Profile = () => {
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
     const user = useSelector(state => state.sessionReducer.profileData)
+    const conductedRoute = useSelector(state => state.conductedRoute.routeString)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const params = useParams();
     const [profile, setProfile] = useState({});
 
     useEffect(() => {
         try{
-            //const user = await service.profile();
             setProfile(user);
         }
         catch (e) {
@@ -34,12 +34,7 @@ const Profile = () => {
             navigate('/profile-search');
         }
     }, []);
-
-    const goToConductorRoute = () => {
-        navigate('/home');
-    }
-    //const date = new Date(profile.dateOfBirth).toDateString();
-
+    console.log(conductedRoute)
     return(
         <>
             {loggedIn ?
@@ -105,23 +100,13 @@ const Profile = () => {
                                     <>
                                         {profile.userRole === "Conductor" ?
                                             <>
-                                                {profile.currentRouteConducting !== '' ?
-                                                    <>
-                                                        <Link  to={profile.currentRouteConducting}>
-                                                        <span className="col-4 btn bg-warning ms-1 me-1" >
-                                                            View/Update My Route
-                                                        </span>
-                                                        </Link>
-                                                    </>
-                                                    :
-                                                    <>
-                                                        <Link  to="/home">
-                                                        <span className="col-3 btn bg-warning ms-1 me-1">
-                                                            Choose My Route
-                                                        </span>
-                                                        </Link>
-                                                    </>
-                                                }
+                                                <>
+                                                    <Link  to="/home">
+                                                    <span className="col-3 btn bg-warning ms-1 me-1">
+                                                        Choose My Route
+                                                    </span>
+                                                    </Link>
+                                                </>
                                                 </>
                                                 :
                                                 ""

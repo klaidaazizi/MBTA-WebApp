@@ -74,57 +74,57 @@ const TransitStop = () => {
 
         <div>
             <ul className='list-group'>
-                <li className="list-group-item ">
+                <div className="list-group-item ">
                      <div className=' container'>
-                                     <span className=' row text-center'>
-                          <div className='col-4'>
-                               <span className="col-12 btn back-button-transit-stop"
-                                                   onClick={() => navigate(-1)}>
-                                                 Back
-                                             </span>
-                                         </div>
+                         <span className=' row text-center'>
+                             <div className='col-4'>
+                                <span className="col-12 btn btn-dark"
+                                     onClick={() => navigate(-1)}>
+                                   Back
+                                </span>
+                             </div>
+                             <div className='col-4'>
+                                 <span className="col-12 btn bg-danger "
+                                       onClick={() => findAlertsByStop(dispatch, stopId, name)}>
+                                     Alerts
+                                 </span>
+                             </div>
+                             {isLoggedIn && user && user.userRole === "Commuter" ?
+                                 <>
+                                 {pinExists === 0 ?
                                          <div className='col-4'>
-                                             <span className="col-12 btn bg-danger "
-                                                   onClick={() => findAlertsByStop(dispatch, stopId, name)}>
-                                                 Alerts
-                                             </span>
+                                 <span onClick={() => pinStop(transitType, "me", routeId, route, stopId, name).then()} className="col-12 btn btn-warning">
+                                     Pin Stop
+                                 </span>
                                          </div>
-                                         {isLoggedIn && user && user.userRole === "Commuter" ?
-                                             <>
-                                             {pinExists === 0 ?
-                                                     <div className='col-4'>
-                                             <span onClick={() => pinStop(transitType, "me", routeId, route, stopId, name).then()} className="col-12 btn btn-warning">
-                                                 Pin Stop
-                                             </span>
-                                                     </div>
 
-                                             :
-                                                     <div className='col-4'>
-                                             <span onClick={blockPin} className="col-12 btn btn-warning">
-                                                 Pin Stop
-                                             </span>
-                                                     </div>
+                                 :
+                                         <div className='col-4'>
+                                 <span onClick={blockPin} className="col-12 btn btn-warning">
+                                     Pin Stop
+                                 </span>
+                                         </div>
 
-                                             }
-                                             </>
+                                 }
+                                 </>
 
-                                             :
-                                             <>
-                                             {isLoggedIn && user && user.userRole !== "Commuter" ?
-                                                 ""
-                                                 :
-                                                 <div className='col-4'>
-                                                    <span onClick={goToLogin} className="col-12 btn btn-warning">
-                                                        Pin Stop
-                                                    </span>
-                                                 </div>
-                                         }
-                                             </>
-                                         }
-                                     </span>
+                                 :
+                                 <>
+                                 {isLoggedIn && user && user.userRole !== "Commuter" ?
+                                     ""
+                                     :
+                                     <div className='col-4'>
+                                        <span onClick={goToLogin} className="col-12 btn btn-warning">
+                                            Pin Stop
+                                        </span>
+                                     </div>
+                             }
+                                 </>
+                             }
+                        </span>
                      </div>
-                </li>
-                <li className="transit-stop-no-list">
+                </div>
+                <div className="transit-stop-no-list">
 
             <div className={`list-group-item ${backgroundColor}`}>
                 <div className='col-12' >
@@ -136,18 +136,20 @@ const TransitStop = () => {
                     <div className='row mx-0 justify-content-center'>
                         <div className='row mx-0 my-1'>
                             <div className='list-group m-0 px-0'>
-                                <li className='list-group-item fw-bold text-primary'>To {destinationDirections[0]}</li>
+                                <li className='list-group-item fw-bold text-primary'>Vehicle Destination: {destinationDirections[0]}</li>
                                 {zeroDirectionPredictions.map(prediction => {return(
-                                        <PredictionListItem prediction={prediction.attributes}/>)
+                                        <PredictionListItem prediction={prediction.attributes}
+                                                            key={prediction._id}/>)
                                     }
                                 )}
                             </div>
                         </div>
                         <div className='row mx-0 my-1'>
                             <div className='list-group m-0 px-0'>
-                                <li className='list-group-item fw-bold text-primary'>To {destinationDirections[1]}</li>
+                                <li className='list-group-item fw-bold text-primary'>Vehicle Destination: {destinationDirections[1]}</li>
                                 {oneDirectionPredictions.map(prediction => {return(
-                                        <PredictionListItem prediction={prediction.attributes}/>)
+                                        <PredictionListItem prediction={prediction.attributes}
+                                                            key={prediction._id}/>)
                                     }
                                 )}
                             </div>
@@ -155,7 +157,7 @@ const TransitStop = () => {
                     </div>
                 </div>
             </div>
-                </li>
+                </div>
             </ul>
         </div>
     )

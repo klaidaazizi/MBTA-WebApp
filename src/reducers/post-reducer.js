@@ -31,7 +31,6 @@ const PostReducer =
                 post => post._id !== action.post._id
             );
         default:
-            console.log("return default in post reducer")
             return state;
     }
 }
