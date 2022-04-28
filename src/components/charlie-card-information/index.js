@@ -7,7 +7,7 @@ const CharlieCardInformation = () => {
     const user = useSelector(state => state.sessionReducer.profileData);
     const dispatch = useDispatch();
     return(
-        <div className='card rounded bg-black mt-2'>
+        <div className='card rounded bg-black mt-2 '>
             <span className="d-none d-lg-inline">
             <h6 className='text-center m-2 text-primary'>{user.name}'s CharlieCard Balance:</h6>
                 </span>

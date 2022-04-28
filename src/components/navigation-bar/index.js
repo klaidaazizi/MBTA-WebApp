@@ -27,7 +27,7 @@ const NavigationBar = () => {
                 <Link to='/profile'
                       className={`list-group-item ${navigationData.activePage === "profile" ? 'active': ''}`}>
                     <FontAwesomeIcon icon="fa-solid fa-user" className="me-1"/>
-                    <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Your Profile
                 </span>
                 </Link> :
@@ -35,14 +35,14 @@ const NavigationBar = () => {
             <Link to='/search'
                   className={`list-group-item ${navigationData.activePage === "search_stations" ? 'active': ''}`}>
                 <FontAwesomeIcon icon="fa-solid fa-train-subway" className="me-1"/>
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Search Stations
                 </span>
             </Link>
             <Link to='/profile-search'
                   className={`list-group-item ${navigationData.activePage === "search_users" ? 'active': ''}`}>
                 <FontAwesomeIcon icon="fa-solid fa-user-group" className="me-1"/>
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Search Users
                 </span>
             </Link>
@@ -50,7 +50,7 @@ const NavigationBar = () => {
                 <Link to='/posts'
                       className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}>
                     <FontAwesomeIcon icon="fa-solid fa-bullhorn" className="me-1"/>
-                    <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Posts
                 </span>
                 </Link>
@@ -59,7 +59,7 @@ const NavigationBar = () => {
             <Link to='/policy'
                   className={`list-group-item ${navigationData.activePage === "privacy" ? 'active': ''}`}>
                 <FontAwesomeIcon icon="fa-solid fa-shield-halved" className="me-1"/>
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Privacy Policy
                 </span>
             </Link>
@@ -70,14 +70,14 @@ const NavigationBar = () => {
                       }}
                       className={`bg-danger list-group-item text-white fw-bold`}>
                     <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" className="me-1"/>
-                    <span className="d-none d-lg-inline">
+                    <span className="d-none d-xl-inline">
                     Logout, {user.username}
                 </span>
                 </Link> :
                 <Link to='/login'
                       className={`bg-primary list-group-item text-white fw-bold`}>
                     <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" className="me-1"/>
-                    <span className="d-none d-lg-inline">
+                    <span className="d-none d-xl-inline">
                     Login
                 </span>
                 </Link>

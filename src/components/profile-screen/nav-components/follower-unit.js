@@ -5,6 +5,7 @@ import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 
 const FollowerUnit = ({follow,removeFollow, user}) => {
+    console.log(user)
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
     const navigate = useNavigate();
     return(
@@ -23,10 +24,19 @@ const FollowerUnit = ({follow,removeFollow, user}) => {
                                         className="btn btn-warning ms-3">
                                     Remove</Button>
                                 : ''}
-                            <Button onClick={()=> navigate(`/profile/${follow.follower.username}`)}
-                              className="btn btn-info float-end">
+                            {user === "me" ?
+                                <>
+                                    <Button onClick={() => navigate(`/profile`)}
+                                            className="btn btn-info float-end">
+                                        Go To Profile
+                                    </Button>
+                                </>
+                                :
+                                <Button onClick={() => navigate(`/profile/${follow.follower.username}`)}
+                                        className="btn btn-info float-end">
                                     Go To Profile
-                            </Button>
+                                </Button>
+                            }
 
                         </div>
                     </div>

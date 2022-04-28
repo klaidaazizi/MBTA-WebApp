@@ -13,6 +13,7 @@ import {followUser} from "../../services/follow-service";
 import {followAlreadyExists} from "../../actions/follow-actions";
 import {conductorLikeAlreadyExists} from "../../actions/conductor-likes-action";
 import {likeConductor} from "../../services/conductor-likes-service";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
@@ -74,7 +75,7 @@ const PublicProfile = () => {
                     <div className="col-11">
                         <h5>
                             <span className='fw-bold text-white'>{profile.name}</span>
-                            <span className="float-end text-primary">{profile.userRole}</span>
+                            <span className="float-end text-primary d-none d-md-block">{profile.userRole}</span>
                         </h5>
 
                     </div>
@@ -90,21 +91,29 @@ const PublicProfile = () => {
                     {profile.userRole !== "Admin" && userViewing.userRole === "Admin" ?
                         <button onClick={() => navigate(`/profile/editprofile/${profile.username}`)}
                                 type='button'
-                                className='btn btn-secondary  rounded-pill  me-2'>Edit User's Profile
+                                className='btn btn-secondary  rounded-pill  me-2'>
+                            <span className="d-none d-md-block">Edit User's Profile</span>
+                            <span className="d-sm-block d-md-none"><FontAwesomeIcon icon="fa-solid fa-pen-to-square" /></span>
                         </button>
                         :
                         ""
                     }
-                    <Button className='btn-primary rounded-pill' onClick={()=> follow()}>Follow</Button>
+                    <Button className='btn-primary rounded-pill' onClick={()=> follow()}>
+                        <span className="d-none d-sm-block">Follow</span>
+                        <span className="d-xs-block d-sm-none"><FontAwesomeIcon icon="fa-solid fa-plus" /></span>
+                    </Button>
                     { profile.userRole === 'Conductor' && userViewing.userRole === "Commuter" ?
                         <>
                             {conductorLikeExists === 0 && profile && profile._id ?
                                 <Button className='btn-info ms-2 rounded-pill'
-                                        onClick={() => likeConductor(userViewing._id, profile._id)}>Like
-                                    Conductor</Button>
+                                        onClick={() => likeConductor(userViewing._id, profile._id)}>
+                                    <span className="d-none d-md-block">Like Conductor</span>
+                                    <span className="d-sm-block d-md-none"><FontAwesomeIcon icon="fa-solid fa-heart" /></span></Button>
                                 :
-                                <Button className='btn-info ms-2 rounded-pill' onClick={blockLike}>Like
-                                    Conductor</Button>
+                                <Button className='btn-info ms-2 rounded-pill' onClick={blockLike}>
+                                    <span className="d-none d-md-block">Like Conductor</span>
+                                    <span className="d-sm-block d-md-none"><FontAwesomeIcon icon="fa-solid fa-heart" />
+                                    </span></Button>
                             }
                         </>
                         : ""
