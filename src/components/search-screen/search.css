@@ -30,8 +30,6 @@
     left: 50%;
 }
 
-
-
 #button1 , #button2 {
     display:inline-block;
     /* additional code */
@@ -58,7 +56,7 @@
 
 
 .search-page-text{
-    font-size: 35px;
+    font-size: 30px;
     margin-left: 5px;
     margin-bottom: 16px;
 
@@ -143,8 +141,8 @@
 .rapid-transit-routes-title{
     margin-left: 80px;
     font-size: 30px;
-    color: #D6053E;
     align-items: center;
+    color: #D6053E;
     justify-content: center;
 }
 

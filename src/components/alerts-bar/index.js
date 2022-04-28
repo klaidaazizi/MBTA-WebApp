@@ -35,7 +35,7 @@ const AlertsBar = () => {
         [loggedIn]);
 
     return(
-        <ul className='list-group'>
+        <ul className='list-group d-none d-lg-block'>
             {stationSpecificAlerts ?
                 <li className='list-group-item fw-bold bg-danger text-white text-center'>{stopName} Alerts</li> :
                 loggedIn ?

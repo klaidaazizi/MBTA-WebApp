@@ -44,7 +44,7 @@ const Profile = () => {
                         <div className="col-11">
                             <h5>
                                 <span className='fw-bold text-white'>{profile && profile.name? profile.name: ''}</span>
-                                <span className="float-end text-primary">{profile && profile.userRole? profile.userRole: ''}</span>
+                                <span className="d-none d-lg-block float-end text-primary">{profile && profile.userRole? profile.userRole: ''}</span>
                             </h5>
 
                         </div>
@@ -55,10 +55,10 @@ const Profile = () => {
                     </div>
                     <img src='/images/thomas.png' alt='' className="profile-pic"/>
 
-                    <div className='float-end me-1 mt-1'>
+                    <div className='float-end mt-1'>
                         <button onClick={() => navigate('/profile/editprofile')}
                                 type='button'
-                                className='btn btn-primary rounded-pill mt-2 me-2'>Edit Profile
+                                className='btn btn-primary rounded-pill mt-2 me-2 p-2'>Edit Profile
                         </button>
                         <button onClick={() => logout(dispatch).then(navigate('/profile-search'))} className=" btn btn-danger rounded-pill mt-2 me-2">
                             Logout
@@ -74,8 +74,9 @@ const Profile = () => {
                     <div className="font-size-15 border-top pt-2 ps-2 pe-1 pb-3">
                         {profile.userRole === "Commuter" ?
                             <>
+
                             <span><i className='fa fa-home ms-1 me-1'/>
-                                Home stop: {profile.homeStop}
+                                <span className="d-none d-lg-inline">Home stop</span>: {profile.homeStop}
                             </span>
                             </>
                             :
@@ -83,7 +84,7 @@ const Profile = () => {
                                 {profile.userRole === "Admin" ?
                                     <>
                                     <span><i className='fa fa-building ms-1 me-1'/>
-                                        Job title: {profile.jobTitle}
+                                        <span className="d-none d-lg-inline">Job title</span>: {profile.jobTitle}
                                     </span>
                                     </>
                                     :
@@ -116,9 +117,9 @@ const Profile = () => {
                             </>
                         }
                         <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                 Born: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>
+                            <span className="d-none d-lg-inline">Born</span>: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>
                         <span><i className='fa fa-calendar me-1 ms-3'/>
-                    Joined: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>
+                            <span className="d-none d-lg-inline">Joined</span>: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>
                     </div>
 
 

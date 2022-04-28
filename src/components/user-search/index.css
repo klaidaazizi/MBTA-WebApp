@@ -11,12 +11,13 @@
     padding: 5px 5px 5px 20px;
 }
 
+
 .suggestion:hover{
     background-color: #e1e1e1;
 }
 
 .map-dimensions{
-    height: 650px;
+    height: 100%;
 }
 
 /*.searchbar{*/
