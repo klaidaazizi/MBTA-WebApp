@@ -58,7 +58,7 @@ const UserSearchBar = () => {
                 )}
                 </div>
             </div>
-            <Button className='col-2 h-25' onClick={()=>navigate(`/profile/${text}`)}>Go
+            <Button className='col-2 h-25 p-2' onClick={()=>navigate(`/profile/${text}`)}>Go
             </Button>
         </div>
     )

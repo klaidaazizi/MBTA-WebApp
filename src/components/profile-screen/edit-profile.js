@@ -6,6 +6,7 @@ import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {save, adminSave} from "../../actions/auth-actions";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const EditProfile = () => {
     const navigate = useNavigate();
@@ -134,12 +135,14 @@ const EditProfile = () => {
                     <h5 className="fw-bold">Edit Profile</h5>
                 </div>
                 {username === "editprofile" ?
-                    <Button className="col-2 btn-primary rounded-pill mb-1 " onClick={() => saveProfile()}>
-                        Save
+                    <Button className="col-2 btn-primary rounded-pill mb-1 p-1 " onClick={() => saveProfile()}>
+                        <span className="d-none d-sm-block"> Save</span>
+                        <span className="d-xs-block d-sm-none"><FontAwesomeIcon icon="fa-solid fa-floppy-disk" /></span>
                     </Button>
                     :
                     <Button className="col-2 btn-primary rounded-pill mb-1 " onClick={() => adminSaveProfile()}>
-                        Save
+                        <span className="d-none d-sm-block">Save</span>
+                        <span className="d-xs-block"><FontAwesomeIcon icon="fa-solid fa-floppy-disk" /></span>
                     </Button>
                 }
             </div><div className='border border-black bg-light rounded-2 ps-2 pe-2'>

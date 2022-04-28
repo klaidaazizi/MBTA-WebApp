@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {logout} from "../../actions/auth-actions";
 import {changeHighlight} from '../../actions/nav-bar-action';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import "./nav-bar.css"
 
 const NavigationBar = () => {
@@ -15,12 +16,13 @@ const NavigationBar = () => {
         <div className='list-group'>
             <Link to='/'
                   className={`list-group-item`}>
-                <span><img className='img-fluid float-start' src="/images/teasy.png"/></span>
+                <span className="d-none d-lg-inline"><img className='img-fluid float-start' src="/images/teasy.png"/></span>
             </Link>
             <Link to='/'
                   className={`list-group-item ${navigationData.activePage === "home" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'home')}>
-                <span>
+                    <FontAwesomeIcon icon="fa-solid fa-house" className="me-1" />
+                <span className="d-none d-lg-inline">
                     Home
                 </span>
             </Link>
@@ -28,7 +30,8 @@ const NavigationBar = () => {
             <Link to='/profile'
                   className={`list-group-item ${navigationData.activePage === "profile" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'profile')}>
-                <span>
+                    <FontAwesomeIcon icon="fa-solid fa-user" className="me-1"/>
+                <span className="d-none d-lg-inline">
                     Your Profile
                 </span>
             </Link> :
@@ -36,14 +39,16 @@ const NavigationBar = () => {
             <Link to='/search'
                   className={`list-group-item ${navigationData.activePage === "search_stations" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'search_stations')}>
-                <span>
+                    <FontAwesomeIcon icon="fa-solid fa-train-subway" className="me-1"/>
+                <span className="d-none d-lg-inline">
                     Search Stations
                 </span>
             </Link>
             <Link to='/profile-search'
                   className={`list-group-item ${navigationData.activePage === "search_users" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'search_users')}>
-                <span>
+                    <FontAwesomeIcon icon="fa-solid fa-user-group" className="me-1"/>
+                <span className="d-none d-lg-inline">
                     Search Users
                 </span>
             </Link>
@@ -51,7 +56,8 @@ const NavigationBar = () => {
                 <Link to='/posts'
                   className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'posts')}>
-                <span>
+                    <FontAwesomeIcon icon="fa-solid fa-bullhorn" className="me-1"/>
+                <span className="d-none d-lg-inline">
                     Posts
                 </span>
             </Link>
@@ -60,7 +66,8 @@ const NavigationBar = () => {
             <Link to='/policy'
                   className={`list-group-item ${navigationData.activePage === "privacy" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'privacy')}>
-                <span>
+                    <FontAwesomeIcon icon="fa-solid fa-shield-halved" className="me-1"/>
+                <span className="d-none d-lg-inline">
                     Privacy Policy
                 </span>
             </Link>
@@ -71,14 +78,16 @@ const NavigationBar = () => {
                       changeHighlight(dispatch,'home')
                   }}
                   className={`bg-danger list-group-item text-white fw-bold`}>
-                <span>
+                <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" className="me-1"/>
+                <span className="d-none d-lg-inline">
                     Logout, {user.username}
                 </span>
             </Link> :
             <Link to='/login'
                   className={`bg-primary list-group-item text-white fw-bold`}
                   onClick={() => changeHighlight(dispatch,'profile')}>
-                <span>
+                <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" className="me-1"/>
+                <span className="d-none d-lg-inline">
                     Login
                 </span>
             </Link>
