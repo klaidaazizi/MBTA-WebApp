@@ -3,10 +3,12 @@ import {Link, useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import * as action from "../../actions/auth-actions";
 import {useDispatch} from "react-redux";
+import {changeHighlight} from "../../actions/nav-bar-action";
 
 
 const Login = () => {
     const dispatch = useDispatch();
+    changeHighlight(dispatch, '')
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate()
     const handleUsername = (e) => {

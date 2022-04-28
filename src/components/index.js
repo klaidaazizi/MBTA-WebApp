@@ -15,6 +15,7 @@ import PinnedStopsReducer from "../reducers/pinned-stops-reducer";
 import SingleStopReducer from "../reducers/single-stop-reducer";
 import FollowReducer from "../reducers/follow-reducer";
 import PostReducer from "../reducers/post-reducer";
+import ConductedRoutesReducer from "../reducers/conducted-routes-reducer";
 import ConductorLikesReducer from "../reducers/conductor-likes-reducer";
 
 const reducers = combineReducers({
@@ -38,6 +39,7 @@ const reducers = combineReducers({
     allPosts: PostReducer,
     newPost: PostReducer,
     postsByUser: PostReducer,
+    conductedRoute: ConductedRoutesReducer,
     conductorlikes: ConductorLikesReducer,
     commuterLikes: ConductorLikesReducer,
     conductorLikeExists: ConductorLikesReducer,

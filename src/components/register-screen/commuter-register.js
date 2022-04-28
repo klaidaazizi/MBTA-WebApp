@@ -50,7 +50,7 @@ const CommuterRegister = () => {
             .catch(e => alert(e + "\n Username already exists. Please login."));
     return(
         <>
-            <Button onClick={() => navigate('/register')}>Back</Button>
+            <Button className='btn btn-dark' onClick={() => navigate('/register')}>Back</Button>
             <div className='form'>
                 <h5 className='text-center mt-2'>Commuter Account Registration</h5>
                 <form>
@@ -86,7 +86,7 @@ const CommuterRegister = () => {
                         <div className='input-group'>
                             <div className='input-group-text'>$</div>
                             <input type='number' className="form-control" onChange={handleCharlieCardBalance}
-                                   required={true}/>
+                                   required={true} defaultValue={10}/>
                         </div>
                     </div>
                     <div className='input-container'>

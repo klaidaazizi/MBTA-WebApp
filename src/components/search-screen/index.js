@@ -3,10 +3,13 @@ import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import './search.css';
+import {useDispatch} from "react-redux";
+import {changeHighlight} from "../../actions/nav-bar-action";
 import {useSelector} from "react-redux";
 
-
 const SearchScreen = () => {
+    const dispatch = useDispatch();
+    changeHighlight(dispatch, 'home')
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
 
     const navigate = useNavigate();
@@ -16,7 +19,7 @@ const SearchScreen = () => {
             <Link to="/home/rapid-transit" className="-search-main-buttons-text">
                 <button id="button1" type="button" className="button1 button-sizing btn btn-danger ">
                    <span className="d-md-block d-lg-none"> <FontAwesomeIcon icon="fa-solid fa-train" className="fa-xl"/></span>
-                    <span className="d-md-none d-none  d-lg-block">Rapid Transit</span>
+                    <span className="d-md-none d-none d-lg-block">Rapid Transit</span>
                 </button>
             </Link>
             <Link to="/home/commuter-rail" className="-search-main-buttons-text">

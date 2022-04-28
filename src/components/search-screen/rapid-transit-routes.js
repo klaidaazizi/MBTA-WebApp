@@ -11,18 +11,15 @@ const RapidTransitRoutes = () => {
     const dispatch = useDispatch();
     useEffect(()=> findAllRapidTransitRoutes(dispatch),
         []);
-    console.log(rtRoutes)
     return(
         <div>
         <ul className='list-group'>
             <li className=' list-group-item fw-bold text-danger back-button-and-title-rt-route'>
-                <button id="buttonBackToSearchMain" type="button" className=" button-sizing btn btn-danger ">
-                    <Link to="/home" className="-search-main-buttons-text">Back</Link>
-                </button>
-
+                <Link to="/home" className="-search-main-buttons-text btn btn-lg btn-dark">
+                    Back
+                </Link>
                 <span className="rapid-transit-routes-title d-md-none"> <FontAwesomeIcon icon="fa-solid fa-train" className="fa-xl"/></span>
-                <span className="rapid-transit-routes-title d-none d-md-block">
-                    Rapid Transit Routes</span></li>
+                <span className="rapid-transit-routes-title">Rapid Transit Routes</span></li>
             {rtRoutes.map(
                 route => {
                     return(<RapidTransitRouteItem key={route.id}

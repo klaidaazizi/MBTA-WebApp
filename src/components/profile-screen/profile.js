@@ -18,16 +18,11 @@ const Profile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const params = useParams();
     const [profile, setProfile] = useState({});
 
     useEffect(() => {
         {loggedIn ? setProfile(user) : navigate('/profile-search')}
     }, [loggedIn]);
-
-    const goToConductorRoute = () => {
-        navigate('/home');
-    }
 
     return(
         <>
@@ -96,23 +91,13 @@ const Profile = () => {
                                     <>
                                         {profile.userRole === "Conductor" ?
                                             <>
-                                                {profile.currentRouteConducting !== '' ?
-                                                    <>
-                                                        <Link  to={profile.currentRouteConducting}>
-                                                        <span className="col-4 btn bg-warning ms-1 me-1" >
-                                                            View/Update My Route
-                                                        </span>
-                                                        </Link>
-                                                    </>
-                                                    :
-                                                    <>
-                                                        <Link  to="/home">
-                                                        <span className="col-3 btn bg-warning ms-1 me-1">
-                                                            Choose My Route
-                                                        </span>
-                                                        </Link>
-                                                    </>
-                                                }
+                                                <>
+                                                    <Link  to="/home">
+                                                    <span className="col-3 btn bg-warning ms-1 me-1">
+                                                        Choose My Route
+                                                    </span>
+                                                    </Link>
+                                                </>
                                                 </>
                                                 :
                                                 ""

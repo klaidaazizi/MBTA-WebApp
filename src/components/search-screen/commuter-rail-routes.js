@@ -17,11 +17,11 @@ const CommuterRailRoutes = () => {
         <div>
             <ul className='list-group'>
                 <li className=' list-group-item fw-bold back-button-and-title-rt-route'>
-                    <button id="buttonBackToSearchMain" type="button" className=" button-sizing btn btn-danger ">
-                        <Link to="/home" className="-search-main-buttons-text">Back</Link>
-                    </button>
+                    <Link to="/home" className="-search-main-buttons-text btn btn-lg btn-dark">
+                        Back
+                    </Link>
                     <span className="commuter-rail-routes-title d-md-none"> <FontAwesomeIcon icon="fa-solid fa-train-tram" className="fa-xl"/></span>
-                    <span className="commuter-rail-routes-title d-none d-md-block">Commuter Rail Routes</span></li>
+                    <span className="commuter-rail-routes-title">Commuter Rail Routes</span></li>
                 {crRoutes.map(
                     route => {
                         return(<CommuterRailRouteItem key={route.id}
