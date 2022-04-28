@@ -142,7 +142,7 @@ const EditProfile = () => {
                     :
                     <Button className="col-2 btn-primary rounded-pill mb-1 " onClick={() => adminSaveProfile()}>
                         <span className="d-none d-sm-block">Save</span>
-                        <span className="d-xs-block"><FontAwesomeIcon icon="fa-solid fa-floppy-disk" /></span>
+                        <span className="d-xs-block d-sm-none"><FontAwesomeIcon icon="fa-solid fa-floppy-disk" /></span>
                     </Button>
                 }
             </div><div className='border border-black bg-light rounded-2 ps-2 pe-2'>

@@ -47,12 +47,12 @@ const CommuterRailRouteItem = ({crRoute}) => {
                             <span className="fw-bold rapid-transit-route-id">{crRoute.attributes.long_name}</span>
                         }
                         <div className="rt-route-text-alignment">
-                            <div>
-                                <span className='col-6  rt-route-test-color'>{crRoute.attributes.direction_destinations[0]}</span>
-                            </div>
-                            <div>
-                                <span className='col-6  rt-route-test-color'>{crRoute.attributes.direction_destinations[1]}</span>
-                            </div>
+                            {/*<div>*/}
+                            {/*    <span className='col-6  rt-route-test-color d-none d-xxl-block'>{crRoute.attributes.direction_destinations[0]}</span>*/}
+                            {/*</div>*/}
+                            {/*<div>*/}
+                            {/*    <span className='col-6  rt-route-test-color d-none d-xxl-block'>{crRoute.attributes.direction_destinations[1]}</span>*/}
+                            {/*</div>*/}
                         </div>
                     </Link>
                 </div>

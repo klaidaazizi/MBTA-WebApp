@@ -8,10 +8,12 @@ const LeftSidebar = () => {
     return(
         <div>
             <NavigationBar/>
+            <div className=" d-none d-md-inline">
             {isLoggedIn ?
                 user.userRole === 'Commuter' ?
                     <CharlieCardInformation/> : '' :
             ''}
+            </div>
         </div>
     )
 }

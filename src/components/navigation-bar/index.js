@@ -16,13 +16,13 @@ const NavigationBar = () => {
         <div className='list-group'>
             <Link to='/'
                   className={`list-group-item`}>
-                <span className="d-none d-lg-inline"><img className='img-fluid float-start' src="/images/teasy.png"/></span>
+                <span className="d-none d-xl-inline"><img className='img-fluid float-start' src="/images/teasy.png"/></span>
             </Link>
             <Link to='/'
                   className={`list-group-item ${navigationData.activePage === "home" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'home')}>
                     <FontAwesomeIcon icon="fa-solid fa-house" className="me-1" />
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Home
                 </span>
             </Link>
@@ -31,7 +31,7 @@ const NavigationBar = () => {
                   className={`list-group-item ${navigationData.activePage === "profile" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'profile')}>
                     <FontAwesomeIcon icon="fa-solid fa-user" className="me-1"/>
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Your Profile
                 </span>
             </Link> :
@@ -40,15 +40,15 @@ const NavigationBar = () => {
                   className={`list-group-item ${navigationData.activePage === "search_stations" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'search_stations')}>
                     <FontAwesomeIcon icon="fa-solid fa-train-subway" className="me-1"/>
-                <span className="d-none d-lg-inline">
-                    Search Stations
+                <span className="d-none d-xl-inline">
+                    Search Station
                 </span>
             </Link>
             <Link to='/profile-search'
                   className={`list-group-item ${navigationData.activePage === "search_users" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'search_users')}>
                     <FontAwesomeIcon icon="fa-solid fa-user-group" className="me-1"/>
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Search Users
                 </span>
             </Link>
@@ -57,7 +57,7 @@ const NavigationBar = () => {
                   className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'posts')}>
                     <FontAwesomeIcon icon="fa-solid fa-bullhorn" className="me-1"/>
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Posts
                 </span>
             </Link>
@@ -67,7 +67,7 @@ const NavigationBar = () => {
                   className={`list-group-item ${navigationData.activePage === "privacy" ? 'active': ''}`}
                   onClick={() => changeHighlight(dispatch,'privacy')}>
                     <FontAwesomeIcon icon="fa-solid fa-shield-halved" className="me-1"/>
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Privacy Policy
                 </span>
             </Link>
@@ -79,7 +79,7 @@ const NavigationBar = () => {
                   }}
                   className={`bg-danger list-group-item text-white fw-bold`}>
                 <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" className="me-1"/>
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Logout, {user.username}
                 </span>
             </Link> :
@@ -87,7 +87,7 @@ const NavigationBar = () => {
                   className={`bg-primary list-group-item text-white fw-bold`}
                   onClick={() => changeHighlight(dispatch,'profile')}>
                 <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" className="me-1"/>
-                <span className="d-none d-lg-inline">
+                <span className="d-none d-xl-inline">
                     Login
                 </span>
             </Link>
