@@ -19,7 +19,7 @@ const SearchScreen = () => {
             <Link to="/home/rapid-transit" className="-search-main-buttons-text">
                 <button id="button1" type="button" className="button1 button-sizing btn btn-danger ">
                    <span className="d-md-block d-lg-none"> <FontAwesomeIcon icon="fa-solid fa-train" className="fa-xl"/></span>
-                    <span className="d-md-none d-none  d-lg-block">Rapid Transit</span>
+                    <span className="d-md-none d-none d-lg-block">Rapid Transit</span>
                 </button>
             </Link>
             <Link to="/home/commuter-rail" className="-search-main-buttons-text">

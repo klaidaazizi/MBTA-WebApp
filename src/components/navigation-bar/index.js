@@ -13,74 +13,74 @@ const NavigationBar = () => {
 
     return(
         <div className='list-group'>
-            <Link to='/'
-                  className={`list-group-item`}>
+            <Link to='/' className={`list-group-item`}>
                 <span className="d-none d-lg-inline"><img className='img-fluid float-start' src="/images/teasy.png"/></span>
             </Link>
             <Link to='/'
                   className={`list-group-item ${navigationData.activePage === "home" ? 'active': ''}`}>
                 <FontAwesomeIcon icon="fa-solid fa-house" className="me-1" />
-                <span>
+                <span className="d-none d-lg-inline">
                     Home
                 </span>
             </Link>
             {isLoggedIn ?
-            <Link to='/profile'
-                  className={`list-group-item ${navigationData.activePage === "profile" ? 'active': ''}`}>
-                <FontAwesomeIcon icon="fa-solid fa-user" className="me-1"/>
-                <span>
+                <Link to='/profile'
+                      className={`list-group-item ${navigationData.activePage === "profile" ? 'active': ''}`}>
+                    <FontAwesomeIcon icon="fa-solid fa-user" className="me-1"/>
+                    <span className="d-none d-lg-inline">
                     Your Profile
                 </span>
-            </Link> :
-            ''}
+                </Link> :
+                ''}
             <Link to='/search'
                   className={`list-group-item ${navigationData.activePage === "search_stations" ? 'active': ''}`}>
                 <FontAwesomeIcon icon="fa-solid fa-train-subway" className="me-1"/>
-                <span>
+                <span className="d-none d-lg-inline">
                     Search Stations
                 </span>
             </Link>
             <Link to='/profile-search'
                   className={`list-group-item ${navigationData.activePage === "search_users" ? 'active': ''}`}>
                 <FontAwesomeIcon icon="fa-solid fa-user-group" className="me-1"/>
-                <span>
+                <span className="d-none d-lg-inline">
                     Search Users
                 </span>
             </Link>
             {isLoggedIn ?
                 <Link to='/posts'
-                  className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}>
+                      className={`list-group-item ${navigationData.activePage === "posts" ? 'active': ''}`}>
                     <FontAwesomeIcon icon="fa-solid fa-bullhorn" className="me-1"/>
-                    <span>
+                    <span className="d-none d-lg-inline">
                     Posts
-                    </span>
+                </span>
                 </Link>
                 :
                 ''}
             <Link to='/policy'
                   className={`list-group-item ${navigationData.activePage === "privacy" ? 'active': ''}`}>
                 <FontAwesomeIcon icon="fa-solid fa-shield-halved" className="me-1"/>
-                <span>
+                <span className="d-none d-lg-inline">
                     Privacy Policy
                 </span>
             </Link>
             {isLoggedIn ?
-            <Link to='/'
-                  onClick={() => {
-                      logout(dispatch)}}
-                  className={`bg-danger list-group-item text-white fw-bold`}>
-                <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" className="me-1"/>
-                <span>
+                <Link to='/'
+                      onClick={() => {
+                          logout(dispatch)
+                      }}
+                      className={`bg-danger list-group-item text-white fw-bold`}>
+                    <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" className="me-1"/>
+                    <span className="d-none d-lg-inline">
                     Logout, {user.username}
                 </span>
-            </Link> :
-            <Link to='/login'
-                  className={`bg-primary list-group-item text-white fw-bold`}>
-                <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" className="me-1"/>
-                <span>
+                </Link> :
+                <Link to='/login'
+                      className={`bg-primary list-group-item text-white fw-bold`}>
+                    <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" className="me-1"/>
+                    <span className="d-none d-lg-inline">
                     Login
                 </span>
-            </Link>
+                </Link>
             }
         </div>
     )
