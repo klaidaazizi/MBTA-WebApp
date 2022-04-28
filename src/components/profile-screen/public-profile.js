@@ -141,28 +141,19 @@ const PublicProfile = () => {
                                     </span>
                                 </>
                                 :
-                                <>
-                                    {profile.userRole === "Conductor" && profile.currentRouteConducting !== '' ?
-                                        <>
-                                            <Link  to={profile.currentRouteConducting}>
-                                            <span className="col-3 btn bg-warning ms-1 me-1" >
-                                                View My Route
-                                             </span>
-                                                </Link>
-                                                </>
-                                        :
-                                        ""
-                                    }
-                                </>
+                                ""
                             }
                         </>
                     }
-                    <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                 Born: newDate{profile.dateOfBirth}</span>
-                    <span><i className='fa fa-calendar me-1 ms-3'/>
-                    Joined: {profile.joinedDate}</span>
+                    <span>
+                        <i className='fa fa-birthday-cake ms-3 me-1'/>
+                        Born: newDate{profile.dateOfBirth}
+                    </span>
+                    <span>
+                        <i className='fa fa-calendar me-1 ms-3'/>
+                        Joined: {profile.joinedDate}
+                    </span>
                 </div>
-
 
                 <div className='ms-2'>
                     <ul className='nav mb-2 nav-tabs'>

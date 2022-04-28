@@ -35,6 +35,11 @@ const AlertsBar = () => {
         },
         [loggedIn, user, conductedRoute]);
 
+    let conductingRoute
+    if (user && user.userRole === 'Conductor') {
+        conductingRoute = conductedRoute.routeString.split('/').at(3)
+    }
+
     return(
         <ul className='list-group d-none d-lg-block'>
             {stationSpecificAlerts ?
@@ -43,8 +48,13 @@ const AlertsBar = () => {
                     user.userRole === 'Admin' ?
                         <li className='list-group-item fw-bold bg-danger text-white text-center'>Top Alerts</li> :
                         user.userRole === 'Commuter' ?
-                            <li className='list-group-item fw-bold bg-danger text-white text-center'>Home Station Alerts</li> :
-                            <li className='list-group-item fw-bold bg-danger text-white text-center'>Conducting Route Alerts</li>
+                            <li className='list-group-item fw-bold bg-danger text-white text-center'>Home Station Alerts</li>
+                            :
+                            <>
+                                <li className='list-group-item fw-bold bg-danger text-white text-center'>Conducting Route Alerts</li>
+                                <li className='list-group-item fw-bold bg-danger text-white text-center'>Conducting Route: {conductingRoute}</li>
+                            </>
+
                     :
                     <li className='list-group-item fw-bold bg-danger text-white text-center'>MBTA Alerts</li>
             }
