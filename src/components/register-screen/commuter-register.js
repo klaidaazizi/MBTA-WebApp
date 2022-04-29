@@ -3,7 +3,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import * as action from '../../actions/auth-actions';
 import {useDispatch} from "react-redux";
-import stations from './stations.json'
+import stations from '../../data/stations.json'
 import {changeHighlight} from "../../actions/nav-bar-action";
 
 const CommuterRegister = () => {

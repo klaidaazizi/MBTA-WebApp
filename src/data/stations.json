@@ -1,0 +1,47 @@
+[
+  {
+    "name": "None",
+    "value": "",
+    "selected": true
+  },
+  {
+    "name": "Ruggles",
+    "value": "place-rugg",
+    "selected": false
+  },
+  {
+    "name": "Green Street",
+    "value": "place-grnst",
+    "selected": false
+  },
+  {
+    "name": "Forest Hills",
+    "value": "place-forhl",
+    "selected": false
+  },
+  {
+    "name": "Haymarket",
+    "value": "place-haecl",
+    "selected": false
+  },
+  {
+    "name": "North Station",
+    "value": "place-north",
+    "selected": false
+  },
+  {
+    "name": "Aquarium",
+    "value": "place-aqucl",
+    "selected": false
+  },
+  {
+    "name": "Chinatown",
+    "value": "place-chncl",
+    "selected": false
+  },
+  {
+    "name": "Mattapan",
+    "value": "place-matt",
+    "selected": false
+  }
+]

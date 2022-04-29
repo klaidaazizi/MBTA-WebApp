@@ -11,6 +11,7 @@ import UserSearchBar from "../user-search";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../actions/auth-actions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {findStopNameById} from "../../services/stop-service";
 
 const Profile = () => {
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
@@ -19,6 +20,7 @@ const Profile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [profile, setProfile] = useState({});
+    const [stopName, setStopName] = useState('')
 
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -29,8 +31,13 @@ const Profile = () => {
     };
 
     useEffect(() => {
+        console.log('before')
         {loggedIn ? setProfile(user) : navigate('/profile-search')}
-    }, [loggedIn]);
+        if (profile && profile.userRole === 'Commuter') {
+            console.log('here')
+            findStopNameById(user.homeStop).then(response => setStopName(response));
+        }
+    }, [loggedIn, profile.userRole]);
 
     return(
         <>
@@ -85,7 +92,7 @@ const Profile = () => {
                             <>
 
                             <span><i className='fa fa-home ms-1 me-1'/>
-                                <span className="d-none d-lg-inline">Home stop</span>: {profile.homeStop}
+                                <span className="d-none d-lg-inline">Home stop</span>: {stopName}
                             </span>
                             </>
                             :

@@ -8,6 +8,7 @@ import {findAlertsByStop} from "../../../actions/alerts-action";
 import {pinStop} from "../../../services/pinned-stop-service";
 import * as service from "../../../services/authentication-service";
 import {pinnedStopAlreadyExists} from "../../../actions/pinned-stops-action";
+import {changeHighlight} from "../../../actions/nav-bar-action";
 
 const TransitStop = () => {
     const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
@@ -19,6 +20,7 @@ const TransitStop = () => {
     const [zeroDirectionPredictions, setZeroDirectionPredictions] = useState([]);
     const [oneDirectionPredictions, setOneDirectionPredictions] = useState([]);
     const [destinationDirections, setDestinationDirections] = useState([]);
+    changeHighlight(dispatch, 'home')
 
     const transitType = params.transitType;
     const stopId = params.stopId;

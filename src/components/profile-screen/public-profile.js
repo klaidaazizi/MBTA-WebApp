@@ -14,11 +14,13 @@ import {followAlreadyExists} from "../../actions/follow-actions";
 import {conductorLikeAlreadyExists} from "../../actions/conductor-likes-action";
 import {likeConductor} from "../../services/conductor-likes-service";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {changeHighlight} from "../../actions/nav-bar-action";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+    changeHighlight(dispatch, 'search_users')
     const [profile, setProfile] = useState({currentRouteConducting: ''});
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const userViewing = useSelector(state => state.sessionReducer.profileData)

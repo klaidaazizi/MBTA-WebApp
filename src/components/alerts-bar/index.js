@@ -19,8 +19,7 @@ const AlertsBar = () => {
             if (user && user.userRole === 'Commuter') {
                 profileAlertKey = user.homeStop;
             } else if (user && user.userRole === 'Conductor') {
-                const url = conductedRoute.routeString.split('/');
-                profileAlertKey = url.at(3);
+                profileAlertKey = conductedRoute.routeString.split('/').at(3);
             }
             {
                 loggedIn ?
@@ -37,7 +36,6 @@ const AlertsBar = () => {
 
     let conductingRoute
     if (user && user.userRole === 'Conductor') {
-        console.log(conductingRoute)
         conductingRoute = conductedRoute.routeString.split('/').at(3)
     }
 
@@ -79,7 +77,7 @@ const AlertsBar = () => {
                                     findAllAlerts(dispatch) :
                                     user.userRole === 'Commuter' ?
                                         findAlertsByHomeStop(dispatch, profileAlertKey) :
-                                        findAlertsByRoute(dispatch, profileAlertKey)
+                                        findAlertsByRoute(dispatch, conductingRoute)
                                 :
                                 findAllAlerts(dispatch)
                         }
