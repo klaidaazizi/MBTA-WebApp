@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "./nav-components.css";
 import "../../search-screen/search.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewing}) => {
 
@@ -20,7 +21,9 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                         <span className='like-buttons float-end'>
                             <span onClick={() => unlikeConductor(like._id)}
                                   className="col-12 btn  btn-warning ">
-                                    Unlike Conductor
+                                 <span className="d-none d-md-inline"> Unlike Conductor</span>
+                                    <span className="d-xs-block d-md-none"><FontAwesomeIcon icon="fa-solid fa-circle-minus"/></span>
+
                             </span>
                         </span>
                         <div>
@@ -43,7 +46,9 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                                 <span className='like-buttons float-end'>
                                     <span onClick={() => unlikeConductor(like._id)}
                                   className="col-12 btn  btn-warning ">
-                                    Remove Commuter Like
+                                        <span className="d-none d-md-inline">Remove Commuter Like</span>
+                                    <span className="d-xs-block d-md-none"><FontAwesomeIcon icon="fa-solid fa-circle-minus"/></span>
+
                                     </span>
                                 </span>
                                 <div>
