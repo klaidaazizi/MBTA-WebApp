@@ -26,7 +26,7 @@ const AlertsBar = () => {
                     user.userRole === 'Admin' ?
                         findAllAlerts(dispatch) :
                         user.userRole === 'Commuter' ?
-                            findAlertsByHomeStop(dispatch, profileAlertKey) :
+                            findAlertsByHomeStop(dispatch, user.homeStop) :
                             findAlertsByRoute(dispatch, profileAlertKey)
                     :
                     findAllAlerts(dispatch)
@@ -76,7 +76,7 @@ const AlertsBar = () => {
                                 user.userRole === 'Admin' ?
                                     findAllAlerts(dispatch) :
                                     user.userRole === 'Commuter' ?
-                                        findAlertsByHomeStop(dispatch, profileAlertKey) :
+                                        findAlertsByHomeStop(dispatch, user.homeStop) :
                                         findAlertsByRoute(dispatch, conductingRoute)
                                 :
                                 findAllAlerts(dispatch)
