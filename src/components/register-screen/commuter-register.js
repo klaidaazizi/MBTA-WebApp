@@ -8,7 +8,8 @@ import {changeHighlight} from "../../actions/nav-bar-action";
 
 const CommuterRegister = () => {
     const [newUser, setNewUser] = useState({
-        userRole: 'Commuter'
+        userRole: 'Commuter',
+        charlieCardBalance: 10
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -92,7 +93,7 @@ const CommuterRegister = () => {
                     <div className='input-container'>
                         <label> Date of Birth </label>
                         <div>
-                            <input type='date'  className="form-control" placeholder='Enter Charlie Card Balance' onChange={handleDateOfBirthChange}
+                            <input type='date'  className="form-control" onChange={handleDateOfBirthChange}
                                    required={true}/>
                         </div>
                     </div>
