@@ -26,7 +26,6 @@ export const login = async (dispatch, user) => {
         type: LOGIN,
         response,
     });
-    console.log(response._id)
     const userConductedRoute = await findConductedRouteByUserId(response._id);
     if (userConductedRoute !== null) {
         dispatch({

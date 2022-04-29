@@ -3,7 +3,6 @@ import AlertsReducer from "../reducers/alerts-reducer";
 import LeftSidebar from "./left-sidebar";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
-import NavigationBar from "./navigation-bar";
 import AlertsBar from "./alerts-bar";
 import {Outlet} from "react-router-dom";
 import NavigationReducer from "../reducers/navigation-reducer";

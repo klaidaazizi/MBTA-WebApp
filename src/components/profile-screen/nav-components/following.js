@@ -1,4 +1,4 @@
-import {findAllFollowsByUser, findAllUserFollowers} from "../../../actions/follow-actions";
+import {findAllFollowsByUser} from "../../../actions/follow-actions";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";

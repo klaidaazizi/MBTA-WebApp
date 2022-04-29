@@ -3,7 +3,6 @@ import AlertItem from "./alert-item";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllAlerts, findAlertsByRoute, findAlertsByHomeStop} from "../../actions/alerts-action";
 import {Button} from "react-bootstrap";
-import {findConductedRouteByUserId} from "../../actions/conducted-routes-action";
 
 const AlertsBar = () => {
     const dispatch = useDispatch();

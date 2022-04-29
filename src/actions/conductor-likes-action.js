@@ -23,7 +23,6 @@ export const findAllConductorLikesbyCommuter = async (dispatch, comid) => {
 
 export const conductorLikeAlreadyExists = async (dispatch, conid, comid) => {
     const conductorLikeExists = await service.likeExistsAlready(conid, comid);
-    //console.log(conductorLikeExists, "in action likes")
     dispatch({
         type: CONDUCTOR_LIKE_ALREADY_EXISTS,
         conductorLikeExists

@@ -11,7 +11,6 @@ export const FIND_ALL_POSTS_BY_USER = "FIND_ALL_POSTS_BY_USER";
 
 export const findAllPosts = async (dispatch) => {
     const allPosts = await service.findAllPosts();
-    //console.log(allPosts, " in action post")
     dispatch({
         type: FIND_ALL_POSTS,
         allPosts

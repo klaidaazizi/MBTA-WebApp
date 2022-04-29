@@ -2,7 +2,6 @@ import React from "react";
 import {takeRide} from "../../../actions/auth-actions";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {changeHighlight} from "../../../actions/nav-bar-action";
 
 const PredictionListItem = ({prediction}) => {
     const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn);
@@ -26,9 +25,6 @@ const PredictionListItem = ({prediction}) => {
     else if(timeToArrival < 0) {
         predictionDisplay = 'Left Station';
     }
-    // else if(timeToArrival < 90 && vehicle.status === 'STOPPED_AT') {
-    //     predictionDisplay = 'BRD';
-    // }
     else if(timeToArrival <= 30) {
         predictionDisplay = 'ARR';
     }

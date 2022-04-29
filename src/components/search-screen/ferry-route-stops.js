@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import FerryRouteStopsItem from "./ferry-route-stops-item";
 import {useDispatch, useSelector} from "react-redux";
 import {findRapidTransitRouteAllStops} from "../../actions/search-action";
-import {Link, useLocation, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import './search.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 

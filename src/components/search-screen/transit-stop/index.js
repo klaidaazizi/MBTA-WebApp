@@ -1,19 +1,17 @@
 import React, {useEffect, useState} from "react";
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import PredictionListItem from "../prediction-list-item";
 import {getPredicationByStopIdOneDirection, getPredicationByStopIdZeroDirection} from "../../../actions/prediction-action";
 import {findRapidTransitRouteDestinationDirections} from "../../../actions/search-action";
 import {useDispatch, useSelector} from "react-redux";
 import {findAlertsByStop} from "../../../actions/alerts-action";
 import {pinStop} from "../../../services/pinned-stop-service";
-import * as service from "../../../services/authentication-service";
 import {pinnedStopAlreadyExists} from "../../../actions/pinned-stops-action";
 import {changeHighlight} from "../../../actions/nav-bar-action";
 
 const TransitStop = () => {
     const isLoggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const user = useSelector(state => state.sessionReducer.profileData)
-    console.log(user, " in transit stop")
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
@@ -25,8 +23,6 @@ const TransitStop = () => {
     const transitType = params.transitType;
     const stopId = params.stopId;
     const routeId = params.routeId;
-    //const location = useLocation().pathname.split("/");
-    //const newLocation = location.filter(element => element != "");
     const routeName = params.routeName;
     const stopName = params.stopName;
     const stopNameForTransitStop = stopName.replace(/_/g," ").replace("*","/");

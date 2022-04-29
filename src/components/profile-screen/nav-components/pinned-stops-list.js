@@ -7,7 +7,6 @@ function Stops({stops = [], unpinStop, user}) {
             <ul className=" list-group">
                 {
                     stops.map && stops.map(stop => {
-                        //console.log(stop)
                         return (
                             <StopUnit key={stop._id}
                                       unpinStop={unpinStop}

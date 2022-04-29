@@ -15,10 +15,7 @@ export const findAllPinnedStopsByUser = async (dispatch, uid) => {
 }
 
 export const findAllUsersWhoPinnedStop = async (dispatch, sid) => {
-    //console.log(sid, " in pinned-action")
     const usersWhoPinnedStops = await service.findAllUsersWhoPinnedStop(sid);
-    //console.log(usersWhoPinnedStops, " in pinned-action")
-
     dispatch({
         type: FIND_ALL_USERS_WHO_PINNED_STOP,
         usersWhoPinnedStops
@@ -27,7 +24,6 @@ export const findAllUsersWhoPinnedStop = async (dispatch, sid) => {
 
 export const pinnedStopAlreadyExists = async (dispatch, routeType, routeId, stopId, userId) => {
     const pinExists = await service.pinExistsAlready(routeType, routeId, stopId, userId);
-    //console.log(pinExists, routeType, routeId, stopId, userId)
     dispatch({
         type: PIN_ALREADY_EXISTS,
         pinExists

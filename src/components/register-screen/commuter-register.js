@@ -9,11 +9,11 @@ import {changeHighlight} from "../../actions/nav-bar-action";
 const CommuterRegister = () => {
     const [newUser, setNewUser] = useState({
         userRole: 'Commuter',
-        charlieCardBalance: 10
+        charlieCardBalance: 10,
+        homeStop: ''
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams()
 
     //handle all info changes
     const handleName = (e) => {

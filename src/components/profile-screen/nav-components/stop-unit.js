@@ -1,14 +1,10 @@
-import React, {useEffect, useState} from "react";
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
+import React from "react";
+import {Link} from "react-router-dom";
 import "./nav-components.css";
 import "../../search-screen/search.css";
-import * as service from "../../../services/authentication-service";
-import {findAlertsByStop} from "../../../actions/alerts-action";
-import {pinStop} from "../../../services/pinned-stop-service";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const StopUnit = ({unpinStop, stop, user}) => {
-    //console.log(stop, user, "in stop unit")
     let routeType;
     let stopName;
     let routeName;
@@ -23,18 +19,6 @@ const StopUnit = ({unpinStop, stop, user}) => {
         stopNameForNavigation =  stop.stopName.replace(/ /g, '_');
     }
 
-
-    // let backgroundColor;
-    // if(routeType === 'rapid-transit') {
-    //     backgroundColor = 'rt-route-color';
-    // } else if (routeType === 'bus') {
-    //     backgroundColor = 'bus-route-color';
-    // } else if (routeType === 'commuter-rail') {
-    //     backgroundColor = 'cr-color';
-    // } else if (routeType === 'ferry') {
-    //     backgroundColor = 'ferry-route-color';
-    // }
-
     let backgroundColor = 'white';
 
 
@@ -45,7 +29,6 @@ const StopUnit = ({unpinStop, stop, user}) => {
                     <>
                     <Link to={`/home/${routeType}/${stop.routeId}/${routeNameForNavigation}/stop/${stop.stopId}/${stopNameForNavigation}`} className="line-ends-links" >
                     <span className='btn btn-warning  float-start'>
-                        {/*<span className="d-none d-md-inline ">Remove</span>*/}
                         <span className="d-xs-block d-md-none "><FontAwesomeIcon icon="fa-solid fa-eye"/></span>
                         <span className="col-3  d-none d-md-inline">See Next Arrivals</span>
                     </span>
@@ -60,9 +43,6 @@ const StopUnit = ({unpinStop, stop, user}) => {
                     <span className='btn btn-warning  float-end'>
                         <span className="d-xs-block d-md-none "><FontAwesomeIcon icon="fa-solid fa-eye"/></span>
                         <span className="col-3 d-none d-md-inline">See Next Arrivals</span>
-                            {/*<span className="col-3 btn  btn-warning float-end">*/}
-                            {/*        See Next Arrivals*/}
-                            {/*</span>*/}
                     </span>
                     </Link>
                 }

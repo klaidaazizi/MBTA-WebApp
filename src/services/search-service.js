@@ -34,13 +34,10 @@ export const findAllFerryRoutes = async () => {
 
 export const findAllStopsInMBTA = async () => {
     const response = await axios.get(`${SEARCH_API_BASE}/stops`)
-    console.log(response.data.data, " in service")
     return response.data.data;
 }
 
 export const findStopById = async (sid) => {
-    console.log("in seeeervice")
     const response = await axios.get(`${SEARCH_API_BASE}/stops/${sid}`)
-    console.log( response.data.data, " in stop id service")
     return response.data.data;
 }

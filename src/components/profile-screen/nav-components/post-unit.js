@@ -16,9 +16,6 @@ const PostUnit = ({deletePost, post, user}) => {
                     <span className='btn btn-warning float-start'>
                          <span className="d-xs-block d-md-none "><FontAwesomeIcon icon="fa-solid fa-eye"/></span>
                         <span className="col-3  d-none d-md-inline">See All Posts</span>
-                            {/*<span className="col-3 btn  btn-warning float-start">*/}
-                            {/*        See All Posts*/}
-                            {/*</span>*/}
                     </span>
                         </Link>
                         <span className=''>
@@ -31,9 +28,6 @@ const PostUnit = ({deletePost, post, user}) => {
                     <span className='btn btn-warning  float-end'>
                         <span className="d-xs-block d-md-none "><FontAwesomeIcon icon="fa-solid fa-eye"/></span>
                         <span className="col-3  d-none d-md-inline">See All Posts</span>
-                            {/*<span className="col-3 btn  btn-warning float-end">*/}
-                            {/*        See All Posts*/}
-                            {/*</span>*/}
                     </span>
                     </Link>
                 }
