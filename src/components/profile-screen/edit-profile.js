@@ -156,35 +156,35 @@ const EditProfile = () => {
             <img src='/images/thomas.png' alt='' className="profile-pic"/>
 
 
-            <div className="row ms-2 mt-3 col-11 mb-2">
-                <label className='control-label'>
+            <div className="row ms-4 me-4 mt-3 col-11 mb-2">
+                <label className='control-label '>
                     Edit Name
                 </label>
                 {loggedIn && profile && profile.name && profile.username && profile.email && profile.password ?
                     <>
-                    <input className="border-1 form-control" value={profile.name} onChange={updateName}/>
-                    <label className='control-label mt-2'>
+                    <input className="border-1 form-control " value={profile.name} onChange={updateName}/>
+                    <label className='control-label mt-2 '>
                         Edit Username
                     </label>
-                    <input className="border-1 form-control" value={profile.username} onChange={updateUsername}/>
-                    <label className='control-label mt-2'>
+                    <input className="border-1 form-control " value={profile.username} onChange={updateUsername}/>
+                    <label className='control-label mt-2 '>
                     Edit Email
                     </label>
-                    <input className="border-1 form-control" value={profile.email} onChange={updateEmail}/>
-                    <label className='control-label mt-2'>
+                    <input className="border-1 form-control " value={profile.email} onChange={updateEmail}/>
+                    <label className='control-label mt-2 '>
                     Edit Password
                     </label>
-                    <input className="border-1 form-control" value={profile.password} onChange={updatePassword}/>
+                    <input className="border-1 form-control " value={profile.password} onChange={updatePassword}/>
                     </>
                     : ""
                 }
 
                 {profile && profile.userRole && profile.userRole === "Commuter" ?
                     <>
-                        <label className='control-label mt-2'>
+                        <label className='control-label mt-2 '>
                             Edit Home stop
                         </label>
-                        <input className="border-1 form-control" value={profile.homeStop} onChange={updateHomeStop}/>
+                        <input className="border-1 form-control " value={profile.homeStop} onChange={updateHomeStop}/>
                     </>
                     : ""
                 }
@@ -194,12 +194,7 @@ const EditProfile = () => {
                         <label className='control-label mt-2 '>
                             Edit Date of Birth
                         </label>
-                        <input className="border-1 form-control" value={profile.dateOfBirth} onChange={updateDOB}/>
-                        <label className='control-label mt-2 '>
-                            Edit Joined Date
-                        </label>
-                        <input className="border-1 form-control" value={profile.dateJoined}
-                               onChange={updateJoinedDate}/>
+                        <input type='date' className="border-1 form-control " onChange={updateDOB}/>
                     </>
                     : ""
                 }

@@ -13,7 +13,7 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                         <Link to={`/profile/${like.conductor.username}`} className='like-buttons'>
                     <span className='like-buttons'>
                             <span className="col-12 btn  btn-warning float-start">
-                                    View {like.conductor.username}'s Profile
+                                    View @{like.conductor.username}'s Profile
                             </span>
                     </span>
                         </Link>
@@ -25,7 +25,7 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                         </span>
                         <div>
                                 <span>
-                                    Conductor you liked: {like.conductor.username}
+                                    Conductor you liked: @{like.conductor.username}
                                 </span>
                         </div>
                     </>
@@ -36,7 +36,7 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                                 <Link to={`/profile/${like.likedBy.username}`} className='like-buttons'>
                         <span className='like-buttons'>
                             <span className="col-12 btn  btn-warning float-start">
-                                    View {like.likedBy.username}'s Profile
+                                    View @{like.likedBy.username}'s Profile
                             </span>
                         </span>
                                 </Link>
@@ -48,7 +48,7 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                                 </span>
                                 <div>
                                 <span>
-                                    Commuter who liked you: {like.likedBy.username}
+                                    Commuter who liked you: @{like.likedBy.username}
                                 </span>
                                 </div>
                             </>
@@ -67,7 +67,7 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                                             </Link>
                                             <div>
                                             <span>
-                                            Commuter who liked {userProfile.username}: {like.likedBy.username}
+                                            Commuter who liked @{userProfile.username}: @{like.likedBy.username}
                                             </span>
                                             </div>
                                             </>
@@ -77,13 +77,13 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                                             <Link to={`/profile/${like.likedBy.username}`} className='like-buttons'>
                                             <span className='like-buttons'>
                                                 <span className="col-12 btn  btn-warning float-start">
-                                                    View {like.likedBy.username}'s Profile
+                                                    View @{like.likedBy.username}'s Profile
                                                 </span>
                                             </span>
                                             </Link>
                                             <div>
                                             <span>
-                                            Commuter who liked {userProfile.username}: {like.likedBy.username}
+                                            Commuter who liked @{userProfile.username}: @{like.likedBy.username}
                                             </span>
                                             </div>
                                                 </>
@@ -104,7 +104,7 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                                                     </Link>
                                                     <div>
                                             <span>
-                                                    Conductor {userProfile.username} liked: {like.conductor.username}
+                                                    Conductor @{userProfile.username} liked: @{like.conductor.username}
                                             </span>
                                                     </div>
                                                     </>
@@ -113,13 +113,13 @@ const ConductorLikeItem = ({unlikeConductor, like, user, userProfile, userViewin
                                                     <Link to={`/profile/${like.conductor.username}`} className='like-buttons'>
                                             <span className='like-buttons'>
                                                 <span className="col-12 btn btn-warning float-start">
-                                                    View {like.conductor.username}'s Profile
+                                                    View @{like.conductor.username}'s Profile
                                                 </span>
                                             </span>
                                                     </Link>
                                                     <div>
                                                     <span>
-                                                    Conductor {userProfile.username} liked: {like.conductor.username}
+                                                    Conductor @{userProfile.username} liked: @{like.conductor.username}
                                                     </span>
                                                     </div>
                                                     </>

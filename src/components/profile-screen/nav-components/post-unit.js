@@ -36,11 +36,8 @@ const PostUnit = ({deletePost, post, user}) => {
                 <br/>
                 <div className=' ' >
                     <div className='row'>
-                        <span className="fw-bold stop-unit  ">
-                            Post: {post.post}
-                            <br/>
-                            {post.user.userRole} : {post.user.username}
-                        </span>
+                        <span><span className="fw-bold stop-unit">Post:</span> {post.post}</span>
+
                     </div>
                 </div>
             </li>

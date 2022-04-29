@@ -37,6 +37,7 @@ const AlertsBar = () => {
 
     let conductingRoute
     if (user && user.userRole === 'Conductor') {
+        console.log(conductingRoute)
         conductingRoute = conductedRoute.routeString.split('/').at(3)
     }
 
@@ -52,9 +53,10 @@ const AlertsBar = () => {
                             :
                             <>
                                 <li className='list-group-item fw-bold bg-danger text-white text-center'>Conducting Route Alerts</li>
-                                <li className='list-group-item fw-bold bg-danger text-white text-center'>Conducting Route: {conductingRoute}</li>
+                                <li className='list-group-item fw-bold bg-warning text-white text-center'>Your Route: <br/> {conductingRoute}</li>
                             </>
-
+                            // <li className='list-group-item fw-bold bg-danger text-white text-center'>Home Station Alerts</li> :
+                            // <li className='list-group-item fw-bold bg-danger text-white text-center'>Conducting Route Alerts</li>
                     :
                     <li className='list-group-item fw-bold bg-danger text-white text-center'>MBTA Alerts</li>
             }

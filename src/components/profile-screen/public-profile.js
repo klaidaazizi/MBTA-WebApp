@@ -31,6 +31,13 @@ const PublicProfile = () => {
         return;
     }
 
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    function convertDateBirth(myDate) {
+        let dateWithoutTime = myDate.split("T");
+        var date = dateWithoutTime[0].split("-");
+        return months[Number(date[1]) - 1] + " " + date[2] + ", " + date[0];
+    };
 
     const queryURL = window.location.pathname;
     const params = queryURL.toString().split('/');
@@ -142,48 +149,81 @@ const PublicProfile = () => {
                                 </>
                                 :
                                 ""
+                                // <>
+                                //     {profile.userRole === "Conductor" && profile.currentRouteConducting !== '' ?
+                                //         <>
+                                //             <Link  to={profile.currentRouteConducting}>
+                                //             <span className="col-3 btn bg-warning ms-1 me-1" >
+                                //                 View My Route
+                                //              </span>
+                                //                 </Link>
+                                //                 </>
+                                //         :
+                                //         ""
+                                //     }
+                                // </>
                             }
                         </>
                     }
-                    <span>
-                        <i className='fa fa-birthday-cake ms-3 me-1'/>
-                        Born: newDate{profile.dateOfBirth}
-                    </span>
-                    <span>
-                        <i className='fa fa-calendar me-1 ms-3'/>
-                        Joined: {profile.joinedDate}
-                    </span>
+                    {profile && profile.userRole && profile.userRole === "Conductor" ?
+                        <span><i className='fa fa-birthday-cake ms-1 me-1'/>
+                            {profile && profile.dateOfBirth ?
+                                <span
+                                    className="">Birthday: {convertDateBirth(profile.dateOfBirth)} </span>
+                                : ''}
+                             </span>
+                        :
+                        <span><i className='fa fa-birthday-cake ms-3 me-1'/>
+                            { profile && profile.dateOfBirth?
+                                <span className="">Birthday:  {convertDateBirth(profile.dateOfBirth)} </span>
+                                :''}
+                             </span>
+                    }
+
+                    {/*<span>*/}
+                    {/*    <i className='fa fa-birthday-cake ms-3 me-1'/>*/}
+                    {/*    Born: newDate{profile.dateOfBirth}*/}
+                    {/*</span>*/}
+                    {/*<span>*/}
+                    {/*    <i className='fa fa-calendar me-1 ms-3'/>*/}
+                    {/*    Joined: {profile.joinedDate}*/}
+                    {/*</span>*/}
                 </div>
 
-                <div className='ms-2'>
-                    <ul className='nav mb-2 nav-tabs'>
+                <div className=''>
+                    <div className=''>
+                        <ul className='mb-2 nav nav-tabs nav-justified'>
                         {loggedIn ?
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                            <li className="nav-item">
                                 <Link to={`/profile/${profile.username}/lists/your-posts`}
-                                      className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active' : ''}`}>
-                                    Posts
+                                      className={`nav-link border ${location.pathname.indexOf('posts') >= 0 ? 'active' : ''}`}>
+                                    <FontAwesomeIcon icon="fa-solid fa-comment" className="me-1"/>
+                                    <br/><span className="d-none d-md-inline">Posts</span>
                                 </Link>
                             </li>
                             : ""
                         }
 
-                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                        <li className="nav-item ">
                             <Link to={`/profile/${profile.username}/lists/followers`}
-                                  className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
-                                Followers</Link>
+                                  className={`nav-link border ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
+                                <FontAwesomeIcon icon="fa-solid fa-user-group" className="me-1"/>
+                                <br/><span className="d-none d-md-inline">Followers</span></Link>
                         </li>
-                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                        <li className="nav-item ">
                             <Link to={`/profile/${profile.username}/lists/following`}
-                                  className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
-                                Following</Link>
+                                  className={`nav-link border ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
+                                <FontAwesomeIcon icon="fa-solid fa-user-plus" className='me-1' />
+                                <br/><span className="d-none d-md-inline">Following</span></Link>
                         </li>
 
                             {profile.userRole === "Conductor" ?
                                 <>
-                                <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                <li className="nav-item">
                                 <Link to={`/profile/${profile.username}/lists/conductor-likes`}
-                                      className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                    Likes By Commuters
+                                      className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                    <FontAwesomeIcon icon="fa-solid fa-heart" className='me-1' />
+                                    <span className="d-none d-md-inline">Commuter Likes</span>
                                 </Link>
                                 </li>
                                 </>
@@ -191,10 +231,11 @@ const PublicProfile = () => {
                                 <>
                                 {profile.userRole === "Commuter" ?
                                     <>
-                                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                        <li className="nav-item">
                                         <Link to={`/profile/${profile.username}/lists/conductor-likes`}
-                                          className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                        Conductors {profile.username} Likes </Link>
+                                          className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                            <FontAwesomeIcon icon="fa-solid fa-heart" className='me-1' />
+                                            <span className="d-none d-md-inline">Liked Conductors</span></Link>
                                     </li>
                                     </>
                                     : ""
@@ -203,10 +244,11 @@ const PublicProfile = () => {
                             }
 
                         {profile && profile.userRole === "Commuter" ?
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                            <li className="nav-item">
                                 <Link to={`/profile/${profile.username}/lists/pinned-stops`}
-                                      className={`nav-link ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
-                                    Pinned Stops</Link>
+                                      className={`nav-link border ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
+                                    <FontAwesomeIcon icon="fa-solid fa-thumbtack" className='me-1' />
+                                    <br/><span className="d-none d-md-inline">Stops</span></Link>
                             </li>
                             : ""
                         }
@@ -225,6 +267,7 @@ const PublicProfile = () => {
                     :""
                 }
             </Routes>
+            </div>
         </>
 
 

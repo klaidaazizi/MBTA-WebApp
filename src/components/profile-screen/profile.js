@@ -20,6 +20,14 @@ const Profile = () => {
     const location = useLocation();
     const [profile, setProfile] = useState({});
 
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    function convertDateBirth(myDate) {
+        let dateWithoutTime = myDate.split("T");
+        var date = dateWithoutTime[0].split("-");
+        return months[Number(date[1]) - 1] + " " + date[2] + ", " + date[0];
+    };
+
     useEffect(() => {
         {loggedIn ? setProfile(user) : navigate('/profile-search')}
     }, [loggedIn]);
@@ -30,7 +38,7 @@ const Profile = () => {
                 <div className='box top'>
                     <UserSearchBar/>
                 </div>
-                <div className='mt-5 box border border-black bg-light rounded-2 ps-2 pe-2'>
+                <div className='mt-5 box bg-light rounded-2 ps-2 pe-2'>
                     <div className="row border-bottom bg-black border-2 rounded-3 pt-3 p-1">
                         <div className="col-1">
                             {profile && profile.userRole === 'Commuter' ? <i className={"fa fa-briefcase"}/>: ''}
@@ -55,16 +63,17 @@ const Profile = () => {
 
                         <button onClick={() => navigate('/profile/editprofile')}
                                 type='button'
-                                className='btn btn-primary rounded-pill mt-2 me-2 p-2'>
-                            <span className="d-none d-sm-block">Edit Profile</span>
-                            <span className="d-xs-block d-sm-none"><FontAwesomeIcon icon="fa-solid fa-pen-to-square" /></span>
+                                className='btn btn-primary rounded-pill mt-2 me-2'>
+                            <span className="d-none d-md-block">Edit Profile</span>
+                            <span className="d-xs-block d-md-none"><FontAwesomeIcon icon="fa-solid fa-pen-to-square" /></span>
                         </button>
 
                         <button onClick={() => logout(dispatch).then(navigate('/profile-search'))} className=" btn btn-danger rounded-pill mt-2 me-2">
-                            Logout
+                            <span className="d-none d-md-block">Logout</span>
+                            <span className="d-xs-block d-md-none"><FontAwesomeIcon icon="fa-solid fa-right-from-bracket"/></span>
                         </button>
                     </div>
-                    <div className="m-2 ms-3">
+                    <div className="m-2 mt-1 ms-3">
                         <span className=" fw-bold">@{profile && profile.username? profile.username :''}</span>
 
                         <div className="mt-1">{profile && profile.email? profile.email: ''}</div>
@@ -107,56 +116,67 @@ const Profile = () => {
                             </>
                         }
                         <span><i className='fa fa-birthday-cake ms-3 me-1'/>
-                            <span className="d-none d-lg-inline">Born</span>: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>
-                        <span><i className='fa fa-calendar me-1 ms-3'/>
-                            <span className="d-none d-lg-inline">Joined</span>: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>
+                            { profile && profile.dateOfBirth?
+                            <span className="d-none d-lg-inline">Born:  {convertDateBirth(profile.dateOfBirth)} </span>
+                                :''}
+                             </span>
+                        {/*<span className="d-none d-lg-inline">Born</span>: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>*/}
+                    {/*    <span><i className='fa fa-calendar me-1 ms-3'/>*/}
+                    {/*        <span className="d-none d-lg-inline">Joined</span>: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>*/}
                     </div>
 
-
-                    <div className='ms-2'>
-                        <ul className='nav mb-2 nav-tabs'>
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                    <div className=''>
+                    <div className=''>
+                        <ul className='mb-2 nav nav-tabs nav-justified'>
+                            <li className="nav-item ">
                                 <Link to="/profile/lists/your-posts"
-                                      className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
-                                    Posts
+                                      className={`nav-link border ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
+                                    <FontAwesomeIcon icon="fa-solid fa-comment" className="me-1"/>
+                                    <br/><span className="d-none d-md-inline">Posts</span>
                                 </Link>
                             </li>
 
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                            <li className="nav-item">
                                 <Link to="/profile/lists/followers"
-                                      className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
-                                    Followers</Link>
+                                      className={`nav-link border ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
+                                    <FontAwesomeIcon icon="fa-solid fa-user-group" className="me-1"/>
+                                    <br/><span className="d-none d-md-inline">Followers</span></Link>
                             </li>
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                            <li className="nav-item">
                                 <Link to="/profile/lists/following"
-                                      className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
-                                    Following</Link>
+                                      className={`nav-link border ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
+                                    <FontAwesomeIcon icon="fa-solid fa-user-plus" className='me-1' />
+                                    <br/><span className="d-none d-md-inline">Following</span></Link>
                             </li>
                             {profile.userRole === "Conductor" ?
                                 <>
-                                    <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                    <li className="nav-item">
                                         <Link to="/profile/lists/conductor-likes"
-                                              className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                            Commuters Who Like You </Link>
+                                              className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                            <FontAwesomeIcon icon="fa-solid fa-heart" className='me-1' />
+                                            <br/><span className="d-none d-md-inline">Commuter Likes</span>
+                                            </Link>
                                     </li>
                                 </>
                                 :
                                 <>
                                     {profile.userRole === "Commuter" ?
-                                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                        <li className="nav-item">
                                             <Link to="/profile/lists/conductor-likes"
-                                                  className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                                Conductors You Like </Link>
+                                                  className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                                <FontAwesomeIcon icon="fa-solid fa-heart" className='me-1' />
+                                                <span className="d-none d-md-inline">Liked Conductors</span></Link>
                                         </li>
                                         : ""
                                     }
                                 </>
                             }
                             {user && user.userRole === "Commuter" ?
-                                <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                <li className="nav-item ">
                                     <Link to="/profile/lists/pinned-stops"
-                                          className={`nav-link ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
-                                        Pinned Stops</Link>
+                                          className={`nav-link border ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
+                                        <FontAwesomeIcon icon="fa-solid fa-thumbtack" className='me-1' />
+                                        <br/><span className="d-none d-md-inline">Stops</span></Link>
                                 </li>
                                 : ""
                             }
@@ -174,6 +194,7 @@ const Profile = () => {
                 </div>
 
             </div>
+                </div>
         </>
 
 

@@ -84,7 +84,7 @@ const TransitStop = () => {
                                 </span>
                              </div>
                              <div className='col-4'>
-                                 <span className="col-12 btn bg-danger "
+                                 <span className="col-12 btn bg-danger d-none d-lg-block"
                                        onClick={() => findAlertsByStop(dispatch, stopId, name)}>
                                      Alerts
                                  </span>

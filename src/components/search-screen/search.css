@@ -40,8 +40,17 @@
     /* additional code */
 }
 
+#button1, #button3 {
+    margin-left: 18px;
+}
+
+
 .button-sizing{
-    width: 48%;
+    width: 46%;
+    /*margin-bottom: 5px;*/
+    /*margin-top: 5px;*/
+    /*margin-left: 18px;*/
+    /*margin-top: 5px;*/
     margin: 5px;
     font-size: 32px;
     height: 200px;
@@ -55,12 +64,12 @@
 }
 
 
-.search-page-text{
-    font-size: 30px;
-    margin-left: 5px;
-    margin-bottom: 16px;
+/*.search-page-text{*/
+/*    font-size: 30px;*/
+/*    margin-left: 5px;*/
+/*    margin-bottom: 16px;*/
 
-}
+/*}*/
 
 .cr-color{
     background-color: #B08EBD;
@@ -100,13 +109,22 @@
     justify-content: center;
 }
 
-.route-stop-id{
-    color: white;
-    font-size: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/*.route-stop-id{*/
+/*    color: white;*/
+/*    font-size: 30px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+
+
+/*.route-stop-id-smaller{*/
+/*    color: white;*/
+/*    font-size: 20px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
 
 .ferry-route-id{
     color: white;
@@ -146,9 +164,26 @@
     justify-content: center;
 }
 
+
+.rapid-transit-routes-title-smaller{
+    margin-left: 20px;
+    font-size: 25px;
+    align-items: center;
+    color: #D6053E;
+    justify-content: center;
+}
+
 .commuter-rail-routes-title{
     margin-left: 40px;
     font-size: 30px;
+    color:  #321440;
+    align-items: center;
+    justify-content: center;
+}
+
+.commuter-rail-routes-title-smaller{
+    margin-left: 20px;
+    font-size: 20px;
     color:  #321440;
     align-items: center;
     justify-content: center;
@@ -162,6 +197,15 @@
     justify-content: center;
 }
 
+.bus-routes-title-smaller{
+    margin-left: 20px;
+    font-size: 25px;
+    color: #008332;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .ferry-routes-title{
     margin-left: 40px;
     font-size: 30px;
@@ -170,10 +214,27 @@
     justify-content: center;
 }
 
+.ferry-routes-title-smaller{
+    margin-left: 20px;
+    font-size: 25px;
+    color: #0086A2;
+    align-items: center;
+    justify-content: center;
+}
+
 .commuter-rail-route-stop{
     /*margin-left: 120px;*/
-    margin-right: 80px;
+    margin-right: 20px;
     font-size: 30px;
+    color:  #321440;
+    align-items: center;
+    justify-content: center;
+}
+
+.commuter-rail-route-stop{
+    /*margin-left: 120px;*/
+    margin-right: 5px;
+    font-size: 25px;
     color:  #321440;
     align-items: center;
     justify-content: center;
@@ -249,6 +310,293 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/*@media (min-width: 576px) and (max-width: 768px) {*/
+/*    .route-stop-id{*/
+/*        color: white;*/
+/*        font-size: 20px;*/
+/*        display: flex;*/
+/*        align-items: center;*/
+/*        justify-content: center;*/
+/*    }*/
+
+
+/*}*/
+
+@media (max-width: 576px) {
+    .route-stop-id{
+        color: white;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .search-page-text{
+        font-size: 16px;
+        margin-left: 5px;
+        margin-bottom: 16px;
+
+    }
+
+
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .route-stop-id{
+        color: white;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .search-page-text{
+        font-size: 18px;
+        margin-left: 1px;
+        margin-bottom: 16px;
+
+    }
+
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .route-stop-id{
+        color: white;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .search-page-text{
+        font-size: 25px;
+        margin-left: 2px;
+        margin-bottom: 16px;
+
+    }
+}
+
+@media   (min-width: 992px) and (max-width: 1199px) {
+
+    .route-stop-id{
+        color: white;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .search-page-text{
+        font-size: 25px;
+        margin-left: 5px;
+        margin-bottom: 16px;
+
+    }
+}
+
+@media   (min-width: 1200px) and (max-width: 1399px) {
+
+    .route-stop-id{
+        color: white;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .search-page-text{
+        font-size: 30px;
+        margin-left: 5px;
+        margin-bottom: 16px;
+
+    }
+}
+
+@media   (min-width: 1400px) and (max-width: 1800px) {
+
+    .route-stop-id{
+        color: white;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .search-page-text{
+        font-size: 36px;
+        /*margin-left: 3px;*/
+        margin-bottom: 16px;
+
+    }
+}
+
+
+@media (max-width: 768px) {
+    .route-stop-id-smaller{
+        color: white;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .route-stop-id-smaller{
+        color: white;
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media   (min-width: 992px) and (max-width: 1199px) {
+
+    .route-stop-id-smaller{
+        color: white;
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media   (min-width: 1200px) and (max-width: 1800px) {
+
+    .route-stop-id-smaller{
+        color: white;
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .route-stop-id-smaller-bus{
+        color: white;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .route-stop-id-smaller-bus{
+        color: white;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media   (min-width: 992px) and (max-width: 1199px) {
+
+    .route-stop-id-smaller-bus{
+        color: white;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media   (min-width: 1200px) and (max-width: 1800px) {
+
+    .route-stop-id-smaller-bus{
+        color: white;
+        font-size: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .route-title-id-cr{
+        color: white;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #button1, #button3 {
+        margin-left: 5px;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .route-title-id-cr{
+        color: white;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+
+    #button1, #button3 {
+        margin-left: 5px;
+    }
+
+}
+
+@media   (min-width: 992px) and (max-width: 1199px) {
+
+    .route-title-id-cr{
+        color: white;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+
+    #button1, #button3 {
+        margin-left: 18px;
+    }
+
+}
+
+@media   (min-width: 1200px) and (max-width: 1800px) {
+
+    .route-title-id-cr{
+        color: white;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+
+    #button1, #button3 {
+        margin-left: 18px;
+    }
+
 }
 
 
