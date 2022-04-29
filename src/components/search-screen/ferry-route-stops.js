@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findRapidTransitRouteAllStops} from "../../actions/search-action";
 import {Link, useLocation, useParams} from "react-router-dom";
 import './search.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 const FerryRouteStops = () => {
@@ -28,7 +29,9 @@ const FerryRouteStops = () => {
                     <Link to="/home/ferry" className="-search-main-buttons-text btn btn-lg btn-dark">
                         Back
                     </Link>
-                    <span className="ferry-routes-title">{routeNameForStopsList} Stops</span></li>
+                    <span className="ferry-routes-title d-md-none"><FontAwesomeIcon icon="fa-solid fa-ferry" className="fa-xl" /></span>
+                    <span className="ferry-routes-title-smaller d-xxl-none d-xl-block  d-lg-block d-md-block  d-none">{routeNameForStopsList} Stops</span>
+                    <span className="ferry-routes-title d-xxl-block d-none">{routeNameForStopsList} Stops</span></li>
                 {rapidRouteStops.map(
                     rapidRouteStop => {
                         return(<FerryRouteStopsItem key={rapidRouteStop.id}

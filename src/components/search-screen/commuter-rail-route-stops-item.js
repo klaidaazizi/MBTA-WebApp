@@ -8,9 +8,9 @@ const CommuterRailRouteStopsItem = ({rapidRouteStop}) => {
     return(
         <div>
             <li className='list-group-item cr-color '>
-                <div className='row'>
-                    <Link to={`stop/${rapidRouteStop.id}/${rapidRouteStopName}`} className="line-ends-links" >
-                    <span className="fw-bold route-stop-id">{rapidRouteStop.attributes.name}</span>
+                <div className=''>
+                    <Link to={`stop/${rapidRouteStop.id}/${rapidRouteStopName}`} className="line-ends-links"  >
+                        <span className="fw-bold route-stop-id-smaller ">{rapidRouteStop.attributes.name}</span>
                     </Link>
                 </div>
             </li>
