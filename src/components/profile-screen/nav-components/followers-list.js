@@ -8,7 +8,6 @@ const FollowersList= ({follows=[],removeFollow, user}) => {
             <ul className=" list-group">
                 {
                     follows.map && follows.map(follow => {
-                        //console.log(follow)
                         return (
                             <FollowerUnit key={follow._id}
                                     follow={follow}

@@ -29,10 +29,25 @@
     height: 100%;
     position: absolute;
     left: 0;
-    top: 10px;
-
+    top: 2px;
 }
 .top{
-
     z-index: 9;
+}
+
+.nav-tabs{
+    font-size: 15px;
+}
+.nav-tabs > li > a{
+}
+.nav-tabs > li > a:hover{
+    background-color: #74c4ab !important;
+    color:#fff !important;
+}
+.nav-tabs .nav-item .nav-link {
+    background-color: #ffffff;
+}
+.nav-tabs .nav-item .nav-link.active {
+    color: #ffffff !important;
+    background-color: #7dcbb2 !important;
 }
