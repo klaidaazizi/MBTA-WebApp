@@ -169,13 +169,13 @@ const PublicProfile = () => {
                         <span><i className='fa fa-birthday-cake ms-1 me-1'/>
                             {profile && profile.dateOfBirth ?
                                 <span
-                                    className="d-none d-lg-inline">Birthday: {convertDateBirth(profile.dateOfBirth)} </span>
+                                    className="">Birthday: {convertDateBirth(profile.dateOfBirth)} </span>
                                 : ''}
                              </span>
                         :
                         <span><i className='fa fa-birthday-cake ms-3 me-1'/>
                             { profile && profile.dateOfBirth?
-                                <span className="d-none d-lg-inline">Birthday:  {convertDateBirth(profile.dateOfBirth)} </span>
+                                <span className="">Birthday:  {convertDateBirth(profile.dateOfBirth)} </span>
                                 :''}
                              </span>
                     }
@@ -196,7 +196,12 @@ const PublicProfile = () => {
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to={`/profile/${profile.username}/lists/your-posts`}
                                       className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active' : ''}`}>
-                                    Posts
+                                     <span className="d-none d-xxl-block">
+                                                Posts
+                                            </span>
+                                    <span className="d-xl-block d-xxl-none">
+                                                <FontAwesomeIcon icon="fa-solid fa-comment" />
+                                            </span>
                                 </Link>
                             </li>
                             : ""
@@ -218,7 +223,13 @@ const PublicProfile = () => {
                                 <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to={`/profile/${profile.username}/lists/conductor-likes`}
                                       className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                    Likes By Commuters
+                                    <span className="d-none d-xxl-block">
+                                                 Likes By Commuters
+                                            </span>
+                                    <span className="d-xl-block d-xxl-none">
+                                                <FontAwesomeIcon icon="fa-solid fa-heart" />
+                                            </span>
+
                                 </Link>
                                 </li>
                                 </>
@@ -229,7 +240,13 @@ const PublicProfile = () => {
                                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                         <Link to={`/profile/${profile.username}/lists/conductor-likes`}
                                           className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                        Conductors {profile.username} Likes </Link>
+                                            <span className="d-none d-xxl-block">
+                                                Conductors {profile.username} Likes
+                                            </span>
+                                            <span className="d-xl-block d-xxl-none">
+                                                <FontAwesomeIcon icon="fa-solid fa-heart" />
+                                            </span>
+                                        </Link>
                                     </li>
                                     </>
                                     : ""
@@ -241,7 +258,14 @@ const PublicProfile = () => {
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to={`/profile/${profile.username}/lists/pinned-stops`}
                                       className={`nav-link ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
-                                    Pinned Stops</Link>
+                                    <span className="d-none d-xxl-block">
+                                        Pinned Stops
+                                    </span>
+                                    <span className="d-xl-block d-xxl-none">
+                                        <FontAwesomeIcon icon="fa-solid fa-thumbtack" />
+                                    </span>
+                                    </Link>
+
                             </li>
                             : ""
                         }

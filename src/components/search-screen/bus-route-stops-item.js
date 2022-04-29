@@ -10,7 +10,7 @@ const BusRouteStopsItem = ({rapidRouteStop}) => {
             <li className='list-group-item bus-route-color '>
                 <div className='row ' >
                     <Link to={`stop/${rapidRouteStop.id}/${rapidRouteStopName}`} className="line-ends-links" >
-                        <span className="fw-bold route-stop-id">{rapidRouteStop.attributes.name}</span>
+                        <span className="fw-bold route-stop-id-smaller-bus">{rapidRouteStop.attributes.name}</span>
                     </Link>
                 </div>
             </li>

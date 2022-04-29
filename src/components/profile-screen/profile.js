@@ -130,7 +130,12 @@ const Profile = () => {
                             <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                 <Link to="/profile/lists/your-posts"
                                       className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
-                                    Posts
+                                     <span className="d-none d-xxl-block">
+                                                Posts
+                                            </span>
+                                    <span className="d-xl-block d-xxl-none">
+                                                <FontAwesomeIcon icon="fa-solid fa-comment" />
+                                            </span>
                                 </Link>
                             </li>
 
@@ -149,7 +154,13 @@ const Profile = () => {
                                     <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                         <Link to="/profile/lists/conductor-likes"
                                               className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                            Commuters Who Like You </Link>
+                                            <span className="d-none d-xxl-block">
+                                               Commuters Who Like You
+                                            </span>
+                                            <span className="d-xl-block d-xxl-none">
+                                                <FontAwesomeIcon icon="fa-solid fa-heart" />
+                                            </span>
+                                             </Link>
                                     </li>
                                 </>
                                 :
@@ -158,7 +169,13 @@ const Profile = () => {
                                         <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                             <Link to="/profile/lists/conductor-likes"
                                                   className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                                Conductors You Like </Link>
+                                                <span className="d-none d-xxl-block">
+                                                Conductors {profile.username} Likes
+                                            </span>
+                                                <span className="d-xl-block d-xxl-none">
+                                                <FontAwesomeIcon icon="fa-solid fa-heart" />
+                                            </span>
+                                                 </Link>
                                         </li>
                                         : ""
                                     }
@@ -168,7 +185,13 @@ const Profile = () => {
                                 <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
                                     <Link to="/profile/lists/pinned-stops"
                                           className={`nav-link ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
-                                        Pinned Stops</Link>
+                                        <span className="d-none d-xxl-block">
+                                        Pinned Stops
+                                    </span>
+                                        <span className="d-xl-block d-xxl-none">
+                                        <FontAwesomeIcon icon="fa-solid fa-thumbtack" />
+                                    </span>
+                                    </Link>
                                 </li>
                                 : ""
                             }
