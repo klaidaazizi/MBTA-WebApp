@@ -169,13 +169,13 @@ const PublicProfile = () => {
                         <span><i className='fa fa-birthday-cake ms-1 me-1'/>
                             {profile && profile.dateOfBirth ?
                                 <span
-                                    className="d-none d-lg-inline">Birthday: {convertDateBirth(profile.dateOfBirth)} </span>
+                                    className="">Birthday: {convertDateBirth(profile.dateOfBirth)} </span>
                                 : ''}
                              </span>
                         :
                         <span><i className='fa fa-birthday-cake ms-3 me-1'/>
                             { profile && profile.dateOfBirth?
-                                <span className="d-none d-lg-inline">Birthday:  {convertDateBirth(profile.dateOfBirth)} </span>
+                                <span className="">Birthday:  {convertDateBirth(profile.dateOfBirth)} </span>
                                 :''}
                              </span>
                     }

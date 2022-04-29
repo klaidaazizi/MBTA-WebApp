@@ -24,7 +24,9 @@ const CommuterRailRouteItem = ({crRoute}) => {
                                 </span>
                             </div>
                             :
-                            <span className="fw-bold rapid-transit-route-id">{crRoute.attributes.long_name}</span>
+                            <span className="fw-bold route-title-id-cr ">{crRoute.attributes.long_name}</span>
+
+                            // <span className="fw-bold route-title-id-cr rapid-transit-route-id">{crRoute.attributes.long_name}</span>
                         }
                         {/*<div className="rt-route-text-alignment">*/}
                         {/*    <div>*/}

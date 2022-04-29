@@ -35,7 +35,7 @@ const Profile = () => {
     return(
         <>
                 <div className='container'>
-                <div className='box top '>
+                <div className='box top'>
                     <UserSearchBar/>
                 </div>
                 <div className='mt-5 box bg-light rounded-2 ps-2 pe-2'>
@@ -184,7 +184,6 @@ const Profile = () => {
 
                     </div>
 
-                </div>
                     <Routes>
                         <Route path="/followers" element={<Followers userProfile={user}/>}/>
                         <Route path="/following" element={<Following userProfile={user}/>}/>
