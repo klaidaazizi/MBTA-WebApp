@@ -190,35 +190,40 @@ const PublicProfile = () => {
                     {/*</span>*/}
                 </div>
 
-                <div className='ms-2'>
-                    <ul className='nav mb-2 nav-tabs'>
+                <div className=''>
+                    <div className=''>
+                        <ul className='mb-2 nav nav-tabs nav-justified'>
                         {loggedIn ?
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                            <li className="nav-item">
                                 <Link to={`/profile/${profile.username}/lists/your-posts`}
-                                      className={`nav-link ${location.pathname.indexOf('posts') >= 0 ? 'active' : ''}`}>
-                                    Posts
+                                      className={`nav-link border ${location.pathname.indexOf('posts') >= 0 ? 'active' : ''}`}>
+                                    <FontAwesomeIcon icon="fa-solid fa-bullhorn" className="me-1"/>
+                                    <br/><span className="d-none d-md-inline">Posts</span>
                                 </Link>
                             </li>
                             : ""
                         }
 
-                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                        <li className="nav-item ">
                             <Link to={`/profile/${profile.username}/lists/followers`}
-                                  className={`nav-link ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
-                                Followers</Link>
+                                  className={`nav-link border ${location.pathname.indexOf('followers') >= 0 ? 'active':''}`}>
+                                <FontAwesomeIcon icon="fa-solid fa-user-group" className="me-1"/>
+                                <br/><span className="d-none d-md-inline">Followers</span></Link>
                         </li>
-                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                        <li className="nav-item ">
                             <Link to={`/profile/${profile.username}/lists/following`}
-                                  className={`nav-link ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
-                                Following</Link>
+                                  className={`nav-link border ${location.pathname.indexOf('following') >= 0 ? 'active':''}`}>
+                                <FontAwesomeIcon icon="fa-solid fa-user-plus" className='me-1' />
+                                <br/><span className="d-none d-md-inline">Following</span></Link>
                         </li>
 
                             {profile.userRole === "Conductor" ?
                                 <>
-                                <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                <li className="nav-item">
                                 <Link to={`/profile/${profile.username}/lists/conductor-likes`}
-                                      className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                    Likes By Commuters
+                                      className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                    <FontAwesomeIcon icon="fa-solid fa-briefcase" className='me-1' />
+                                    <span className="d-none d-md-inline">Commuter Likes</span>
                                 </Link>
                                 </li>
                                 </>
@@ -226,10 +231,11 @@ const PublicProfile = () => {
                                 <>
                                 {profile.userRole === "Commuter" ?
                                     <>
-                                        <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                                        <li className="nav-item">
                                         <Link to={`/profile/${profile.username}/lists/conductor-likes`}
-                                          className={`nav-link ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                        Conductors {profile.username} Likes </Link>
+                                          className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
+                                            <FontAwesomeIcon icon="fa-solid fa-train" className='me-1' />
+                                            <span className="d-none d-md-inline">Liked Conductors</span></Link>
                                     </li>
                                     </>
                                     : ""
@@ -238,10 +244,11 @@ const PublicProfile = () => {
                             }
 
                         {profile && profile.userRole === "Commuter" ?
-                            <li className="nav-item ms-1 mb-1 border border-primary rounded-2">
+                            <li className="nav-item">
                                 <Link to={`/profile/${profile.username}/lists/pinned-stops`}
-                                      className={`nav-link ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
-                                    Pinned Stops</Link>
+                                      className={`nav-link border ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
+                                    <FontAwesomeIcon icon="fa-solid fa-location-dot" className='me-1' />
+                                    <br/><span className="d-none d-md-inline">Stops</span></Link>
                             </li>
                             : ""
                         }
@@ -260,6 +267,7 @@ const PublicProfile = () => {
                     :""
                 }
             </Routes>
+            </div>
         </>
 
 
