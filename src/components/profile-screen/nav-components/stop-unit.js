@@ -5,6 +5,7 @@ import "../../search-screen/search.css";
 import * as service from "../../../services/authentication-service";
 import {findAlertsByStop} from "../../../actions/alerts-action";
 import {pinStop} from "../../../services/pinned-stop-service";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const StopUnit = ({unpinStop, stop, user}) => {
     //console.log(stop, user, "in stop unit")
@@ -43,10 +44,10 @@ const StopUnit = ({unpinStop, stop, user}) => {
                 {user === "me" ?
                     <>
                     <Link to={`/home/${routeType}/${stop.routeId}/${routeNameForNavigation}/stop/${stop.stopId}/${stopNameForNavigation}`} className="line-ends-links" >
-                    <span className=''>
-                            <span className="col-3 btn  btn-warning float-start">
-                                    See Next Arrivals
-                            </span>
+                    <span className='btn btn-warning  float-start'>
+                        {/*<span className="d-none d-md-inline ">Remove</span>*/}
+                        <span className="d-xs-block d-md-none "><FontAwesomeIcon icon="fa-solid fa-eye"/></span>
+                        <span className="col-3  d-none d-md-inline">See Next Arrivals</span>
                     </span>
                     </Link>
                         <span className=''>
@@ -56,10 +57,12 @@ const StopUnit = ({unpinStop, stop, user}) => {
                 </span>
                     </>
                     : <Link to={`/home/${routeType}/${stop.routeId}/${routeNameForNavigation}/stop/${stop.stopId}/${stopNameForNavigation}`} className="line-ends-links" >
-                    <span className=''>
-                            <span className="col-3 btn  btn-warning float-end">
-                                    See Next Arrivals
-                            </span>
+                    <span className='btn btn-warning  float-end'>
+                        <span className="d-xs-block d-md-none "><FontAwesomeIcon icon="fa-solid fa-eye"/></span>
+                        <span className="col-3 d-none d-md-inline">See Next Arrivals</span>
+                            {/*<span className="col-3 btn  btn-warning float-end">*/}
+                            {/*        See Next Arrivals*/}
+                            {/*</span>*/}
                     </span>
                     </Link>
                 }

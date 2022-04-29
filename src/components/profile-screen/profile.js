@@ -115,9 +115,9 @@ const Profile = () => {
                                 }
                             </>
                         }
-                        <span><i className='fa fa-birthday-cake ms-3 me-1'/>
+                        <span className="d-md-inline d-none"><i className='fa fa-birthday-cake ms-3 me-1'/>
                             { profile && profile.dateOfBirth?
-                            <span className="d-none d-lg-inline">Born:  {convertDateBirth(profile.dateOfBirth)} </span>
+                            <span className="">Birthday:  {convertDateBirth(profile.dateOfBirth)} </span>
                                 :''}
                              </span>
                         {/*<span className="d-none d-lg-inline">Born</span>: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>*/}
@@ -154,7 +154,7 @@ const Profile = () => {
                                         <Link to="/profile/lists/conductor-likes"
                                               className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
                                             <FontAwesomeIcon icon="fa-solid fa-heart" className='me-1' />
-                                            <br/><span className="d-none d-md-inline">Commuter Likes</span>
+                                            <br/><span className="d-none d-md-inline">Commuters</span>
                                             </Link>
                                     </li>
                                 </>
@@ -165,7 +165,7 @@ const Profile = () => {
                                             <Link to="/profile/lists/conductor-likes"
                                                   className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
                                                 <FontAwesomeIcon icon="fa-solid fa-heart" className='me-1' />
-                                                <span className="d-none d-md-inline">Liked Conductors</span></Link>
+                                                <br/><span className="d-none d-md-inline"> Conductors</span></Link>
                                         </li>
                                         : ""
                                     }

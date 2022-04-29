@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "./nav-components.css";
 import "../../search-screen/search.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const PostUnit = ({deletePost, post, user}) => {
 
@@ -12,10 +13,12 @@ const PostUnit = ({deletePost, post, user}) => {
                 {user === "me" ?
                     <>
                         <Link to={`/posts`} className="line-ends-links" >
-                    <span className=''>
-                            <span className="col-3 btn  btn-warning float-start">
-                                    See All Posts
-                            </span>
+                    <span className='btn btn-warning float-start'>
+                         <span className="d-xs-block d-md-none "><FontAwesomeIcon icon="fa-solid fa-eye"/></span>
+                        <span className="col-3  d-none d-md-inline">See All Posts</span>
+                            {/*<span className="col-3 btn  btn-warning float-start">*/}
+                            {/*        See All Posts*/}
+                            {/*</span>*/}
                     </span>
                         </Link>
                         <span className=''>
@@ -25,10 +28,12 @@ const PostUnit = ({deletePost, post, user}) => {
                 </span>
                     </>
                     : <Link to={`/posts`} className="line-ends-links" >
-                    <span className=''>
-                            <span className="col-3 btn  btn-warning float-end">
-                                    See All Posts
-                            </span>
+                    <span className='btn btn-warning  float-end'>
+                        <span className="d-xs-block d-md-none "><FontAwesomeIcon icon="fa-solid fa-eye"/></span>
+                        <span className="col-3  d-none d-md-inline">See All Posts</span>
+                            {/*<span className="col-3 btn  btn-warning float-end">*/}
+                            {/*        See All Posts*/}
+                            {/*</span>*/}
                     </span>
                     </Link>
                 }
