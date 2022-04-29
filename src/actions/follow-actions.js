@@ -7,9 +7,7 @@ export const FOLLOW_ALREADY_EXISTS = 'FOLLOW_ALREADY_EXISTS';
 
 
 export const findAllUserFollowers = async (dispatch, uid) => {
-    //console.log(uid, " in follow-action")
     const followers = await service.findAllUserFollowers(uid);
-    //console.log(followers, " followers in follow-action")
     dispatch({
         type: FIND_ALL_USER_FOLLOWERS,
         followers
@@ -17,9 +15,7 @@ export const findAllUserFollowers = async (dispatch, uid) => {
 }
 
 export const findAllFollowsByUser = async (dispatch, uid) => {
-    //console.log(uid, " in follow-action")
     const following = await service.findAllFollowsByUser(uid);
-    //console.log(following, " following in follow-action")
     dispatch({
         type: FIND_ALL_FOLLOWS_BY_USER,
         following

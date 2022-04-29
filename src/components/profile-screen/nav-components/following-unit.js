@@ -1,11 +1,9 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import {useSelector} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const FollowingUnit = ({follow,removeFollow, user}) => {
-    const loggedIn = useSelector(state => state.sessionReducer.isLoggedIn)
     const navigate = useNavigate();
     return(
         <div>

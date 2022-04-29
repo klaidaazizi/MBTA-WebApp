@@ -8,7 +8,6 @@ function Posts({posts = [], deletePost, user}) {
             <ul className=" list-group">
                 {
                     posts.map && posts.map(post => {
-                        //console.log(post)
                         return (
                             <PostUnit key={post._id}
                                       deletePost={deletePost}

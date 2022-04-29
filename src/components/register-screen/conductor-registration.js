@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import * as action from '../../actions/auth-actions';
 import {useDispatch} from "react-redux";
@@ -13,7 +13,6 @@ const ConductorRegistration = () => {
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams()
 
     //handle all info changes
     const handleName = (e) => {

@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import React from "react";
+import {Link} from "react-router-dom";
 import './search.css';
 import {useDispatch, useSelector} from "react-redux";
 import {conductRoute} from "../../actions/conducted-routes-action";
@@ -28,14 +28,6 @@ const FerryRouteItem = ({ferryRoute}) => {
                             :
                             <span className="fw-bold rapid-transit-route-id">{ferryRoute.attributes.long_name}</span>
                         }
-                        <div className="rt-route-text-alignment">
-                            {/*<div>*/}
-                            {/*    <span className='col-6  rt-route-test-color'>{ferryRoute.attributes.direction_destinations[0]}</span>*/}
-                            {/*</div>*/}
-                            {/*<div>*/}
-                            {/*    <span className='col-6  rt-route-test-color'>{ferryRoute.attributes.direction_destinations[1]}</span>*/}
-                            {/*</div>*/}
-                        </div>
                     </Link>
                 </div>
             </li>

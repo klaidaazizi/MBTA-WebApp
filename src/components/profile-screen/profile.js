@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import * as service from '../../services/authentication-service';
-import {Link, Route, Routes, HashRouter, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import PinnedStops from "./nav-components/pinned-stops";
 import Followers from "./nav-components/followers";
 import Following from "./nav-components/following";
@@ -31,10 +30,8 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        console.log('before')
         {loggedIn ? setProfile(user) : navigate('/profile-search')}
         if (profile && profile.userRole === 'Commuter') {
-            console.log('here')
             findStopNameById(user.homeStop).then(response => setStopName(response));
         }
     }, [loggedIn, profile.userRole]);
@@ -127,9 +124,6 @@ const Profile = () => {
                             <span className="">Birthday:  {convertDateBirth(profile.dateOfBirth)} </span>
                                 :''}
                              </span>
-                        {/*<span className="d-none d-lg-inline">Born</span>: { profile && profile.dateOfBirth? new Date(profile.dateOfBirth).toDateString() :''}</span>*/}
-                    {/*    <span><i className='fa fa-calendar me-1 ms-3'/>*/}
-                    {/*        <span className="d-none d-lg-inline">Joined</span>: {profile && profile.dateJoined? new Date(profile.dateJoined).toDateString():''}</span>*/}
                     </div>
 
                     <div className=''>

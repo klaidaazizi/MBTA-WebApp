@@ -14,7 +14,6 @@ const FollowersList= ({follows=[],removeFollow, user}) => {
                                     removeFollow={removeFollow}
                                     user={user}
                             />
-
                         );
                     })
                 }

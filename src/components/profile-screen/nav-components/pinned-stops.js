@@ -19,8 +19,6 @@ const PinnedStops = ({userProfile}) => {
             await findAllPinnedStopsByUser(dispatch, user),
         []);
     const unPinStop = (pid) => unpinStop(pid).then(findAllPinnedStopsByUser(dispatch, user));
-    //console.log(userProfile, "user in pinned stops")
-    //console.log(pinnedStops, " pins in pinned stops")
 
     return(
         <Stops stops={pinnedStops} unpinStop={unPinStop} user={user}/>

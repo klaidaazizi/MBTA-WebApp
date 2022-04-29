@@ -11,7 +11,6 @@ const AdminRegistration = () => {
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams()
 
     //handle all info changes
     const handleName = (e) => {

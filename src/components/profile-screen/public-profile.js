@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import * as service from '../../services/user-service';
-import {Link, Route, Routes, HashRouter, useLocation, useNavigate} from "react-router-dom";
+import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import PinnedStops from "./nav-components/pinned-stops";
 import Followers from "./nav-components/followers";
 import Following from "./nav-components/following";
@@ -15,6 +15,7 @@ import {conductorLikeAlreadyExists} from "../../actions/conductor-likes-action";
 import {likeConductor} from "../../services/conductor-likes-service";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {changeHighlight} from "../../actions/nav-bar-action";
+import {findStopNameById} from "../../services/stop-service";
 
 const PublicProfile = () => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ const PublicProfile = () => {
     const dispatch = useDispatch();
     changeHighlight(dispatch, 'search_users')
     const [profile, setProfile] = useState({currentRouteConducting: ''});
+    const [homeStop, setHomeStop] = useState('')
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
     const userViewing = useSelector(state => state.sessionReducer.profileData)
     const conductorLikeExists = useSelector(state => state.conductorLikeExists);
@@ -49,7 +51,9 @@ const PublicProfile = () => {
         try{
             const user = await service.findUserByUsername(username);
             setProfile(user);
-            //console.log(user)
+            if (user && user.userRole === 'Commuter') {
+                findStopNameById(user.homeStop).then(response => setHomeStop(response));
+            }
             if(loggedIn){
                 await conductorLikeAlreadyExists(dispatch, user._id, userViewing._id)
                 await followAlreadyExists(dispatch, user._id, userViewing._id)
@@ -69,7 +73,6 @@ const PublicProfile = () => {
             followUser("me", profile._id) :
             alert("Already following user!")}
     }
-    //console.log('profile', profile)
 
 
     return(
@@ -138,7 +141,7 @@ const PublicProfile = () => {
                     {profile.userRole === "Commuter" ?
                         <>
                             <span><i className='fa fa-home ms-1 me-1'/>
-                                Home stop: {profile.homeStop}
+                                Home stop: {homeStop}
                             </span>
                         </>
                         :
@@ -151,19 +154,6 @@ const PublicProfile = () => {
                                 </>
                                 :
                                 ""
-                                // <>
-                                //     {profile.userRole === "Conductor" && profile.currentRouteConducting !== '' ?
-                                //         <>
-                                //             <Link  to={profile.currentRouteConducting}>
-                                //             <span className="col-3 btn bg-warning ms-1 me-1" >
-                                //                 View My Route
-                                //              </span>
-                                //                 </Link>
-                                //                 </>
-                                //         :
-                                //         ""
-                                //     }
-                                // </>
                             }
                         </>
                     }
@@ -183,14 +173,6 @@ const PublicProfile = () => {
                              </span>
                     }
 
-                    {/*<span>*/}
-                    {/*    <i className='fa fa-birthday-cake ms-3 me-1'/>*/}
-                    {/*    Born: newDate{profile.dateOfBirth}*/}
-                    {/*</span>*/}
-                    {/*<span>*/}
-                    {/*    <i className='fa fa-calendar me-1 ms-3'/>*/}
-                    {/*    Joined: {profile.joinedDate}*/}
-                    {/*</span>*/}
                 </div>
 
                 <div className=''>

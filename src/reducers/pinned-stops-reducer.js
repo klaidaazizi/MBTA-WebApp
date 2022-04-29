@@ -11,7 +11,6 @@ const PinnedStopsReducer = (state = [], action) => {
         case PIN_ALREADY_EXISTS:
             return action.pinExists;
         case FIND_ALL_USERS_WHO_PINNED_STOP:
-            //console.log("in pinned reducer")
             return action.usersWhoPinnedStops;
         default:
             return state;

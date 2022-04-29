@@ -7,13 +7,11 @@ export const api = axios.create({withCredentials: true});
 
 export const findAllPosts = async () => {
     const response = await axios.get(POST_API);
-    //console.log(response.data)
     return response.data;
 };
 
 export const findAllPostsByUser = async (uid) => {
     const response = await api.get(`${API_BASE}/users/${uid}/posts`);
-    //console.log(response, "posts by user")
     return response.data;
 };
 

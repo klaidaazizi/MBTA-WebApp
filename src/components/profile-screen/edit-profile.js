@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
-import * as service from '../../services/authentication-service';
 import stations from '../../data/stations.json'
 import {findUserByUsername} from '../../services/user-service';
-import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import './index.css';
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
@@ -12,7 +11,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const EditProfile = () => {
     const navigate = useNavigate();
-    const location = useLocation();
 
     const user = useSelector(state => state.sessionReducer.profileData)
     const loggedIn = useSelector(state=> state.sessionReducer.isLoggedIn)
@@ -23,22 +21,11 @@ const EditProfile = () => {
      * Allow admin to edit user's profile, different edit profile page url
      * @type {string}
      */
-    // const location = useLocation().pathname.split("/");
-    // const stopId = newLocation[newLocation.length-2];
-    // const stopName = newLocation[newLocation.length-1];
 
     const queryURL = window.location.pathname;
     const params = queryURL.toString().split('/');
-    console.log(params)
     const username = params[params.length-1];
-    // const username = params[-1].toString();
-    console.log(username)
 
-    // let publicUser = null;
-    // if(username !== "editprofile"){
-    //     publicUser = findUserByUsername(username);
-    // }
-    // console.log(publicUser)
 
     useEffect( async () => {
             {
@@ -53,25 +40,9 @@ const EditProfile = () => {
         },
         [username]);
 
-
-
-    // useEffect(  () => {
-    //         {loggedIn && username === "editprofile" ? setProfile(user) : setProfile(publicUser)}
-    //     },
-    //     [loggedIn]);
-
-    console.log(profile)
-
-
-
-    // useEffect(  () => {
-    //     {loggedIn ? setProfile(user) : navigate('/login')}
-    // }, [loggedIn]);
-
     const saveProfile = () => {
         try {
             save(dispatch, profile).then(r => navigate(`/profile`));
-            console.log(profile.charlieCardBalance);
         } catch (e){
             alert("Failed to update!")
         }
@@ -100,11 +71,6 @@ const EditProfile = () => {
     const updatePassword = (event) => setProfile({
         ...profile,
         password: event.target.value
-    });
-
-    const updateHomeStop = (event) => setProfile({
-        ...profile,
-        homeStop: event.target.value
     });
 
     const updateDOB = (event) => setProfile({

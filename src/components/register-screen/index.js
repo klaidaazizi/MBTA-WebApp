@@ -1,9 +1,6 @@
-import React, {useState} from "react";
-import {BrowserRouter, Routes} from "react-router-dom";
-import {Link, useNavigate} from "react-router-dom";
+import React from "react";
+import {useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import * as action from '../../actions/auth-actions';
-import {useDispatch} from "react-redux";
 
 const Register = () => {
     const navigate = useNavigate();
