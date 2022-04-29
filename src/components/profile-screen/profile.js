@@ -131,7 +131,7 @@ const Profile = () => {
                             <li className="nav-item ">
                                 <Link to="/profile/lists/your-posts"
                                       className={`nav-link border ${location.pathname.indexOf('posts') >= 0 ? 'active':''}`}>
-                                    <FontAwesomeIcon icon="fa-solid fa-bullhorn" className="me-1"/>
+                                    <FontAwesomeIcon icon="fa-solid fa-comment" className="me-1"/>
                                     <br/><span className="d-none d-md-inline">Posts</span>
                                 </Link>
                             </li>
@@ -153,7 +153,7 @@ const Profile = () => {
                                     <li className="nav-item">
                                         <Link to="/profile/lists/conductor-likes"
                                               className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                            <FontAwesomeIcon icon="fa-solid fa-briefcase" className='me-1' />
+                                            <FontAwesomeIcon icon="fa-solid fa-heart" className='me-1' />
                                             <br/><span className="d-none d-md-inline">Commuter Likes</span>
                                             </Link>
                                     </li>
@@ -164,7 +164,7 @@ const Profile = () => {
                                         <li className="nav-item">
                                             <Link to="/profile/lists/conductor-likes"
                                                   className={`nav-link border ${location.pathname.indexOf('conductor-likes') >= 0 ? 'active' : ''}`}>
-                                                <FontAwesomeIcon icon="fa-solid fa-train" className='me-1' />
+                                                <FontAwesomeIcon icon="fa-solid fa-heart" className='me-1' />
                                                 <span className="d-none d-md-inline">Liked Conductors</span></Link>
                                         </li>
                                         : ""
@@ -175,7 +175,7 @@ const Profile = () => {
                                 <li className="nav-item ">
                                     <Link to="/profile/lists/pinned-stops"
                                           className={`nav-link border ${location.pathname.indexOf('pinned-stops') >= 0 ? 'active' : ''}`}>
-                                        <FontAwesomeIcon icon="fa-solid fa-location-dot" className='me-1' />
+                                        <FontAwesomeIcon icon="fa-solid fa-thumbtack" className='me-1' />
                                         <br/><span className="d-none d-md-inline">Stops</span></Link>
                                 </li>
                                 : ""
@@ -194,6 +194,7 @@ const Profile = () => {
                 </div>
 
             </div>
+                </div>
         </>
 
 
