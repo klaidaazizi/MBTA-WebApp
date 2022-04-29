@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import * as service from '../../services/authentication-service';
+import stations from '../../data/stations.json'
 import {findUserByUsername} from '../../services/user-service';
 import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import './index.css';
@@ -7,6 +8,7 @@ import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {save, adminSave} from "../../actions/auth-actions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 
 const EditProfile = () => {
     const navigate = useNavigate();
@@ -125,6 +127,10 @@ const EditProfile = () => {
         charlieCardBalance: event.target.value
     });
 
+    const updateHomeStationChange = (event) => setProfile({
+        ...profile,
+        homeStop: event.target.value
+    });
 
     return(
         <>
@@ -181,10 +187,15 @@ const EditProfile = () => {
 
                 {profile && profile.userRole && profile.userRole === "Commuter" ?
                     <>
-                        <label className='control-label mt-2 '>
-                            Edit Home stop
-                        </label>
-                        <input className="border-1 form-control " value={profile.homeStop} onChange={updateHomeStop}/>
+                            <label> Home Station </label>
+                            <select className='border-1 form-select' onChange={updateHomeStationChange}
+                                    required={true}>
+                                {stations.map(station =>
+                                    <option value={station.value} selected={station.selected}>
+                                        {station.name}
+                                    </option>)
+                                }
+                            </select>
                     </>
                     : ""
                 }
